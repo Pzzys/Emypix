@@ -1581,6 +1581,7 @@
     <nav class="top-nav">
         <div class="brand-container">
             <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/be2dfa42-a4dd-4876-96b8-4fa9d3bd0604-profile_image-70x70.png" alt="Emypix Logo" class="brand-logo">
+        
             <span class="brand-name">EMYPIX</span>
         </div>
         <div class="nav-links-container">
@@ -1589,7 +1590,8 @@
             <button class="nav-link" data-tab="patrocinar">Patrocinar</button>
             <button class="nav-link" data-tab="patrocinados">Patrocinados</button>
             <button class="nav-link" data-tab="assistidos">Assistidos</button>
-            <button class="nav-link" data-tab="sobre">Sobre</button>
+       
+             <button class="nav-link" data-tab="sobre">Sobre</button>
         </div>
     </nav>
 
@@ -1598,11 +1600,13 @@
             <div class="inicio-container">
                 <div class="welcome-section">
                     <h1>Seja Bem Vindo!</h1>
+               
                     <p>Assista, divirta-se e faça parte da nossa comunidade.</p>
                     <a href="https://www.twitch.tv/emypix" target="_blank" class="twitch-btn">
                         <i class="fa-brands fa-twitch"></i> Assista na Twitch
                     </a>
-                </div>
+               
+                 </div>
             
                 <div class="live-container">
                     <iframe src="https://player.twitch.tv/?channel=emypix&parent=dancing-cendol-fdc056.netlify.app" allowfullscreen></iframe>
@@ -1611,6 +1615,7 @@
         </div>
 
         <div id="cronograma-tab" class="tab-content hidden">
+ 
             <div class="patrocinar-header">
                 <h1>Cronograma</h1>
                 <p>Veja o que vai passar nas lives durante a semana</p>
@@ -1618,86 +1623,110 @@
 
             <div class="week-controls">
                 <button class="week-btn" id="prev-week-btn">
+    
                     <i class="fa-solid fa-chevron-left"></i>
                 </button>
                 <div class="week-display" id="week-display-text"></div>
                 <button class="week-btn" id="next-week-btn">
                     <i class="fa-solid fa-chevron-right"></i>
+        
                 </button>
             </div>
 
-            <div id="cronograma-loading-message" style="text-align: center; color: var(--text-muted);">Carregando cronograma...</div>
+            <div id="cronograma-loading-message" style="text-align: center;
+color: var(--text-muted);">Carregando cronograma...</div>
             <div id="cronograma-container" class="sponsored-section"></div>
         </div>
      
         <div id="patrocinar-tab" class="tab-content hidden">
             <div id="patrocinar-header" class="patrocinar-header">
                 <h1>Patrocine conteúdo na live!</h1>
-                <p>Procure seu filme, série ou anime abaixo e veja o preço para patrocinar</p>
+                <p>Procure seu filme, série ou anime abaixo e veja o preço 
+para patrocinar</p>
             </div>
         
             <div class="main-container">
                 <div class="column">
                     <div id="search-block" class="card static">
                         <h2>Buscar</h2>
+  
                         <div class="tabs">
                             <button class="tab-button active" data-type="movie">Filme</button>
                             <button class="tab-button" data-type="tv">Série/Anime</button>
+                
                         </div>
                         <div class="search-wrapper">
                             <input type="text" id="search-input" placeholder="Pesquisar filme">
                             <div id="search-results-list" class="hidden"></div>
+     
                         </div>
                         <div id="search-preview" class="card hidden"></div>
                     </div>
                     
+              
                     <div id="config-block" class="card static hidden">
                         <div id="config-options"></div>
                     </div>
                 </div>
      
                 <div class="column">
-                    <div class="card static">
+       
+                     <div class="card static">
                         <h2>Resumo do Patrocínio</h2>
-                        <div id="summary-placeholder" class="placeholder" style="color: var(--text-muted); font-style: italic; text-align: center; padding: 20px;">Configure as opções para ver o preço</div>
+                        <div id="summary-placeholder" class="placeholder" style="color: var(--text-muted);
+font-style: italic; text-align: center; padding: 20px;">Configure as opções para ver o preço</div>
                         <div id="summary-content" class="hidden">
-                            <div style="display: flex; gap: 16px;">
+                            <div style="display: flex;
+gap: 16px;">
                                 <img class="poster" id="summary-poster" src="" alt="Poster">
                                 <div> 
-                                    <h3 id="summary-title" style="font-size: 1.1rem; margin-bottom: 4px;"></h3> 
-                                    <p id="summary-info" class="media-info" style="font-size: 0.9rem; color: var(--text-muted);"></p> 
+                              
+                                    <h3 id="summary-title" style="font-size: 1.1rem;
+margin-bottom: 4px;"></h3> 
+                                    <p id="summary-info" class="media-info" style="font-size: 0.9rem;
+color: var(--text-muted);"></p> 
                                 </div>
                             </div>
                             <div class="divider"></div>
          
+
                             <div id="price-breakdown"></div>
                             <div class="divider"></div>
       
                             <div class="total">
-                                <p class="total-text">Total:</p>
+       
+                                 <p class="total-text">Total:</p>
                                 <p class="price" id="total-price">R$ 0,00</p>
                             </div>
-               
+           
+    
                             <a id="pay-button" href="https://livepix.gg/emypix" target="_blank" class="pay-button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                        
                                   <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
-                                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
+                                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 
+0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
                                 </svg>
                                 Pagar no LivePix
-                            </a>
+                           
+                             </a>
         
                             <a id="pay-streamar-button" href="https://www.streamar.com.br/2f8fb4217575cda" target="_blank" class="streamar-button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
-                                    <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
+                   
+                                     <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
+                                    <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 
+0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
                                 </svg>
                                 Pagar no Streamar
-                            </a>
+                  
+                                </a>
        
                             <div id="restriction-warning" class="error-notice hidden"></div>
                         </div>
                     </div>
-                </div>
+        
+                 </div>
             </div>
         </div>
 
@@ -1705,46 +1734,55 @@
             <div class="patrocinar-header">
                 <h1>Conteúdos Patrocinados</h1>
                 <p>Confira todos os conteúdos que já foram patrocinados na live</p>
-            </div>
+      
+             </div>
             
             <div class="sponsored-section">
                 <div class="sponsored-search-controls">
                     <div class="search-wrapper">
                         <input type="text" id="sponsored-search-input" placeholder="Pesquisar em patrocinados...">
+  
                     </div>
-                    <div class="tabs" id="sponsored-tabs" style="display: flex; gap: 8px;">
+                    <div class="tabs" id="sponsored-tabs" style="display: flex;
+gap: 8px;">
                         <button class="tab-button active" data-filter="filmes">Filmes</button>
                         <button class="tab-button" data-filter="series">Séries</button>
                         <button class="tab-button" data-filter="animes">Animes</button>
-                        <button class="tab-button" data-filter="pausados">Pausados</button>
+                    
+         <button class="tab-button" data-filter="pausados">Pausados</button>
                     </div>
                 </div>
 
-                <div id="loading-message" style="text-align: center; color: var(--text-muted); padding: 40px;">Carregando conteúdos patrocinados...</div>
+                <div id="loading-message" style="text-align: center;
+color: var(--text-muted); padding: 40px;">Carregando conteúdos patrocinados...</div>
                 
                 <div id="sponsored-empty-msg" class="empty-search-state hidden">
                     <i class="fa-regular fa-folder-open"></i>
                     <h3>Nenhum conteúdo encontrado</h3>
-                    <p>Tente mudar o termo da busca ou o filtro selecionado.</p>
+                
+         <p>Tente mudar o termo da busca ou o filtro selecionado.</p>
                 </div>
 
                 <div id="pausados-section" class="hidden">
                     <h2>Pausados</h2>
                     <div id="pausados-grid" class="media-grid"></div>
-                </div>
+           
+                 </div>
 
                 <div id="filmes-section" class="hidden">
                     <h2>Filmes Patrocinados</h2>
                     <div id="filmes-grid" class="media-grid"></div>
                 </div>
  
-                <div id="series-section" class="hidden">
+                <div 
+id="series-section" class="hidden">
                     <h2>Séries Patrocinadas</h2>
                     <div id="series-grid" class="media-grid"></div>
                 </div>
 
                 <div id="animes-section" class="hidden">
                     <h2>Animes Patrocinados</h2>
+ 
                     <div id="animes-grid" class="media-grid"></div>
                 </div>
                 
@@ -1752,35 +1790,43 @@
             </div>
         </div>
         
-        <div id="assistidos-tab" class="tab-content hidden">
+ 
+         <div id="assistidos-tab" class="tab-content hidden">
             <div class="patrocinar-header">
                 <h1>Conteúdos Assistidos</h1>
                 <p>Confira todos os conteúdos que já foram assistidos na live</p>
             </div>
             
-            <div class="sponsored-section">
+           
+             <div class="sponsored-section">
                 <div class="assistidos-search-controls">
                     <div class="search-wrapper">
                         <input type="text" id="assistidos-search-input" placeholder="Pesquisar em assistidos...">
                     </div>
-                    <div class="tabs" id="assistidos-tabs" style="display: flex; gap: 8px;">
+           
+                 <div class="tabs" id="assistidos-tabs" style="display: flex;
+gap: 8px;">
                         <button class="tab-button active" data-filter="filmes">Filmes</button>
                         <button class="tab-button" data-filter="series">Séries</button>
                         <button class="tab-button" data-filter="animes">Animes</button>
-                    </div>
+                    
+</div>
                 </div>
 
-                <div id="assistidos-loading-message" style="text-align: center; color: var(--text-muted); padding: 40px;">Carregando conteúdos assistidos...</div>
+                <div id="assistidos-loading-message" style="text-align: center;
+color: var(--text-muted); padding: 40px;">Carregando conteúdos assistidos...</div>
                 
                 <div id="assistidos-empty-msg" class="empty-search-state hidden">
                     <i class="fa-regular fa-eye-slash"></i>
                     <h3>Nenhum conteúdo encontrado</h3>
-                    <p>Tente mudar o termo da busca ou o filtro selecionado.</p>
+                
+         <p>Tente mudar o termo da busca ou o filtro selecionado.</p>
                 </div>
 
                 <div id="assistidos-filmes-section" class="hidden">
                     <h2>Filmes Assistidos</h2>
                     <div id="assistidos-filmes-grid" class="media-grid"></div>
+          
                 </div>
  
                 <div id="assistidos-series-section" class="hidden">
@@ -1788,7 +1834,8 @@
                     <div id="assistidos-series-grid" class="media-grid"></div>
                 </div>
 
-                <div id="assistidos-animes-section" class="hidden">
+                
+<div id="assistidos-animes-section" class="hidden">
                     <h2>Animes Assistidos</h2>
                     <div id="assistidos-animes-grid" class="media-grid"></div>
                 </div>
@@ -1797,42 +1844,53 @@
             </div>
         </div>
 
-        <div id="sobre-tab" class="tab-content hidden">
+ 
+         <div id="sobre-tab" class="tab-content hidden">
             <div class="sobre-container">
                 <div class="profile-card">
                     <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/be2dfa42-a4dd-4876-96b8-4fa9d3bd0604-profile_image-300x300.png" alt="Emylli" class="profile-image">
                     <h2>Emylli (Emypix)</h2>
-                    <p class="profile-bio">Meu nome é Emylli, tenho 22 anos, sou nordestina e faço react. ❤</p>
+                
+         <p class="profile-bio">Meu nome é Emylli, tenho 22 anos, sou nordestina e faço react.
+❤</p>
                     
                     <div class="social-links">
                         <a href="https://www.instagram.com/umwly/" target="_blank" class="social-btn btn-instagram">
-                            <i class="fa-brands fa-instagram"></i> Instagram
+                            <i class="fa-brands fa-instagram"></i> 
+Instagram
                         </a>
                         <a href="https://www.youtube.com/c/Emypix/featured" target="_blank" class="social-btn btn-youtube">
                             <i class="fa-brands fa-youtube"></i> Youtube
+                 
                         </a>
                         <a href="https://www.twitch.tv/emypix2" target="_blank" class="social-btn btn-twitch">
                             <i class="fa-brands fa-twitch"></i> Canal Secundário
                         </a>
+         
                         <a href="https://discord.com/invite/yuF89uCyUs" target="_blank" class="social-btn btn-discord">
                            <i class="fa-brands fa-discord"></i> Discord
                         </a>
-                        <a href="https://www.tiktok.com/@umewly" target="_blank" class="social-btn btn-tiktok">
+                        <a href="https://www.tiktok.com/@umewly" target="_blank" 
+class="social-btn btn-tiktok">
                             <i class="fa-brands fa-tiktok"></i> TikTok
                         </a>
                     </div>
                 </div>
 
-                <div class="wishlist-cinefy-grid">
+        
+                 <div class="wishlist-cinefy-grid">
                     <a href="https://www.amazon.com.br/hz/wishlist/ls/W1DYC1Q02RF2?ref_=wl_share" target="_blank" class="special-link-card">
                         <i class="fas fa-gift special-icon"></i>
                         <div class="special-title">Minha Wishlist</div>
-                        <p class="special-desc">Caso alguém queira me mandar alguma coisa. ♥ Meu aniversário é 19/06.</p>
+               
+                         <p class="special-desc">Caso alguém queira me mandar alguma coisa.
+♥ Meu aniversário é 19/06.</p>
                     </a>
 
                     <a href="https://cinefy.gg/emypix" target="_blank" class="special-link-card">
                         <img src="https://cdn.cinefy.gg/assets/images/logo.png" alt="Cinefy" class="cinefy-logo">
                         <div class="special-title">Cinefy</div>
+ 
                         <p class="special-desc">Todos os nossos vods estão disponíveis no cinefy.</p>
                     </a>
                 </div>
@@ -1841,7 +1899,8 @@
     </main>
 
     <div id="details-modal" class="modal-overlay">
-        <div class="modal-content">
+   
+         <div class="modal-content">
             <div class="modal-backdrop-bg"></div>
             <button class="modal-close">&times;</button>
             <div class="modal-header">
@@ -1849,42 +1908,51 @@
                 <div id="modal-subtitle" class="modal-subtitle"></div>
             </div>
        
+
             <div class="modal-body">
                 <div class="modal-poster">
                     <img id="modal-poster" src="" alt="Pôster do conteúdo">
                 </div>
                 <div class="modal-details">
-                    <div id="modal-meta" class="modal-meta"></div>
+            
+                 <div id="modal-meta" class="modal-meta"></div>
                     
                     <div id="modal-info-tv" class="hidden">
                         <div id="modal-total-eps-group" class="modal-info-group hidden">
+                     
                              <strong>Episódios Totais:</strong>
                              <div id="modal-total-eps" class="info-tag-container"></div>
                         </div>
                         <div class="modal-info-group">
-                             <strong>Episódios Patrocinados:</strong>
+            
+                               <strong>Episódios Patrocinados:</strong>
                              <div id="modal-sponsored-eps" class="info-tag-container"></div>
                         </div>
                         <div class="modal-info-group">
+  
                             <strong>Episódios Assistidos:</strong>
                             <div id="modal-watched-eps" class="info-tag-container"></div>
                         </div>
-                    </div>
+                   
+                 </div>
      
                     <div class="modal-info-group" id="modal-sponsor-container-body">
                         <strong>Patrocinador:</strong>
                         <div id="modal-sponsor" class="info-tag-container"></div>
                     </div>
-              
+  
+             
                     <div class="modal-info-group">
                         <strong>Sinopse:</strong>
                         <p id="modal-synopsis"></p>
-                    </div>
+                   
+                 </div>
                   
                     <div id="modal-genres-container" class="modal-info-group hidden">
                         <strong>Gêneros:</strong>
                         <div id="modal-genres" class="modal-genres"></div>
-                    </div>
+        
+                     </div>
                 </div>
             </div>
         </div>
@@ -1894,47 +1962,56 @@
         <div class="modal-content">
             <div class="modal-backdrop-bg"></div>
             <button class="modal-close">&times;</button>
-            <div class="modal-header">
+    
+             <div class="modal-header">
                 <h2 id="assistidos-modal-title" class="modal-title"></h2>
                 <div id="assistidos-modal-subtitle" class="modal-subtitle"></div>
             </div>
 
             <div class="modal-body">
                 <div class="modal-poster">
-                    <img id="assistidos-modal-poster" src="" alt="Pôster do conteúdo">
+             
+                     <img id="assistidos-modal-poster" src="" alt="Pôster do conteúdo">
                 </div>
                 <div class="modal-details">
                     <div id="assistidos-modal-meta" class="modal-meta"></div>
                     
-                    <div id="assistidos-modal-info-tv" class="hidden">
+             
+                     <div id="assistidos-modal-info-tv" class="hidden">
                         <div class="modal-info-group">
                             <strong>Episódios Patrocinados:</strong>
                             <div id="assistidos-modal-sponsored-eps" class="info-tag-container"></div>
-                        </div>
+       
+                          </div>
                         <div class="modal-info-group">
                             <strong>Episódios Assistidos:</strong>
-                            <div id="assistidos-modal-watched-eps" class="info-tag-container"></div>
+                            <div 
+id="assistidos-modal-watched-eps" class="info-tag-container"></div>
                         </div>
                     </div>
 
                     <div class="modal-info-group" id="assistidos-modal-sponsor-container-body">
                         <strong>Patrocinador:</strong>
-                        <div id="assistidos-modal-sponsor" class="info-tag-container"></div>
+         
+                         <div id="assistidos-modal-sponsor" class="info-tag-container"></div>
                     </div>
 
                     <div class="modal-info-group">
                         <strong>Nota da Emypix:</strong>
-                        <div id="assistidos-modal-rating" class="stars-rating"></div>
+                
+                         <div id="assistidos-modal-rating" class="stars-rating"></div>
                     </div>
 
                     <div class="modal-info-group">
                         <strong>Sinopse:</strong>
-                        <p id="assistidos-modal-synopsis"></p>
+                        <p 
+id="assistidos-modal-synopsis"></p>
                     </div>
                  
                     <div id="assistidos-modal-genres-container" class="modal-info-group hidden">
                         <strong>Gêneros:</strong>
-                        <div id="assistidos-modal-genres" class="modal-genres"></div>
+                
+                         <div id="assistidos-modal-genres" class="modal-genres"></div>
                     </div>
                 </div>
             </div>
@@ -1944,38 +2021,45 @@
     <div id="cronograma-details-modal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-backdrop-bg"></div>
-            <button class="modal-close">&times;</button>
+  
+             <button class="modal-close">&times;</button>
             <div class="modal-header">
                 <h2 id="cronograma-modal-title" class="modal-title"></h2>
                 <div id="cronograma-modal-subtitle" class="modal-subtitle"></div>
             </div>
 
             <div class="modal-body">
-                <div class="modal-poster">
+               
+                 <div class="modal-poster">
                     <img id="cronograma-modal-poster" src="" alt="Pôster do conteúdo">
                 </div>
                 <div class="modal-details">
                     <div id="cronograma-modal-meta" class="modal-meta"></div>
                   
+    
                     <div id="cronograma-modal-info-tv" class="hidden">
                         <div class="modal-info-group">
                             <strong>Episódios que serão vistos hoje:</strong>
-                            <div id="cronograma-modal-eps-hoje" class="info-tag-container"></div>
+                   
+                          <div id="cronograma-modal-eps-hoje" class="info-tag-container"></div>
                         </div>
                     </div>
 
                     <div class="modal-info-group" id="cronograma-modal-sponsor-container-body">
-                        <strong>Patrocinador:</strong>
+                       
+                  <strong>Patrocinador:</strong>
                         <div id="cronograma-modal-sponsor" class="info-tag-container"></div>
                     </div>
 
                     <div class="modal-info-group">
                         <strong>Sinopse:</strong>
-                        <p id="cronograma-modal-synopsis"></p>
+        
+                         <p id="cronograma-modal-synopsis"></p>
                     </div>
                  
                     <div id="cronograma-modal-genres-container" class="modal-info-group hidden">
-                        <strong>Gêneros:</strong>
+                       
+                  <strong>Gêneros:</strong>
                         <div id="cronograma-modal-genres" class="modal-genres"></div>
                     </div>
                 </div>
@@ -1984,98 +2068,102 @@
     </div>
 
     <script>
-        // --- SCRIPT DA ABA PATROCINAR ---
+        // 
+--- SCRIPT DA ABA PATROCINAR ---
         const API_KEY = 'ae110c8706fa5b6ed0a58125648e31b3';
-        const BASE_URL = 'https://api.themoviedb.org/3';
+const BASE_URL = 'https://api.themoviedb.org/3';
         const IMG_URL = 'https://image.tmdb.org/t/p/w500';
         const BACKDROP_URL = 'https://image.tmdb.org/t/p/original';
-        
-        // CONFIGURAÇÃO DO SUPABASE (ATUALIZADA)
+// CONFIGURAÇÃO DO SUPABASE (ATUALIZADA)
         const supabaseUrl = 'https://lybjuvhrilwoxaaqavnl.supabase.co';
         const supabaseKey = 'sb_publishable_-naTbGoCSoJQHa4Q8N4okA_yQOeVQsJ';
-        const { createClient } = supabase;
+const { createClient } = supabase;
         const supabaseClient = createClient(supabaseUrl, supabaseKey);
-        
-        const state = {
+const state = {
             mediaType: 'movie',
             selectedItem: null,
             tempItem: null,
             options: {
                 season: 1,
                 episodes: 1,
-                selectedEpisodes: [],
+           
+             selectedEpisodes: [],
             },
             derived: { 
                 tvType: 'series', 
                 episodeCount: 0,
                 seasonEpisodes: 0,
-                seasonEpisodesData: [],
+                
+seasonEpisodesData: [],
                 ageRating: 'Classificação não encontrada',
                 ageRatingDescription: 'Não foi possível determinar a classificação indicativa',
                 productionCompanies: [],
                 releaseDate: '',
                 totalEpisodes: 0,
+      
                 listInfo: {
                     loading: false,
                     sponsoredEpisodes: 0,
                     watchedEpisodes: 0,
                     currentSeasonSponsored: 0,
-                    isCurrentSeasonFullySponsored: false,
+     
+                     isCurrentSeasonFullySponsored: false,
                     lastSponsoredEpisode: 0,
                     hasTemporadas: false,
                     temporadasPatrocinadas: [],
-                    temporadasAssistidas: [],
+                    temporadasAssistidas: 
+[],
                     totalPatrocinados: 0,
                     totalAssistidos: 0,
                     sponsoredRanges: [], 
                     specificSponsoredEpisodes: [] 
+              
                 }
             }
         };
-        
-        const $ = (selector) => document.querySelector(selector);
+const $ = (selector) => document.querySelector(selector);
         const $$ = (selector) => document.querySelectorAll(selector);
-        
-        // Sistema de Loading Otimizado
+// Sistema de Loading Otimizado
         class LoadingSystem {
             constructor() {
                 this.quickLoading = $('#quick-loading');
-                this.stages = [
+this.stages = [
                     'Buscando detalhes...',
                     'Verificando classificação...',
                     'Carregando temporada...',
                     'Calculando preços...'
+              
                 ];
                 this.currentStage = 0;
             }
             
             show() {
                 this.quickLoading.classList.add('active');
-                this.updateStage(0);
+this.updateStage(0);
             }
             
             hide() {
                 this.quickLoading.classList.remove('active');
-                this.currentStage = 0;
+this.currentStage = 0;
             }
             
             updateStage(index) {
                 this.currentStage = index;
-                const text = this.stages[index] || 'Finalizando...';
+const text = this.stages[index] || 'Finalizando...';
                 $('.quick-loading-text').textContent = text;
             }
             
             progress(percent) {
                 const bar = $('.loading-progress-bar');
-                if (bar) {
+if (bar) {
                     bar.style.width = `${percent}%`;
-                    $('.loading-progress-text').textContent = `${Math.round(percent)}%`;
+$('.loading-progress-text').textContent = `${Math.round(percent)}%`;
                 }
             }
         }
         
         const loadingSystem = new LoadingSystem();
-        
+
         function init() {
             $$('#search-block .tab-button').forEach(tab => tab.addEventListener('click', selectTab));
             $('#search-input').addEventListener('input', handleSearchInput);
@@ -2085,34 +2173,31 @@
             loadAssistidosContent();
             loadCronogramaContent();
             
-            // --- SISTEMA DE URLS LIMPAS (GITHUB PAGES) ---
+            const validTabs = ['inicio', 'cronograma', 'patrocinar', 'patrocinados', 'assistidos', 'sobre'];
+
+            // 1. Lógica de clique nos botões de navegação
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', (e) => { 
                     e.preventDefault();
-                    navigateTo(link.dataset.tab); 
+                    // Muda a URL adicionando o #nomedaaba
+                    window.location.hash = link.dataset.tab; 
                 });
             });
 
-            // 1. Escutar o botão de voltar/avançar do navegador
-            window.addEventListener('popstate', () => {
-                const path = window.location.pathname.replace(/^\/|\/$/g, '') || 'inicio';
-                const validTabs = ['inicio', 'cronograma', 'patrocinar', 'patrocinados', 'assistidos', 'sobre'];
-                const tabToOpen = validTabs.includes(path) ? path : 'inicio';
-                switchTab(tabToOpen);
+            // 2. Lógica para quando a URL muda (usuário clica em Voltar/Avançar ou no menu)
+            window.addEventListener('hashchange', () => {
+                let currentHash = window.location.hash.replace('#', '');
+                // Se o hash não for válido, volta pro início
+                if (!validTabs.includes(currentHash)) currentHash = 'inicio';
+                switchTab(currentHash);
             });
 
-            // 2. Carregamento inicial lendo a URL (Útil para o F5 e o 404.html)
-            const path = window.location.pathname.replace(/^\/|\/$/g, '') || 'inicio';
-            const validTabs = ['inicio', 'cronograma', 'patrocinar', 'patrocinados', 'assistidos', 'sobre'];
-            const initialTab = validTabs.includes(path) ? path : 'inicio';
-            
-            switchTab(initialTab);
-        }
-
-        // Função responsável por mudar a aba e atualizar a URL lá em cima
-        function navigateTo(tabName) {
-            window.history.pushState({}, "", `/${tabName}`);
-            switchTab(tabName);
+            // 3. Lógica para quando a página carrega ou o usuário dá F5
+            let initialHash = window.location.hash.replace('#', '');
+            if (!validTabs.includes(initialHash)) {
+                initialHash = 'inicio';
+            }
+            switchTab(initialHash);
         }
 
         function switchTab(tabName) {
@@ -2120,100 +2205,106 @@
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.toggle('active', link.dataset.tab === tabName);
             });
-            // Alterna visibilidade das abas (aplica hidden/imediato)
+// Alterna visibilidade das abas (aplica hidden/imediato)
             document.querySelectorAll('.tab-content').forEach(content => {
                 content.classList.toggle('hidden', content.id !== `${tabName}-tab`);
             });
-            // Lógica específica para a aba patrocinar (cabeçalho)
+// Lógica específica para a aba patrocinar (cabeçalho)
             if (tabName === 'patrocinar') {
                 const isConfigActive = !$('#config-block').classList.contains('hidden');
-                if (isConfigActive) {
+if (isConfigActive) {
                     $('#patrocinar-header').classList.add('hidden');
-                } else {
+} else {
                     $('#patrocinar-header').classList.remove('hidden');
-                }
+}
             } else {
                 $('#patrocinar-header').classList.add('hidden');
-            }
+}
         }
 
         function selectTab(event) {
             $$('#search-block .tab-button').forEach(t => t.classList.remove('active'));
-            event.target.classList.add('active');
+event.target.classList.add('active');
             state.mediaType = event.target.dataset.type;
             $('#search-input').placeholder = state.mediaType === 'movie' ? 'Pesquisar filme' : 'Pesquisar série ou anime';
             resetToSearch();
-        }
+}
 
         let searchTimeout;
-        function handleSearchInput() {
+function handleSearchInput() {
             clearTimeout(searchTimeout);
             $('#search-preview').classList.add('hidden');
             const query = $('#search-input').value.trim();
-            if (query.length > 2) {
+if (query.length > 2) {
                 searchTimeout = setTimeout(() => searchMedia(query), 300);
-            } else {
+} else {
                 $('#search-results-list').classList.add('hidden');
-            }
+}
         }
 
         async function searchMedia(query) {
             const endpoint = `${BASE_URL}/search/${state.mediaType}?api_key=${API_KEY}&query=${encodeURIComponent(query)}&language=pt-BR&include_adult=false`;
-            const response = await fetch(endpoint);
+const response = await fetch(endpoint);
             const data = await response.json();
             renderSearchResults(data.results);
-        }
+}
 
         function renderSearchResults(results) {
             const list = $('#search-results-list');
-            list.innerHTML = '';
+list.innerHTML = '';
             if (results && results.length > 0) {
                 results.forEach(item => {
                     const div = document.createElement('div');
                     div.className = 'search-result-item';
                     const title = item.title || item.name;
    
+
                     const year = (item.release_date || item.first_air_date)?.split('-')[0] || '';
                     div.innerHTML = `
                         <img src="${item.poster_path ? IMG_URL + item.poster_path : 'https://via.placeholder.com/40x60/333333/ffffff?text=No+Image'}" alt="poster">
-                        <div>
+                   
+                     <div>
                             <p>${title}</p>
                             <span>${year}</span>
                         </div>
-                    `;
+               
+                     `;
                     div.addEventListener('click', () => showPreview(item));
                     list.appendChild(div);
                 });
-                list.classList.remove('hidden');
+list.classList.remove('hidden');
             } else {
                 list.classList.add('hidden');
-            }
+}
         }
         
         function showPreview(item) {
             state.tempItem = item;
-            $('#search-results-list').classList.add('hidden');
+$('#search-results-list').classList.add('hidden');
             const title = item.title || item.name;
             const year = (item.release_date || item.first_air_date)?.split('-')[0] || '';
-            $('#search-preview').innerHTML = `
+$('#search-preview').innerHTML = `
                 <div class="preview-content">
                     <img src="${item.poster_path ? IMG_URL + item.poster_path : 'https://via.placeholder.com/180x270/333333/ffffff?text=No+Image'}" class="poster">
                     <div>
                         <h3>${title}</h3> 
+        
                         <p class="media-info">${year}</p>
-                        <p class="synopsis">${item.overview || 'Sinopse não disponível.'}</p>
+                        <p class="synopsis">${item.overview ||
+'Sinopse não disponível.'}</p>
                     </div>
                 </div>
                 <button class="continue-button">
                     <span class="button-text">Continuar</span>
                 </button>
         
+
                 <div class="loading-progress hidden">
                     <div class="loading-progress-bar"></div>
                     <div class="loading-progress-text">0%</div>
                 </div>
             `;
-            $('#search-preview').classList.remove('hidden');
+$('#search-preview').classList.remove('hidden');
             
             $('#search-preview .continue-button').addEventListener('click', async (event) => {
                 const button = event.currentTarget;
@@ -2222,67 +2313,71 @@
                 button.classList.add('loading');
                 button.disabled = true;
       
+
                 loadingProgress.classList.remove('hidden');
                 loadingSystem.show();
                 loadingSystem.progress(10);
 
                 try {
                     await selectItem(item.id);
+              
                 } catch (error) {
                     console.error("Erro ao selecionar o item:", error);
                     button.classList.remove('loading');
                     button.disabled = false;
                     loadingProgress.classList.add('hidden');
+        
                     loadingSystem.hide();
                 }
             });
-        }
+}
 
         async function selectItem(id) {
             loadingSystem.updateStage(0);
-            loadingSystem.progress(20);
+loadingSystem.progress(20);
             
             state.options = {
                 season: 1,
                 episodes: 1,
                 selectedEpisodes: [],
             };
-            // Buscar detalhes principais
+// Buscar detalhes principais
             const endpoint = `${BASE_URL}/${state.mediaType}/${id}?api_key=${API_KEY}&language=pt-BR`;
-            const response = await fetch(endpoint);
+const response = await fetch(endpoint);
             state.selectedItem = await response.json();
             
             loadingSystem.updateStage(1);
             loadingSystem.progress(40);
-            if (state.mediaType === 'tv') {
-                state.derived.totalEpisodes = state.selectedItem.number_of_episodes || 0;
+if (state.mediaType === 'tv') {
+                state.derived.totalEpisodes = state.selectedItem.number_of_episodes ||
+0;
             }
             
             if (state.selectedItem.id === 325789) { state.selectedItem.runtime = 126;
-            }
+}
             if (state.selectedItem.id === 15003) { state.selectedItem.runtime = 93;
-            }
+}
 
             // Executar múltiplas tarefas em paralelo para melhor performance
             const tasks = [];
-            tasks.push(fetchContentRating().then(() => loadingSystem.progress(50)));
+tasks.push(fetchContentRating().then(() => loadingSystem.progress(50)));
             tasks.push(getProductionInfo());
             
             if (state.mediaType === 'tv') {
                 const isAnimation = state.selectedItem.genres.some(g => g.id === 16);
-                state.derived.tvType = isAnimation ? 'anime' : 'series';
+state.derived.tvType = isAnimation ? 'anime' : 'series';
                 
                 loadingSystem.updateStage(2);
                 tasks.push(fetchSeasonDetails().then(() => loadingSystem.progress(60)));
-            }
+}
             
             await Promise.all(tasks);
-            loadingSystem.updateStage(3);
+loadingSystem.updateStage(3);
             loadingSystem.progress(70);
             
             // Buscar informações de patrocínio do Supabase
             await fetchSponsoredData();
-            markSponsoredEpisodes();
+markSponsoredEpisodes();
             loadingSystem.progress(90);
             
             switchToConfigView();
@@ -2295,143 +2390,148 @@
                 const button = $('#search-preview .continue-button');
                 const loadingProgress = $('.loading-progress');
                 if (button) {
+                   
                     button.classList.remove('loading');
                     button.disabled = false;
                 }
                 if (loadingProgress) {
                     loadingProgress.classList.add('hidden');
                 }
-            }, 300);
+       
+             }, 300);
         }
 
         async function fetchContentRating() {
             let ratingEndpoint;
-            if (state.mediaType === 'movie') {
+if (state.mediaType === 'movie') {
                 ratingEndpoint = `${BASE_URL}/movie/${state.selectedItem.id}/release_dates?api_key=${API_KEY}`;
-            } else {
+} else {
                 ratingEndpoint = `${BASE_URL}/tv/${state.selectedItem.id}/content_ratings?api_key=${API_KEY}`;
-            }
+}
             
             try {
                 const response = await fetch(ratingEndpoint);
-                const data = await response.json();
+const data = await response.json();
                 
                 let foundRating = false;
                 
                 if (state.mediaType === 'movie') {
                     const brRelease = data.results.find(r => r.iso_3166_1 === 'BR');
-                    if (brRelease && brRelease.release_dates.length > 0 && brRelease.release_dates[0].certification) {
+if (brRelease && brRelease.release_dates.length > 0 && brRelease.release_dates[0].certification) {
                         state.derived.ageRating = brRelease.release_dates[0].certification;
-                        foundRating = true;
+foundRating = true;
                     }
                 } else {
                     const brRating = data.results.find(r => r.iso_3166_1 === 'BR');
-                    if (brRating && brRating.rating) {
+if (brRating && brRating.rating) {
                         state.derived.ageRating = brRating.rating;
-                        foundRating = true;
+foundRating = true;
                     }
                 }
                 
                 if (!foundRating) {
                     let usRating = '';
-                    if (state.mediaType === 'movie') {
+if (state.mediaType === 'movie') {
                         const usRelease = data.results.find(r => r.iso_3166_1 === 'US');
-                        if (usRelease && usRelease.release_dates.length > 0 && usRelease.release_dates[0].certification) {
+if (usRelease && usRelease.release_dates.length > 0 && usRelease.release_dates[0].certification) {
                             usRating = usRelease.release_dates[0].certification;
-                        }
+}
                     } else {
                         const usRatingObj = data.results.find(r => r.iso_3166_1 === 'US');
-                        if (usRatingObj && usRatingObj.rating) {
+if (usRatingObj && usRatingObj.rating) {
                             usRating = usRatingObj.rating;
-                        }
+}
                     }
                     
                     if (usRating) {
                         state.derived.ageRating = convertForeignRatingToBR(usRating);
-                        foundRating = true;
+foundRating = true;
                     }
                 }
 
                 if (!foundRating) {
                     for (const countryResult of data.results) {
                         if (countryResult.iso_3166_1 === 'BR' || countryResult.iso_3166_1 === 'US') continue;
-                        let foreignRating = '';
+let foreignRating = '';
                         if (state.mediaType === 'movie') {
                             if (countryResult.release_dates && countryResult.release_dates.length > 0) {
                                 const certification = countryResult.release_dates.find(rd => rd.certification)?.certification;
-                                if (certification) foreignRating = certification;
+if (certification) foreignRating = certification;
                             }
                         } else {
                             if (countryResult.rating) {
                                 foreignRating = countryResult.rating;
-                            }
+}
                         }
 
                         if (foreignRating) {
                             const convertedRating = convertForeignRatingToBR(foreignRating);
-                            if (convertedRating !== 'Classificação não encontrada') {
+if (convertedRating !== 'Classificação não encontrada') {
                                 state.derived.ageRating = convertedRating;
-                                foundRating = true;
+foundRating = true;
                                 break;
                             }
                         }
                     }
                 }
                                
-                if (!foundRating) {
+     
+               if (!foundRating) {
                     state.derived.ageRating = 'Classificação não encontrada';
-                    state.derived.ageRatingDescription = 'Não foi possível determinar a classificação indicativa';
+state.derived.ageRatingDescription = 'Não foi possível determinar a classificação indicativa';
                     return;
-                }
+}
                 
                 switch(state.derived.ageRating) {
                     case 'L': state.derived.ageRatingDescription = 'Livre para todos os públicos';
-                    break;
+break;
                     case '10': state.derived.ageRatingDescription = 'Não recomendado para menores de 10 anos'; break;
-                    case '12': state.derived.ageRatingDescription = 'Não recomendado para menores de 12 anos'; break;
-                    case '14': state.derived.ageRatingDescription = 'Não recomendado para menores de 14 anos'; break;
-                    case '16': state.derived.ageRatingDescription = 'Não recomendado para menores de 16 anos'; break;
-                    case '18': state.derived.ageRatingDescription = 'Não recomendado para menores de 18 anos'; break;
+case '12': state.derived.ageRatingDescription = 'Não recomendado para menores de 12 anos'; break;
+case '14': state.derived.ageRatingDescription = 'Não recomendado para menores de 14 anos'; break;
+case '16': state.derived.ageRatingDescription = 'Não recomendado para menores de 16 anos'; break;
+case '18': state.derived.ageRatingDescription = 'Não recomendado para menores de 18 anos'; break;
                     default: state.derived.ageRatingDescription = 'Classificação indicativa não encontrada';
-                }
+}
             } catch (error) {
                 console.error('Erro ao buscar classificação:', error);
-                state.derived.ageRating = 'Classificação não encontrada';
+state.derived.ageRating = 'Classificação não encontrada';
                 state.derived.ageRatingDescription = 'Não foi possível determinar a classificação indicativa';
-            }
+}
         }
         
         function convertForeignRatingToBR(foreignRating) {
             const ratingMap = {
                 'G': 'L', 'PG': '10', 'PG-13': '12', 'R': '16', 'NC-17': '18',
                 'TV-Y': 'L', 'TV-Y7': '10', 'TV-G': 'L', 'TV-PG': '10', 'TV-14': '14', 'TV-MA': '18',
-                'U': 'L', '12A': '12', '15': '16',
+       
+                 'U': 'L', '12A': '12', '15': '16',
                 '0': 'L', '6': '10', '12': '12', '16': '16', '18': '18',
                 'Tous publics': 'L', '-10': '10', '-12': '12', '-16': '16', '-18': '18',
                 'G': 'L', 'PG12': '12', 'R15+': '16', 'R18+': '18',
+            
                 'M': '14', 'MA15+': '16', 'R18+': '18', 'X18+': '18',
                 '14A': '14', '18A': '18',
                 'APTA': 'L', '7': '10',
                 'All': 'L', '19': '18'
             };
-            return ratingMap[foreignRating] || 'Classificação não encontrada';
+return ratingMap[foreignRating] || 'Classificação não encontrada';
         }
         
         async function fetchSeasonDetails() {
             const seasonEndpoint = `${BASE_URL}/tv/${state.selectedItem.id}/season/${state.options.season}?api_key=${API_KEY}&language=pt-BR`;
-            const response = await fetch(seasonEndpoint);
+const response = await fetch(seasonEndpoint);
             const seasonData = await response.json();
             state.derived.seasonEpisodesData = seasonData.episodes || [];
             markSponsoredEpisodes();
             autoSelectNextEpisodes();
-        }
+}
 
         function markSponsoredEpisodes() {
             if (state.mediaType !== 'tv') return;
-            let currentSeasonNumber = state.options.season;
+let currentSeasonNumber = state.options.season;
             const seasonIsFullySponsored = state.derived.listInfo.temporadasPatrocinadas.some(t => t.temporada === currentSeasonNumber && t.completa);
             state.derived.listInfo.isCurrentSeasonFullySponsored = seasonIsFullySponsored;
-            state.derived.seasonEpisodesData.forEach(episode => {
+state.derived.seasonEpisodesData.forEach(episode => {
                 let isSponsored = false;
 
                 if (seasonIsFullySponsored) {
@@ -2439,117 +2539,126 @@
                 }
 
                 if (!isSponsored) {
-                    const ranges = state.derived.listInfo.sponsoredRanges.filter(r => r.season === currentSeasonNumber);
+     
+                   const ranges = state.derived.listInfo.sponsoredRanges.filter(r => r.season === currentSeasonNumber);
                     for (const range of ranges) {
                         if (episode.episode_number >= range.start && episode.episode_number <= range.end) {
+                     
                             isSponsored = true;
                             break;
                         }
                     }
                 }
 
-                if (!isSponsored) {
+   
+                 if (!isSponsored) {
                     const specific = state.derived.listInfo.specificSponsoredEpisodes.some(ep => ep.season === currentSeasonNumber && ep.episode === episode.episode_number);
                     if (specific) isSponsored = true;
                 }
 
+              
                 if (!isSponsored && state.derived.listInfo.totalPatrocinados > 0) {
-                     if (episode.episode_number <= state.derived.listInfo.totalPatrocinados && (currentSeasonNumber === 1 || !state.derived.listInfo.hasTemporadas)) {
+                     if (episode.episode_number <= state.derived.listInfo.totalPatrocinados && (currentSeasonNumber === 1 ||
+!state.derived.listInfo.hasTemporadas)) {
                          isSponsored = true;
-                     }
+}
                 }
 
                 if (isSponsored) {
                     const existingIndex = state.options.selectedEpisodes.findIndex(ep => ep.id === episode.id);
-                    if (existingIndex === -1) {
+if (existingIndex === -1) {
                         state.options.selectedEpisodes.push({
                             id: episode.id,
                             number: episode.episode_number,
+              
                             duration: episode.runtime || 0,
                             addedAutomatically: true,
                             alreadySponsored: true
                         });
-                    } else {
+} else {
                         state.options.selectedEpisodes[existingIndex].alreadySponsored = true;
-                    }
+}
                 }
             });
-        }
+}
 
         function autoSelectNextEpisodes() {
             if (state.mediaType === 'tv' && !state.derived.listInfo.isCurrentSeasonFullySponsored) {
                 const episodesToSelect = 1;
-                let selectedCount = 0;
+let selectedCount = 0;
                 
                 for (let i = 0; i < state.derived.seasonEpisodesData.length && selectedCount < episodesToSelect; i++) {
                     const episode = state.derived.seasonEpisodesData[i];
-                    const isAlreadySelectedOrSponsored = state.options.selectedEpisodes.some(ep => ep.id === episode.id);
+const isAlreadySelectedOrSponsored = state.options.selectedEpisodes.some(ep => ep.id === episode.id);
                     if (!isAlreadySelectedOrSponsored) {
                         state.options.selectedEpisodes.push({
                             id: episode.id,
                             number: episode.episode_number,
+        
                             duration: episode.runtime || 0,
                             addedAutomatically: true,
                             alreadySponsored: false
-                        });
+                   
+                     });
                         selectedCount++;
                     }
                 }
             }
             state.options.episodes = state.options.selectedEpisodes.filter(ep => !ep.alreadySponsored).length;
-        }
+}
 
         async function fetchSponsoredData() {
             state.derived.listInfo.loading = true;
-            state.derived.listInfo.sponsoredEpisodes = 0;
+state.derived.listInfo.sponsoredEpisodes = 0;
             state.derived.listInfo.watchedEpisodes = 0;
             state.derived.listInfo.currentSeasonSponsored = 0;
             state.derived.listInfo.isCurrentSeasonFullySponsored = false;
             state.derived.listInfo.hasTemporadas = false;
             state.derived.listInfo.temporadasPatrocinadas = [];
-            state.derived.listInfo.sponsoredRanges = [];
+state.derived.listInfo.sponsoredRanges = [];
             state.derived.listInfo.specificSponsoredEpisodes = [];
             state.derived.listInfo.totalPatrocinados = 0;
 
             const currentItemId = state.selectedItem.id;
-            try {
+try {
                 const { data, error } = await supabaseClient
                     .from('emypix')
                     .select('*')
                     .eq('tmdb_id', currentItemId);
-                if (error) throw error;
+if (error) throw error;
                 
                 if (data && data.length > 0) {
                     let sponsoredItem = null;
-                    if (state.mediaType === 'tv') {
+if (state.mediaType === 'tv') {
                         sponsoredItem = data.find(d => d.eps_p || d.eps_a);
-                    } else {
+} else {
                         sponsoredItem = data.find(d => !d.eps_p && !d.eps_a);
-                    }
+}
                     
                     if (!sponsoredItem && data.length > 0) {
                         if (data.length === 1) sponsoredItem = data[0];
-                    }
+}
 
                     if (sponsoredItem) {
                         const mappedItem = {
                             "Episódios Patrocinados": sponsoredItem.eps_p,
-                            "Episódios Assistidos": sponsoredItem.eps_a,
+                     
+                       "Episódios Assistidos": sponsoredItem.eps_a,
                             "Patrocinador": sponsoredItem.patrocinador
                         };
-                        processSponsoredData(mappedItem);
+processSponsoredData(mappedItem);
                     }
                 }
             } catch (error) {
                 console.error('Erro ao buscar dados de patrocínio:', error);
-            } finally {
+} finally {
                 state.derived.listInfo.loading = false;
-            }
+}
         }
 
         function parseSponsoredString(str) {
             if (!str) return [];
-            const results = [];
+const results = [];
             const parts = str.toString().split(/[|\/]/);
 
             parts.forEach(part => {
@@ -2559,158 +2668,171 @@
                 let matched = false;
                 let match;
 
-                const specificEpRegex = /(\d+)[º°]?\s*ep(?:is[oó]dio)?\s*da\s*(\d+)[ª°]?\s*temp/gi;
+                const 
+specificEpRegex = /(\d+)[º°]?\s*ep(?:is[oó]dio)?\s*da\s*(\d+)[ª°]?\s*temp/gi;
                 while ((match = specificEpRegex.exec(p)) !== null) {
                     results.push({ type: 'specific', episode: parseInt(match[1]), season: parseInt(match[2]) });
                     matched = true;
                 }
-                if (matched) return;
+           
+                 if (matched) return;
 
                 const fullSeasonRegex = /^(\d+)[ªº°]?\s*temp(?:orada)?s?$/gi;
                 if ((match = fullSeasonRegex.exec(p)) !== null) {
                     results.push({ type: 'full_season', season: parseInt(match[1]) });
                     return;
-                }
+       
+                 }
 
                 const rangeRegex = /(\d+)\s*eps?\s*\(\s*(\d+)[ª°]?\s*temp\s*\)/gi;
                 const rangeRegex2 = /(\d+)\s*\(\s*(\d+)[ª°]?\s*temp\s*\)/gi;
                 const processRangeMatch = (m) => {
                      results.push({ type: 'range_start', count: parseInt(m[1]), season: parseInt(m[2]) });
-                };
+};
 
                 while ((match = rangeRegex.exec(p)) !== null) { processRangeMatch(match); matched = true;
-                }
+}
                 while ((match = rangeRegex2.exec(p)) !== null) {
                     if (!results.some(r => r.type === 'range_start' && r.count === parseInt(match[1]) && r.season === parseInt(match[2]))) {
                         processRangeMatch(match);
-                    }
+}
                     matched = true;
-                }
+}
                 if (matched) return;
-                const simpleNumber = /^(\d+)\s*(?:eps?|epis[oó]dios?)?$/i.exec(p);
+const simpleNumber = /^(\d+)\s*(?:eps?|epis[oó]dios?)?$/i.exec(p);
                 if (simpleNumber) {
                      results.push({ type: 'simple_count', count: parseInt(simpleNumber[1]) });
-                }
+}
             });
             return results;
-        }
+}
 
         function processSponsoredData(sponsoredItem) {
             if (sponsoredItem["Episódios Patrocinados"]) {
                 const rawString = String(sponsoredItem["Episódios Patrocinados"]);
-                const parsedData = parseSponsoredString(rawString);
+const parsedData = parseSponsoredString(rawString);
                 
                 parsedData.forEach(info => {
                     if (info.type === 'specific') {
                         state.derived.listInfo.hasTemporadas = true;
                         state.derived.listInfo.specificSponsoredEpisodes.push({ season: info.season, episode: info.episode });
-                    } else if (info.type === 'full_season') {
+               
+                     } else if (info.type === 'full_season') {
                         state.derived.listInfo.hasTemporadas = true;
                         state.derived.listInfo.temporadasPatrocinadas.push({ temporada: info.season, completa: true });
                     } else if (info.type === 'range_start') {
+        
                         state.derived.listInfo.hasTemporadas = true;
                         state.derived.listInfo.sponsoredRanges.push({ season: info.season, start: 1, end: info.count });
                         state.derived.listInfo.temporadasPatrocinadas.push({ temporada: info.season, episodios: info.count, completa: false });
-                    } else if (info.type === 'simple_count') {
+                    
+} else if (info.type === 'simple_count') {
                         state.derived.listInfo.totalPatrocinados = info.count;
-                    }
+}
                 });
-            }
+}
         }
 
         function getProductionInfo() {
             state.derived.productionCompanies = [];
-            if (state.selectedItem.production_companies) {
+if (state.selectedItem.production_companies) {
                 state.derived.productionCompanies = state.selectedItem.production_companies.map(company => company.name);
-            }
+}
             if (state.selectedItem.release_date) {
                 const date = new Date(state.selectedItem.release_date);
-                state.derived.releaseDate = date.toLocaleDateString('pt-BR');
+state.derived.releaseDate = date.toLocaleDateString('pt-BR');
             } else if (state.selectedItem.first_air_date) {
                 const date = new Date(state.selectedItem.first_air_date);
-                state.derived.releaseDate = date.toLocaleDateString('pt-BR');
+state.derived.releaseDate = date.toLocaleDateString('pt-BR');
             } else {
                 state.derived.releaseDate = 'Data não disponível';
-            }
+}
         }
         
         function renderConfigOptions() {
             const infoSep = " ‧ ";
-            const year = (state.selectedItem.release_date || state.selectedItem.first_air_date)?.split('-')[0] || 'N/A';
+const year = (state.selectedItem.release_date || state.selectedItem.first_air_date)?.split('-')[0] || 'N/A';
             const movieInfo = `Filme ${infoSep} ${year} ${infoSep} ${formatDuration(state.selectedItem.runtime)}`;
-            const tvInfo = `${state.derived.tvType === 'anime' ? 'Anime' : 'Série'} ${infoSep} ${year}`;
-            let optionsHTML = `
+const tvInfo = `${state.derived.tvType === 'anime' ? 'Anime' : 'Série'} ${infoSep} ${year}`;
+let optionsHTML = `
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <h2>Item Selecionado</h2>
                 <button class="change-button" id="change-item">Alterar</button>
             </div>
             <div style="display: flex; gap: 16px; margin-bottom: 24px;">
+              
                 <img src="${state.selectedItem.poster_path ? IMG_URL + state.selectedItem.poster_path : 'https://via.placeholder.com/80x120/333333/ffffff?text=No+Image'}" class="poster" style="width: 80px; height: 120px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
                 <div>
-                    <h3>${state.selectedItem.title || state.selectedItem.name}</h3>
-                    <p class="media-info">${state.mediaType === 'movie' ? movieInfo : tvInfo}</p>
+                    <h3>${state.selectedItem.title ||
+state.selectedItem.name}</h3>
+                    <p class="media-info">${state.mediaType === 'movie' ?
+movieInfo : tvInfo}</p>
                 </div>
             </div>`;
-            if (state.derived.listInfo.loading) {
+if (state.derived.listInfo.loading) {
                 optionsHTML += `<div class="list-info-notice"><span class="loading"></span> Verificando informações de patrocínio...</div>`;
-            }
+}
 
             let ratingHtml = '';
-            if (state.derived.ageRating && state.derived.ageRating !== 'Classificação não encontrada') {
+if (state.derived.ageRating && state.derived.ageRating !== 'Classificação não encontrada') {
                 ratingHtml = `
                     <div class="classificacao-box">
                         <span class="class-age" data-rating="${state.derived.ageRating}">${state.derived.ageRating}</span>
-                        <span style="font-weight: 500; font-size: 0.95rem;">${state.derived.ageRatingDescription}</span>
+                        <span style="font-weight: 500; 
+font-size: 0.95rem;">${state.derived.ageRatingDescription}</span>
                     </div>`;
-            } else {
+} else {
                 ratingHtml = `
                     <div class="classificacao-box">
                         <span style="font-weight: 500; font-size: 0.95rem;">${state.derived.ageRatingDescription}</span>
                     </div>`;
-            }
+}
             optionsHTML += ratingHtml;
-            optionsHTML += `
+optionsHTML += `
                 <div class="info-content" style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 12px; margin-bottom: 20px;">
-                    <div style="margin-bottom: 8px;"><strong>Estúdios detectados:</strong> <span class="studio-list" style="color: var(--accent-primary);">${state.derived.productionCompanies.join(', ') || 'Não disponível'}</span></div>
+                    <div style="margin-bottom: 8px;"><strong>Estúdios detectados:</strong> <span class="studio-list" style="color: var(--accent-primary);">${state.derived.productionCompanies.join(', ') ||
+'Não disponível'}</span></div>
                     <div><strong>Lançado em:</strong> <span class="release-info" style="color: var(--accent-tertiary);">${state.derived.releaseDate}</span></div>
                 </div>`;
-            if (state.mediaType === 'tv') {
+if (state.mediaType === 'tv') {
                 const seasons = state.selectedItem.seasons.filter(s => s.season_number > 0 && s.episode_count > 0);
-                const seasonsHTML = seasons.map(s => {
+const seasonsHTML = seasons.map(s => {
                     return `<option value="${s.season_number}" data-episodes="${s.episode_count}" ${s.season_number === state.options.season ? 'selected' : ''}>${s.name} (${s.episode_count} eps)</option>`;
                 }).join('');
-                optionsHTML += `
+optionsHTML += `
                     <div class="config-group">
                         <h3>Temporada</h3>
                         <select id="season-select" class="select-input">${seasonsHTML}</select>
                     </div>
-                    <div class="config-group">
+       
+                     <div class="config-group">
                         <h3>Selecionar Episódios</h3>
                         <div class="episode-selector">
-                            <p style="margin-bottom: 12px; font-size: 0.9rem; color: var(--text-secondary);">Selecione os episódios que deseja patrocinar (mínimo 1):</p>
+                            <p style="margin-bottom: 12px; font-size: 0.9rem; color: var(--text-secondary);">Selecione os 
+episódios que deseja patrocinar (mínimo 1):</p>
                             <div class="episode-scroll-container" id="episodes-list"></div>
                         </div>
                     </div>`;
-            }
+}
 
             optionsHTML += `</div>`;
             $('#config-options').innerHTML = optionsHTML;
-            if (state.mediaType === 'tv') {
+if (state.mediaType === 'tv') {
                 renderEpisodesList();
-            }
+}
             
             $('#change-item').addEventListener('click', resetToSearch);
-            if (state.mediaType === 'tv') {
+if (state.mediaType === 'tv') {
                 $('#season-select').addEventListener('change', handleSeasonChange);
-            }
+}
         }
         
         function renderEpisodesList() {
             const episodesList = $('#episodes-list');
-            episodesList.innerHTML = '';
+episodesList.innerHTML = '';
 
             const selectedEpisodesMap = new Map(state.options.selectedEpisodes.map(ep => [ep.id, ep]));
-            state.derived.seasonEpisodesData.forEach(episode => {
+state.derived.seasonEpisodesData.forEach(episode => {
                 const selectionInfo = selectedEpisodesMap.get(episode.id);
                 const isSelected = !!selectionInfo;
                 const alreadySponsored = isSelected && selectionInfo.alreadySponsored;
@@ -2718,39 +2840,43 @@
                 const episodeItem = document.createElement('div');
                 episodeItem.className = 'episode-item';
   
+
                 const sponsoredLabel = alreadySponsored ? ` <span class="already-sponsored" style="color: var(--success); font-size: 0.85rem; margin-left: 8px;">(Já patrocinado)</span>` : '';
                 const disabledAttr = alreadySponsored ? 'disabled' : '';
 
                 episodeItem.innerHTML = `
                     <input type="checkbox" class="episode-checkbox" data-episode-id="${episode.id}" 
-                           data-episode-number="${episode.episode_number}" 
+   
+                        data-episode-number="${episode.episode_number}" 
                            data-episode-duration="${episode.runtime || 0}"
-                           ${isSelected ? 'checked' : ''} ${disabledAttr}>
+                           ${isSelected ?
+'checked' : ''} ${disabledAttr}>
                     <div class="episode-info" style="flex: 1;">
-                        Episódio ${episode.episode_number}: ${episode.name || 'Sem título'}${sponsoredLabel}
+                        Episódio ${episode.episode_number}: ${episode.name ||
+'Sem título'}${sponsoredLabel}
                     </div>
                     <div class="episode-duration" style="color: var(--text-muted); font-size: 0.85rem;">${formatDuration(episode.runtime)}</div>
                 `;
-                if (!alreadySponsored) {
+if (!alreadySponsored) {
                     episodeItem.querySelector('.episode-checkbox').addEventListener('change', handleEpisodeSelection);
-                }
+}
                 episodesList.appendChild(episodeItem);
             });
-        }
+}
         
         function handleEpisodeSelection(e) {
             const checkbox = e.target;
-            const episodeId = parseInt(checkbox.dataset.episodeId);
+const episodeId = parseInt(checkbox.dataset.episodeId);
             const episodeNumber = parseInt(checkbox.dataset.episodeNumber);
             const episodeDuration = parseInt(checkbox.dataset.episodeDuration);
             const currentNonSponsoredSelections = state.options.selectedEpisodes.filter(ep => !ep.alreadySponsored);
-            const willBeSelected = checkbox.checked;
+const willBeSelected = checkbox.checked;
             
             if (!willBeSelected) {
                 const futureNonSponsoredSelections = currentNonSponsoredSelections.filter(ep => ep.id !== episodeId);
-                if (futureNonSponsoredSelections.length < 1) {
+if (futureNonSponsoredSelections.length < 1) {
                     checkbox.checked = true;
-                    alert('É necessário selecionar pelo menos 1 episódio.');
+alert('É necessário selecionar pelo menos 1 episódio.');
                     return;
                 }
             }
@@ -2759,26 +2885,27 @@
                 state.options.selectedEpisodes.push({
                     id: episodeId, number: episodeNumber, duration: episodeDuration,
                     addedAutomatically: false, alreadySponsored: false
-                });
-            } else {
+  
+              });
+} else {
                 state.options.selectedEpisodes = state.options.selectedEpisodes.filter(ep => ep.id !== episodeId);
-            }
+}
             
             state.options.episodes = state.options.selectedEpisodes.filter(ep => !ep.alreadySponsored).length;
-            renderEpisodesList();
+renderEpisodesList();
             calculatePrice();
         }
         
         async function handleSeasonChange() {
             const select = $('#season-select');
-            const selectedOption = select.options[select.selectedIndex];
+const selectedOption = select.options[select.selectedIndex];
             const seasonNumber = parseInt(select.value);
             state.options.season = seasonNumber;
             state.derived.seasonEpisodes = parseInt(selectedOption.dataset.episodes);
             state.options.selectedEpisodes = [];
 
             await fetchSeasonDetails();
-            state.options.episodes = state.options.selectedEpisodes.filter(ep => !ep.alreadySponsored).length;
+state.options.episodes = state.options.selectedEpisodes.filter(ep => !ep.alreadySponsored).length;
 
             renderEpisodesList();
             calculatePrice();
@@ -2786,66 +2913,72 @@
         
         function formatDuration(minutes) {
             if (!minutes || minutes === 0) return 'Duração não disponível';
-            const hours = Math.floor(minutes / 60);
+const hours = Math.floor(minutes / 60);
             const mins = minutes % 60;
-            return hours > 0 ? `${hours}h ${mins}m` : `${mins}m`;
+            return hours > 0 ?
+`${hours}h ${mins}m` : `${mins}m`;
         }
 
         function calculatePrice() {
             let total = 0;
-            let breakdownHTML = '';
+let breakdownHTML = '';
             const format = (v) => `R$ ${v.toFixed(2).replace('.', ',')}`;
             
             const animePricePerEpisode = 10;
             const pricePerMinute = 0.50;
-            const nonSponsoredSelected = state.options.selectedEpisodes.filter(ep => !ep.alreadySponsored);
+const nonSponsoredSelected = state.options.selectedEpisodes.filter(ep => !ep.alreadySponsored);
             const hasNonSponsoredEpisodes = nonSponsoredSelected.length > 0;
-            if (state.mediaType === 'movie') {
-                const runtime = state.selectedItem.runtime || 0;
+if (state.mediaType === 'movie') {
+                const runtime = state.selectedItem.runtime ||
+0;
                 const cost = runtime * pricePerMinute;
                 total = cost;
                 breakdownHTML += `<p><span>Filme (${formatDuration(runtime)})</span><span>${format(cost)}</span></p>`;
-            } else { 
+} else { 
                 if (state.derived.tvType === 'anime') {
                     nonSponsoredSelected.forEach(episode => {
                         total += animePricePerEpisode;
                         breakdownHTML += `<p><span>Ep ${episode.number} (${formatDuration(episode.duration)})</span><span>${format(animePricePerEpisode)}</span></p>`;
-                    });
-                } else {
+ 
+                   });
+} else {
                     nonSponsoredSelected.forEach(episode => {
                         const cost = episode.duration * pricePerMinute;
                         total += cost;
-                        breakdownHTML += `<p><span>Ep ${episode.number} (${formatDuration(episode.duration)})</span><span>${format(cost)}</span></p>`;
+                     
+   breakdownHTML += `<p><span>Ep ${episode.number} (${formatDuration(episode.duration)})</span><span>${format(cost)}</span></p>`;
                     });
-                }
+}
             }
             
             const item = state.selectedItem;
-            const infoSep = " ‧ ";
+const infoSep = " ‧ ";
             $('#summary-poster').src = item.poster_path ? IMG_URL + item.poster_path : 'https://via.placeholder.com/80x120/333333/ffffff?text=No+Image';
             $('#summary-title').textContent = item.title || item.name;
-            if (state.mediaType === 'movie') {
-                $('#summary-info').textContent = `Filme ${infoSep} ${(item.release_date || '').split('-')[0] || 'N/A'} ${infoSep} ${formatDuration(item.runtime)}`;
+if (state.mediaType === 'movie') {
+                $('#summary-info').textContent = `Filme ${infoSep} ${(item.release_date || '').split('-')[0] ||
+'N/A'} ${infoSep} ${formatDuration(item.runtime)}`;
             } else {
-                $('#summary-info').textContent = `${state.derived.tvType === 'anime' ? 'Anime' : 'Série'} ${infoSep} ${(item.first_air_date || '').split('-')[0] || 'N/A'} ${infoSep} ${state.options.episodes} episódios selecionados`;
-            }
+                $('#summary-info').textContent = `${state.derived.tvType === 'anime' ?
+'Anime' : 'Série'} ${infoSep} ${(item.first_air_date || '').split('-')[0] || 'N/A'} ${infoSep} ${state.options.episodes} episódios selecionados`;
+}
             
             $('#price-breakdown').innerHTML = breakdownHTML;
-            $('#total-price').textContent = format(total);
+$('#total-price').textContent = format(total);
             
             const warningDiv = $('#restriction-warning');
             const payButton = $('#pay-button');
             const payStreamarButton = $('#pay-streamar-button');
-            if (state.mediaType === 'tv' && !hasNonSponsoredEpisodes) {
+if (state.mediaType === 'tv' && !hasNonSponsoredEpisodes) {
                 payButton.classList.add('disabled');
-                payButton.removeAttribute('href');
+payButton.removeAttribute('href');
                 payStreamarButton.classList.add('disabled');
                 payStreamarButton.removeAttribute('href');
                 warningDiv.textContent = `Não há episódios disponíveis para patrocínio nesta temporada.`;
                 warningDiv.classList.remove('hidden');
-            } else {
+} else {
                 payButton.classList.remove('disabled');
-                payButton.href = `https://livepix.gg/emypix?amount=${total.toFixed(2)}`;
+payButton.href = `https://livepix.gg/emypix?amount=${total.toFixed(2)}`;
                 payStreamarButton.classList.remove('disabled');
                 payStreamarButton.href = `https://www.streamar.com.br/2f8fb4217575cda`;
                 warningDiv.classList.add('hidden');
@@ -2854,7 +2987,7 @@
 
         function switchToConfigView() {
             $('#search-block').classList.add('hidden');
-            $('#config-block').classList.remove('hidden');
+$('#config-block').classList.remove('hidden');
             $('#summary-placeholder').classList.add('hidden');
             $('#summary-content').classList.remove('hidden');
             $('#patrocinar-header').classList.add('hidden');
@@ -2862,7 +2995,7 @@
 
         function resetToSearch() {
             $('#search-input').value = '';
-            $('#search-results-list').classList.add('hidden');
+$('#search-results-list').classList.add('hidden');
             $('#search-results-list').innerHTML = '';
             $('#search-preview').classList.add('hidden');
             $('#search-preview').innerHTML = '';
@@ -2872,21 +3005,22 @@
             $('#summary-placeholder').classList.remove('hidden');
             $('#summary-content').classList.add('hidden');
             $('#patrocinar-header').classList.remove('hidden');
-            state.options = { season: 1, episodes: 1, selectedEpisodes: [] };
-            state.derived.listInfo = {
+state.options = { season: 1, episodes: 1, selectedEpisodes: [] };
+state.derived.listInfo = {
                 loading: false, sponsoredEpisodes: 0, watchedEpisodes: 0,
                 currentSeasonSponsored: 0, isCurrentSeasonFullySponsored: false,
                 lastSponsoredEpisode: 0, hasTemporadas: false,
                 temporadasPatrocinadas: [], temporadasAssistidas: [],
                 totalPatrocinados: 0, totalAssistidos: 0,
-                sponsoredRanges: [], specificSponsoredEpisodes: []
+ 
+               sponsoredRanges: [], specificSponsoredEpisodes: []
             };
-        }
+}
 
         let sponsoredPage = 1;
         let assistidosPage = 1;
         let currentFilter = 'filmes';
-        let currentAssistidosFilter = 'filmes';
+let currentAssistidosFilter = 'filmes';
 
         (function() {
             const assistidosSearchInput = document.getElementById('assistidos-search-input');
@@ -2894,75 +3028,81 @@
             
             function applyAssistidosFilter() {
                 const query = assistidosSearchInput.value.toLowerCase().trim();
-                const allCards = Array.from(document.querySelectorAll('#assistidos-tab .media-card'));
+                const allCards = 
+Array.from(document.querySelectorAll('#assistidos-tab .media-card'));
                 
                 let filteredCards = [];
                 allCards.forEach(card => {
                     const title = card.querySelector('.media-card-title').textContent.toLowerCase();
-                    const type = card.dataset.type;
+                    const type = 
+card.dataset.type;
                     const matchesQuery = title.includes(query);
                     const matchesFilter = (currentAssistidosFilter === type);
                     if (matchesQuery && matchesFilter) {
                         filteredCards.push(card);
-                    } else {
+    
+                } else {
                         card.style.display = 'none';
-                    }
+}
                 });
-                const sections = {
+const sections = {
                     filmes: document.getElementById('assistidos-filmes-section'),
                     series: document.getElementById('assistidos-series-section'),
                     animes: document.getElementById('assistidos-animes-section')
                 };
-                Object.keys(sections).forEach(key => {
+Object.keys(sections).forEach(key => {
                     if (sections[key]) {
                         if (currentAssistidosFilter === key && filteredCards.length > 0) {
                             sections[key].classList.remove('hidden');
-                        } else {
+                
+        } else {
                             sections[key].classList.add('hidden');
                         }
                     }
                 });
-                const totalPages = Math.ceil(filteredCards.length / 60) || 1;
+const totalPages = Math.ceil(filteredCards.length / 60) || 1;
                 if (assistidosPage > totalPages) assistidosPage = 1;
-                const start = (assistidosPage - 1) * 60;
+const start = (assistidosPage - 1) * 60;
                 const end = start + 60;
-                filteredCards.forEach((card, index) => {
+filteredCards.forEach((card, index) => {
                     if (index >= start && index < end) {
                         card.style.display = 'block';
                     } else {
-                        card.style.display = 'none';
+                     
+   card.style.display = 'none';
                     }
                 });
-                renderPagination('assistidos-pagination', totalPages, assistidosPage, (newPage) => {
+renderPagination('assistidos-pagination', totalPages, assistidosPage, (newPage) => {
                     assistidosPage = newPage;
                     applyAssistidosFilter();
                     document.getElementById('assistidos-search-input').scrollIntoView({behavior: 'smooth'});
                 });
-                const emptyMsg = document.getElementById('assistidos-empty-msg');
+const emptyMsg = document.getElementById('assistidos-empty-msg');
                 if (filteredCards.length === 0) {
                     emptyMsg.classList.remove('hidden');
-                } else {
+} else {
                     emptyMsg.classList.add('hidden');
-                }
+}
             }
 
             assistidosSearchInput.addEventListener('input', () => { assistidosPage = 1; applyAssistidosFilter(); });
-            assistidosTabs.forEach(tab => {
+assistidosTabs.forEach(tab => {
                 tab.addEventListener('click', (e) => {
                     e.preventDefault();
                     assistidosTabs.forEach(t => t.classList.remove('active'));
                     e.currentTarget.classList.add('active');
-                    currentAssistidosFilter = e.currentTarget.dataset.filter;
+                 
+   currentAssistidosFilter = e.currentTarget.dataset.filter;
                     assistidosPage = 1;
                     applyAssistidosFilter();
                 });
             });
-            const sponsoredSearchInput = document.getElementById('sponsored-search-input');
+const sponsoredSearchInput = document.getElementById('sponsored-search-input');
             const sponsoredTabs = document.querySelectorAll('#sponsored-tabs .tab-button');
             
             function applySponsoredFilter() {
                 const query = sponsoredSearchInput.value.toLowerCase().trim();
-                const allCards = Array.from(document.querySelectorAll('#patrocinados-tab .media-card'));
+const allCards = Array.from(document.querySelectorAll('#patrocinados-tab .media-card'));
 
                 let filteredCards = [];
                 allCards.forEach(card => {
@@ -2970,146 +3110,154 @@
                     const type = card.dataset.type;
                     const matchesQuery = title.includes(query);
                     
-                    const matchesFilter = (currentFilter === type);
+const matchesFilter = (currentFilter === type);
                     
                     if (matchesQuery && matchesFilter) {
                         filteredCards.push(card);
                     } else {
-                        card.style.display = 'none';
+     
+                   card.style.display = 'none';
                     }
                 });
-                const sections = {
+const sections = {
                     filmes: document.getElementById('filmes-section'),
                     series: document.getElementById('series-section'),
                     animes: document.getElementById('animes-section'),
                     pausados: document.getElementById('pausados-section')
-                };
+             
+   };
                 
                 Object.keys(sections).forEach(key => {
                     if (sections[key]) {
                         if (currentFilter === key && filteredCards.length > 0) {
                             sections[key].classList.remove('hidden');
-                        } else {
+            
+            } else {
                             sections[key].classList.add('hidden');
                         }
                     }
-                });
+              
+  });
 
                 const totalPages = Math.ceil(filteredCards.length / 60) || 1;
                 if (sponsoredPage > totalPages) sponsoredPage = 1;
-                const start = (sponsoredPage - 1) * 60;
+const start = (sponsoredPage - 1) * 60;
                 const end = start + 60;
-                filteredCards.forEach((card, index) => {
+filteredCards.forEach((card, index) => {
                     if (index >= start && index < end) {
                         card.style.display = 'block';
                     } else {
-                        card.style.display = 'none';
+                     
+   card.style.display = 'none';
                     }
                 });
-                renderPagination('sponsored-pagination', totalPages, sponsoredPage, (newPage) => {
+renderPagination('sponsored-pagination', totalPages, sponsoredPage, (newPage) => {
                     sponsoredPage = newPage;
                     applySponsoredFilter();
                     document.getElementById('sponsored-search-input').scrollIntoView({behavior: 'smooth'});
                 });
-                const emptyMsg = document.getElementById('sponsored-empty-msg');
+const emptyMsg = document.getElementById('sponsored-empty-msg');
                 if (filteredCards.length === 0) {
                     emptyMsg.classList.remove('hidden');
-                } else {
+} else {
                     emptyMsg.classList.add('hidden');
-                }
+}
             }
 
             sponsoredSearchInput.addEventListener('input', () => { sponsoredPage = 1; applySponsoredFilter(); });
-            sponsoredTabs.forEach(tab => {
+sponsoredTabs.forEach(tab => {
                 tab.addEventListener('click', (e) => {
                     e.preventDefault();
                     sponsoredTabs.forEach(t => t.classList.remove('active'));
                     e.currentTarget.classList.add('active');
-                    currentFilter = e.currentTarget.dataset.filter;
+                 
+   currentFilter = e.currentTarget.dataset.filter;
                     sponsoredPage = 1;
                     applySponsoredFilter();
                 });
             });
-            window.applySponsoredFilter = applySponsoredFilter;
+window.applySponsoredFilter = applySponsoredFilter;
             window.applyAssistidosFilter = applyAssistidosFilter;
         })();
 
         function renderPagination(containerId, totalPages, currentPage, onPageChange) {
             const container = document.getElementById(containerId);
-            container.innerHTML = '';
+container.innerHTML = '';
             if (totalPages <= 1) return;
 
             for (let i = 1; i <= totalPages; i++) {
                 const btn = document.createElement('button');
-                btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
                 btn.textContent = i;
                 btn.addEventListener('click', () => onPageChange(i));
                 container.appendChild(btn);
-            }
+}
         }
 
         function renderErrorButton(containerId, retryFunction) {
             const container = document.getElementById(containerId);
-            container.innerHTML = `
+container.innerHTML = `
                 <div class="error-container">
-                    <p>Erro ao carregar as informações. Verifique sua conexão.</p>
+                    <p>Erro ao carregar as informações.
+Verifique sua conexão.</p>
                     <button class="retry-btn">Tentar Novamente</button>
                 </div>
             `;
-            container.classList.remove('hidden');
+container.classList.remove('hidden');
             const btn = container.querySelector('.retry-btn');
             btn.onclick = function() {
                 container.innerHTML = 'Carregando...';
-                retryFunction();
+retryFunction();
             };
         }
 
         const TMDB_API_KEY = 'ae110c8706fa5b6ed0a58125648e31b3';
         const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
-        const TMDB_IMG_URL = 'https://image.tmdb.org/t/p/w500';
+const TMDB_IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
         let sponsoredDataCache = [];
         let assistidosDataCache = [];
         let cronogramaDataCache = [];
         let cronogramaFullList = [];
-        document.querySelectorAll('.modal-overlay').forEach(modal => {
+document.querySelectorAll('.modal-overlay').forEach(modal => {
             modal.addEventListener('click', (e) => {
                 if (e.target === modal || e.target.closest('.modal-close')) {
                     modal.classList.remove('visible');
                 }
             });
         });
-        function renderStars(rating) {
+function renderStars(rating) {
             if (!rating || rating === '') return '<span class="no-rating">Sem avaliação</span>';
-            const numericRating = parseFloat(rating);
+const numericRating = parseFloat(rating);
             if (isNaN(numericRating)) return '<span class="no-rating">Sem avaliação</span>';
             const fullStars = Math.floor(numericRating);
-            const hasHalfStar = numericRating % 1 >= 0.5;
+const hasHalfStar = numericRating % 1 >= 0.5;
             const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-            let starsHTML = '';
+let starsHTML = '';
             for (let i = 0; i < fullStars; i++) starsHTML += '<span class="star filled">★</span>';
-            if (hasHalfStar) starsHTML += '<span class="star half">★</span>';
+if (hasHalfStar) starsHTML += '<span class="star half">★</span>';
             for (let i = 0; i < emptyStars; i++) starsHTML += '<span class="star">★</span>';
-            return starsHTML;
+return starsHTML;
         }
 
         function populateInfoTags(containerId, dataString) {
             const container = document.getElementById(containerId);
-            container.innerHTML = ''; 
+container.innerHTML = ''; 
             if (dataString && dataString.toString().trim() !== "") {
                 const parts = dataString.toString().split(/[|\/]/);
-                parts.forEach(part => {
+parts.forEach(part => {
                     const cleanPart = part.trim();
                     if (cleanPart) {
                         const tag = document.createElement('span');
-                        tag.className = 'info-tag';
+                        tag.className = 
+'info-tag';
                         tag.textContent = cleanPart;
                         container.appendChild(tag);
                     }
                 });
-            } else {
+} else {
                 const tag = document.createElement('span');
-                tag.className = 'info-tag';
+tag.className = 'info-tag';
                 tag.textContent = 'N/A';
                 container.appendChild(tag);
             }
@@ -3118,37 +3266,39 @@
         async function loadSponsoredContent() {
             try {
                 const { data: sponsoredItems, error } = await supabaseClient.from('emypix').select('*').eq('tipo', 'patrocinado');
-                if (error) throw error;
+if (error) throw error;
 
                 const detailedItems = await Promise.all(
                     sponsoredItems.map(async (item) => {
                         const tmdbId = item.tmdb_id;
                         if (!tmdbId) return null;
                
-                        const isTV = (item.eps_p !== null && item.eps_p !== "") || (item.eps_a !== null && item.eps_a !== "");
+         const isTV = (item.eps_p !== null && item.eps_p !== "") || (item.eps_a !== null && item.eps_a !== "");
                         const mediaType = isTV ? 'tv' : 'movie';
                         const tmdbUrl = `${TMDB_BASE_URL}/${mediaType}/${tmdbId}?api_key=${TMDB_API_KEY}&language=pt-BR`;
                 
-                        try {
+        try {
                             const tmdbResponse = await fetch(tmdbUrl);
                             if (!tmdbResponse.ok) return null;
                             
-                            const tmdbData = await tmdbResponse.json();
+const tmdbData = await tmdbResponse.json();
                             return {
                                 ...item, id: item.tmdb_id, title: tmdbData.title || tmdbData.name, name: tmdbData.name || tmdbData.title,
-                                overview: tmdbData.overview, poster_path: tmdbData.poster_path, backdrop_path: tmdbData.backdrop_path,
+                         
+       overview: tmdbData.overview, poster_path: tmdbData.poster_path, backdrop_path: tmdbData.backdrop_path,
                                 release_date: tmdbData.release_date, first_air_date: tmdbData.first_air_date, genres: tmdbData.genres,
                                 runtime: tmdbData.runtime, Patrocinador: item.patrocinador, 'Episódios Patrocinados': item.eps_p,
-                                'Episódios Assistidos': item.eps_a, 'Episódios Totais': tmdbData.number_of_episodes, media_type_custom: mediaType
+             
+                   'Episódios Assistidos': item.eps_a, 'Episódios Totais': tmdbData.number_of_episodes, media_type_custom: mediaType
                             };
-                        } catch (e) { return null; }
+} catch (e) { return null; }
                     })
                 );
-                document.getElementById('loading-message').classList.add('hidden');
+document.getElementById('loading-message').classList.add('hidden');
                 renderSponsoredContent(detailedItems.filter(item => item !== null));
             } catch (error) {
                 console.error('Erro ao carregar conteúdo patrocinado:', error);
-                renderErrorButton('loading-message', loadSponsoredContent);
+renderErrorButton('loading-message', loadSponsoredContent);
             }
         }
         
@@ -3157,120 +3307,128 @@
                 filmes: document.getElementById('filmes-grid'), series: document.getElementById('series-grid'),
                 animes: document.getElementById('animes-grid'), pausados: document.getElementById('pausados-grid')
             };
-            Object.values(containers).forEach(c => c.innerHTML = '');
+Object.values(containers).forEach(c => c.innerHTML = '');
             
             items.forEach(item => {
                 sponsoredDataCache.push(item);
                 const card = document.createElement('div');
                 card.className = 'media-card';
                 card.dataset.id = item.id;
-                const posterPath = item.poster_path ? `${TMDB_IMG_URL}${item.poster_path}` : 'https://via.placeholder.com/200x300?text=Sem+Imagem';
+                const posterPath = item.poster_path ? `${TMDB_IMG_URL}${item.poster_path}` 
+: 'https://via.placeholder.com/200x300?text=Sem+Imagem';
                 
                 card.innerHTML = `<img src="${posterPath}" alt="Pôster de ${item.title || item.name}"><div class="media-card-title">${item.title || item.name}</div>`;
 
                 if (item.pausado === true) {
                     card.dataset.type = 'pausados';
-                    containers.pausados.appendChild(card);
+              
+      containers.pausados.appendChild(card);
                 } else {
                     let typeKey;
                     if (item.media_type_custom === 'movie') {
                         typeKey = 'filmes';
-                        containers.filmes.appendChild(card);
+     
+                   containers.filmes.appendChild(card);
                     } else { 
                         const isAnime = item.genres && item.genres.some(genre => genre.id === 16);
-                        typeKey = isAnime ? 'animes' : 'series';
+typeKey = isAnime ? 'animes' : 'series';
                         containers[typeKey].appendChild(card);
                     }
                     card.dataset.type = typeKey;
-                }
+}
                 card.addEventListener('click', () => showSponsoredDetailsModal(item.id));
-            });
+});
             if (window.applySponsoredFilter) window.applySponsoredFilter();
         }
 
         function showSponsoredDetailsModal(tmdbId) {
             const item = sponsoredDataCache.find(data => data.id == tmdbId);
-            if (!item) return;
+if (!item) return;
 
             const backdrop = item.backdrop_path ? `${BACKDROP_URL}${item.backdrop_path}` : '';
             const backdropBg = document.querySelector('#details-modal .modal-backdrop-bg');
-            if (backdropBg) backdropBg.style.backgroundImage = `url('${backdrop}')`;
+if (backdropBg) backdropBg.style.backgroundImage = `url('${backdrop}')`;
 
             document.getElementById('modal-poster').src = item.poster_path ? `${TMDB_IMG_URL}${item.poster_path}` : 'https://via.placeholder.com/200x300?text=Sem+Imagem';
             document.getElementById('modal-title').textContent = item.title || item.name;
-            document.getElementById('modal-synopsis').textContent = item.overview || 'Sinopse não disponível.';
+document.getElementById('modal-synopsis').textContent = item.overview || 'Sinopse não disponível.';
             
             const subtitleEl = document.getElementById('modal-subtitle');
             const bodySponsorContainer = document.getElementById('modal-sponsor-container-body');
-            if (item.media_type_custom === 'movie') {
-                subtitleEl.innerHTML = item.Patrocinador ? `Patrocinado por <span style="color: #fff; font-weight: 700;">${item.Patrocinador}</span>` : '';
+if (item.media_type_custom === 'movie') {
+                subtitleEl.innerHTML = item.Patrocinador ?
+`Patrocinado por <span style="color: #fff; font-weight: 700;">${item.Patrocinador}</span>` : '';
                 bodySponsorContainer.classList.add('hidden');
-            } else {
+} else {
                 subtitleEl.textContent = '';
-                bodySponsorContainer.classList.remove('hidden');
+bodySponsorContainer.classList.remove('hidden');
                 populateInfoTags('modal-sponsor', item.Patrocinador);
             }
 
             const metaContainer = document.getElementById('modal-meta');
-            metaContainer.innerHTML = '';
+metaContainer.innerHTML = '';
             document.getElementById('modal-info-tv').classList.toggle('hidden', item.media_type_custom === 'movie');
             document.getElementById('modal-genres-container').classList.toggle('hidden', item.media_type_custom !== 'movie');
-            if (item.media_type_custom === 'movie') {
-                const year = item.release_date ? item.release_date.split('-')[0] : 'N/A';
+if (item.media_type_custom === 'movie') {
+                const year = item.release_date ?
+item.release_date.split('-')[0] : 'N/A';
                 metaContainer.innerHTML = `<span>Filme</span><span>${year}</span><span>${formatDuration(item.runtime)}</span>`;
                 const genresContainer = document.getElementById('modal-genres');
                 if (item.genres) genresContainer.innerHTML = item.genres.slice(0, 3).map(g => `<span>${g.name}</span>`).join('');
-            } else {
-                const type = item.genres && item.genres.some(g => g.id === 16) ? 'Anime' : 'Série';
+} else {
+                const type = item.genres && item.genres.some(g => g.id === 16) ?
+'Anime' : 'Série';
                 const year = item.first_air_date ? item.first_air_date.split('-')[0] : 'N/A';
                 metaContainer.innerHTML = `<span>${type}</span><span>${year}</span>`;
                 
                 const totalEpsGroup = document.getElementById('modal-total-eps-group');
-                if (item['Episódios Totais'] && item['Episódios Totais'].toString().trim() !== '') {
+if (item['Episódios Totais'] && item['Episódios Totais'].toString().trim() !== '') {
                     populateInfoTags('modal-total-eps', item['Episódios Totais']);
-                    totalEpsGroup.classList.remove('hidden');
+totalEpsGroup.classList.remove('hidden');
                 } else {
                     totalEpsGroup.classList.add('hidden');
-                }
+}
                 populateInfoTags('modal-sponsored-eps', item['Episódios Patrocinados']);
-                populateInfoTags('modal-watched-eps', item['Episódios Assistidos']);
+populateInfoTags('modal-watched-eps', item['Episódios Assistidos']);
             }
             document.getElementById('details-modal').classList.add('visible');
-        }
+}
 
         async function loadAssistidosContent() {
             try {
                 const { data: assistidosItems, error } = await supabaseClient.from('emypix').select('*').eq('tipo', 'assistido');
-                if (error) throw error;
+if (error) throw error;
                 const detailedItems = await Promise.all(
                     assistidosItems.map(async (item) => {
                         const tmdbId = item.tmdb_id;
                         if (!tmdbId) return null;
                
-                        const isTV = (item.eps_p !== null && item.eps_p !== "") || (item.eps_a !== null && item.eps_a !== "");
+         const isTV = (item.eps_p !== null && item.eps_p !== "") || (item.eps_a !== null && item.eps_a !== "");
                         const mediaType = isTV ? 'tv' : 'movie';
                         const tmdbUrl = `${TMDB_BASE_URL}/${mediaType}/${tmdbId}?api_key=${TMDB_API_KEY}&language=pt-BR`;
                 
-                        try {
+        try {
                             const tmdbResponse = await fetch(tmdbUrl);
                             if (!tmdbResponse.ok) return null;
                             
-                            const tmdbData = await tmdbResponse.json();
+const tmdbData = await tmdbResponse.json();
                             return {
                                 ...item, id: item.tmdb_id, title: tmdbData.title || tmdbData.name, name: tmdbData.name || tmdbData.title,
-                                overview: tmdbData.overview, poster_path: tmdbData.poster_path, backdrop_path: tmdbData.backdrop_path,
+                         
+       overview: tmdbData.overview, poster_path: tmdbData.poster_path, backdrop_path: tmdbData.backdrop_path,
                                 release_date: tmdbData.release_date, first_air_date: tmdbData.first_air_date, genres: tmdbData.genres,
                                 runtime: tmdbData.runtime, Patrocinador: item.patrocinador, 'Episódios Patrocinados': item.eps_p,
-                                'Episódios Assistidos ': item.eps_a, 'Nota da Emypix': item.nota, media_type_custom: mediaType
+             
+                   'Episódios Assistidos ': item.eps_a, 'Nota da Emypix': item.nota, media_type_custom: mediaType
                             };
-                        } catch (e) { return null; }
+} catch (e) { return null; }
                     })
                 );
-                document.getElementById('assistidos-loading-message').classList.add('hidden');
+document.getElementById('assistidos-loading-message').classList.add('hidden');
                 renderAssistidosContent(detailedItems.filter(item => item !== null));
             } catch (error) {
                 console.error('Erro ao carregar conteúdo assistido:', error);
-                renderErrorButton('assistidos-loading-message', loadAssistidosContent);
+renderErrorButton('assistidos-loading-message', loadAssistidosContent);
             }
         }
         
@@ -3279,118 +3437,125 @@
                 filmes: document.getElementById('assistidos-filmes-grid'), series: document.getElementById('assistidos-series-grid'),
                 animes: document.getElementById('assistidos-animes-grid')
             };
-            Object.values(containers).forEach(c => c.innerHTML = '');
+Object.values(containers).forEach(c => c.innerHTML = '');
 
             items.forEach(item => {
                 assistidosDataCache.push(item);
                 const card = document.createElement('div');
                 card.className = 'media-card';
                 card.dataset.id = item.id;
-                const posterPath = item.poster_path ? `${TMDB_IMG_URL}${item.poster_path}` : 'https://via.placeholder.com/200x300?text=Sem+Imagem';
+                const posterPath = item.poster_path ? `${TMDB_IMG_URL}${item.poster_path}` 
+: 'https://via.placeholder.com/200x300?text=Sem+Imagem';
                 
                 card.innerHTML = `<img src="${posterPath}" alt="Pôster de ${item.title}"><div class="media-card-title">${item.title}</div>`;
 
                 let typeKey;
                 if (item.media_type_custom === 'movie') {
                     typeKey = 'filmes';
-                    containers.filmes.appendChild(card);
+ 
+                   containers.filmes.appendChild(card);
                 } else { 
                     const isAnime = item.genres && item.genres.some(genre => genre.id === 16);
                     typeKey = isAnime ? 'animes' : 'series';
-                    containers[typeKey].appendChild(card);
+       
+             containers[typeKey].appendChild(card);
                 }
                 card.dataset.type = typeKey;
-                card.addEventListener('click', () => showAssistidosDetailsModal(item.id));
+card.addEventListener('click', () => showAssistidosDetailsModal(item.id));
             });
             if (window.applyAssistidosFilter) window.applyAssistidosFilter();
         }
 
         function showAssistidosDetailsModal(tmdbId) {
             const item = assistidosDataCache.find(data => data.id == tmdbId);
-            if (!item) return;
+if (!item) return;
 
             const backdrop = item.backdrop_path ? `${BACKDROP_URL}${item.backdrop_path}` : '';
             const backdropBg = document.querySelector('#assistidos-details-modal .modal-backdrop-bg');
-            if (backdropBg) backdropBg.style.backgroundImage = `url('${backdrop}')`;
+if (backdropBg) backdropBg.style.backgroundImage = `url('${backdrop}')`;
 
             document.getElementById('assistidos-modal-poster').src = item.poster_path ? `${TMDB_IMG_URL}${item.poster_path}` : 'https://via.placeholder.com/200x300?text=Sem+Imagem';
             document.getElementById('assistidos-modal-title').textContent = item.title;
-            document.getElementById('assistidos-modal-synopsis').textContent = item.overview || 'Sinopse não disponível.';
+            document.getElementById('assistidos-modal-synopsis').textContent = item.overview ||
+'Sinopse não disponível.';
             document.getElementById('assistidos-modal-rating').innerHTML = renderStars(item['Nota da Emypix']);
             
             const subtitleEl = document.getElementById('assistidos-modal-subtitle');
             const bodySponsorContainer = document.getElementById('assistidos-modal-sponsor-container-body');
-            if (item.media_type_custom === 'movie') {
-                subtitleEl.innerHTML = item.Patrocinador ? `Patrocinado por <span style="color: #fff; font-weight: 700;">${item.Patrocinador}</span>` : '';
+if (item.media_type_custom === 'movie') {
+                subtitleEl.innerHTML = item.Patrocinador ?
+`Patrocinado por <span style="color: #fff; font-weight: 700;">${item.Patrocinador}</span>` : '';
                 bodySponsorContainer.classList.add('hidden');
-            } else {
+} else {
                 subtitleEl.textContent = '';
-                bodySponsorContainer.classList.remove('hidden');
+bodySponsorContainer.classList.remove('hidden');
                 populateInfoTags('assistidos-modal-sponsor', item.Patrocinador);
             }
 
             const metaContainer = document.getElementById('assistidos-modal-meta');
-            metaContainer.innerHTML = '';
+metaContainer.innerHTML = '';
             document.getElementById('assistidos-modal-info-tv').classList.toggle('hidden', item.media_type_custom === 'movie');
             document.getElementById('assistidos-modal-genres-container').classList.toggle('hidden', item.media_type_custom !== 'movie');
-            if (item.media_type_custom === 'movie') {
-                const year = item.release_date ? item.release_date.split('-')[0] : 'N/A';
+if (item.media_type_custom === 'movie') {
+                const year = item.release_date ?
+item.release_date.split('-')[0] : 'N/A';
                 metaContainer.innerHTML = `<span>Filme</span><span>${year}</span><span>${formatDuration(item.runtime)}</span>`;
                 const genresContainer = document.getElementById('assistidos-modal-genres');
                 if (item.genres) genresContainer.innerHTML = item.genres.slice(0, 3).map(g => `<span>${g.name}</span>`).join('');
-            } else {
-                const type = item.genres && item.genres.some(g => g.id === 16) ? 'Anime' : 'Série';
+} else {
+                const type = item.genres && item.genres.some(g => g.id === 16) ?
+'Anime' : 'Série';
                 const year = item.first_air_date ? item.first_air_date.split('-')[0] : 'N/A';
                 metaContainer.innerHTML = `<span>${type}</span><span>${year}</span>`;
                 populateInfoTags('assistidos-modal-sponsored-eps', item['Episódios Patrocinados']);
-                populateInfoTags('assistidos-modal-watched-eps', item['Episódios Assistidos ']);
+populateInfoTags('assistidos-modal-watched-eps', item['Episódios Assistidos ']);
             }
             document.getElementById('assistidos-details-modal').classList.add('visible');
-        }
+}
 
         let currentWeekOffset = 0;
-        function getStartOfWeek(date) {
+function getStartOfWeek(date) {
             const d = new Date(date);
-            d.setHours(0, 0, 0, 0); // Zera as horas para evitar bugs de fuso horário
+d.setHours(0, 0, 0, 0); // Zera as horas para evitar bugs de fuso horário
             const day = d.getDay();
-            const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+const diff = d.getDate() - day + (day === 0 ? -6 : 1);
             return new Date(d.setDate(diff));
-        }
+}
 
         function formatDateDisplay(date) {
             const d = new Date(date);
-            const day = String(d.getDate()).padStart(2, '0');
+const day = String(d.getDate()).padStart(2, '0');
             const month = String(d.getMonth() + 1).padStart(2, '0');
             return `${day}/${month}`;
-        }
+}
         
         function getDayName(dateStr) {
             const date = new Date(dateStr + 'T12:00:00');
-            const days = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+const days = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
             return days[date.getDay()];
-        }
+}
 
         function updateWeekDisplay() {
             const today = new Date();
-            today.setHours(0, 0, 0, 0); // Zera as horas de hoje
+today.setHours(0, 0, 0, 0); // Zera as horas de hoje
             
             const targetDate = new Date(today);
-            targetDate.setDate(targetDate.getDate() + (currentWeekOffset * 7));
+targetDate.setDate(targetDate.getDate() + (currentWeekOffset * 7));
             
             const startOfWeek = getStartOfWeek(targetDate);
             
             const endOfWeek = new Date(startOfWeek);
             endOfWeek.setDate(endOfWeek.getDate() + 6);
-            endOfWeek.setHours(23, 59, 59, 999); // Vai até o último segundo do domingo
+endOfWeek.setHours(23, 59, 59, 999); // Vai até o último segundo do domingo
             
             document.getElementById('week-display-text').textContent = `${formatDateDisplay(startOfWeek)} - ${formatDateDisplay(endOfWeek)}`;
-            renderCronogramaGrid(startOfWeek, endOfWeek);
+renderCronogramaGrid(startOfWeek, endOfWeek);
         }
 
         async function loadCronogramaContent() {
             try {
                 const { data, error } = await supabaseClient.from('cronograma').select('*').order('data_completa', { ascending: true }).order('ordem', { ascending: true });
-                if (error) throw error;
+if (error) throw error;
                 cronogramaFullList = data;
                 
                 const promises = cronogramaFullList.map(async (item) => {
@@ -3398,156 +3563,160 @@
                          const mediaType = item.eps_hoje ? 'tv' : 'movie';
                          const url = `${TMDB_BASE_URL}/${mediaType}/${item.tmdb_id}?api_key=${TMDB_API_KEY}&language=pt-BR`;
     
-                         try {
+                     try {
                              const resp = await fetch(url);
                              if(resp.ok) {
-                                 const tmdbData = await resp.json();
+               
+                  const tmdbData = await resp.json();
                                  item.tmdbData = { ...tmdbData, mediaType: mediaType };
                              }
-                         } catch(e) { console.log('Erro cronograma tmdb', e); }
+          
+                 } catch(e) { console.log('Erro cronograma tmdb', e); }
                      }
                      return item;
                  });
-                await Promise.all(promises);
+await Promise.all(promises);
                 document.getElementById('cronograma-loading-message').classList.add('hidden');
                 
                 document.getElementById('prev-week-btn').addEventListener('click', () => { currentWeekOffset--; updateWeekDisplay(); });
                 document.getElementById('next-week-btn').addEventListener('click', () => { currentWeekOffset++; updateWeekDisplay(); });
                 updateWeekDisplay();
-            } catch (error) {
+} catch (error) {
                 console.error("Erro ao carregar cronograma", error);
-                renderErrorButton('cronograma-loading-message', loadCronogramaContent);
+renderErrorButton('cronograma-loading-message', loadCronogramaContent);
             }
         }
 
         function renderCronogramaGrid(startDate, endDate) {
             const container = document.getElementById('cronograma-container');
-            container.innerHTML = '';
+container.innerHTML = '';
             
             const weekItems = cronogramaFullList.filter(item => {
                 const itemDate = new Date(item.data_completa + 'T12:00:00'); 
                 return itemDate >= startDate && itemDate <= endDate;
             });
-            if (weekItems.length === 0) {
+if (weekItems.length === 0) {
                 container.innerHTML = `<div class="empty-week-message">Nenhum conteúdo agendado para esta semana.</div>`;
-                return;
+return;
             }
 
             const grouped = {};
-            weekItems.forEach(item => {
+weekItems.forEach(item => {
                 if (!grouped[item.data_completa]) grouped[item.data_completa] = [];
                 grouped[item.data_completa].push(item);
             });
-            Object.keys(grouped).sort().forEach(dateStr => {
+Object.keys(grouped).sort().forEach(dateStr => {
                 const daySection = document.createElement('div');
                 daySection.className = 'day-section';
                 
                 const dateObj = new Date(dateStr + 'T12:00:00');
                 const header = document.createElement('div');
     
-                header.className = 'day-header';
+            header.className = 'day-header';
                 header.innerHTML = `<i class="fa-regular fa-calendar"></i> ${getDayName(dateStr)} (${formatDateDisplay(dateObj)})`;
                 
                 const grid = document.createElement('div');
                 grid.className = 'media-grid';
            
+
                 const items = grouped[dateStr].sort((a,b) => a.ordem - b.ordem);
                 items.forEach(item => {
                     cronogramaDataCache.push(item);
                     const card = document.createElement('div');
                 
-                    card.className = 'media-card';
+    card.className = 'media-card';
                     let imgUrl = 'https://via.placeholder.com/200x300?text=Sem+Imagem';
-                    if (item.tmdbData && item.tmdbData.poster_path) imgUrl = `${TMDB_IMG_URL}${item.tmdbData.poster_path}`;
+if (item.tmdbData && item.tmdbData.poster_path) imgUrl = `${TMDB_IMG_URL}${item.tmdbData.poster_path}`;
                     else if (item.imagem_url) imgUrl = item.imagem_url;
                     
                     card.innerHTML = `<img src="${imgUrl}" alt="${item.titulo}"><div class="media-card-title">${item.titulo}</div>`;
-                    card.addEventListener('click', () => showCronogramaModal(item));
+card.addEventListener('click', () => showCronogramaModal(item));
                     grid.appendChild(card);
                 });
                 daySection.appendChild(header);
                 daySection.appendChild(grid);
                 container.appendChild(daySection);
             });
-        }
+}
 
         function showCronogramaModal(item) {
              const backdropBg = document.querySelector('#cronograma-details-modal .modal-backdrop-bg');
-             let posterUrl = 'https://via.placeholder.com/200x300?text=Sem+Imagem';
+let posterUrl = 'https://via.placeholder.com/200x300?text=Sem+Imagem';
              let backdropUrl = '';
              let synopsis = 'Sinopse não disponível.';
              let genres = [];
-             let year = '';
+let year = '';
              let typeLabel = '';
              
              if (item.tmdbData) {
                  if (item.tmdbData.poster_path) posterUrl = `${TMDB_IMG_URL}${item.tmdbData.poster_path}`;
-                 if (item.tmdbData.backdrop_path) backdropUrl = `${BACKDROP_URL}${item.tmdbData.backdrop_path}`;
+if (item.tmdbData.backdrop_path) backdropUrl = `${BACKDROP_URL}${item.tmdbData.backdrop_path}`;
                  if (item.tmdbData.overview) synopsis = item.tmdbData.overview;
                  if (item.tmdbData.genres) genres = item.tmdbData.genres;
-                 if (item.tmdbData.mediaType === 'movie') {
-                     year = item.tmdbData.release_date ? item.tmdbData.release_date.split('-')[0] : '';
+if (item.tmdbData.mediaType === 'movie') {
+                     year = item.tmdbData.release_date ?
+item.tmdbData.release_date.split('-')[0] : '';
                      typeLabel = 'Filme';
                  } else {
-                     year = item.tmdbData.first_air_date ? item.tmdbData.first_air_date.split('-')[0] : '';
+                     year = item.tmdbData.first_air_date ?
+item.tmdbData.first_air_date.split('-')[0] : '';
                      const isAnime = genres.some(g => g.id === 16);
                      typeLabel = isAnime ? 'Anime' : 'Série';
-                 }
+}
              } else {
                  if (item.imagem_url) posterUrl = item.imagem_url;
-                 typeLabel = 'Outros';
+typeLabel = 'Outros';
              }
              
              if (backdropBg) {
                 if (backdropUrl) backdropBg.style.backgroundImage = `url('${backdropUrl}')`;
-                else backdropBg.style.backgroundImage = 'none';
+else backdropBg.style.backgroundImage = 'none';
              }
              
              document.getElementById('cronograma-modal-poster').src = posterUrl;
-             document.getElementById('cronograma-modal-title').textContent = item.titulo;
+document.getElementById('cronograma-modal-title').textContent = item.titulo;
              document.getElementById('cronograma-modal-synopsis').textContent = synopsis;
              
              const metaContainer = document.getElementById('cronograma-modal-meta');
              metaContainer.innerHTML = '';
              if (typeLabel) metaContainer.innerHTML += `<span>${typeLabel}</span>`;
-             if (year) metaContainer.innerHTML += `<span>${year}</span>`;
+if (year) metaContainer.innerHTML += `<span>${year}</span>`;
              if (typeLabel === 'Filme' && item.tmdbData && item.tmdbData.runtime) {
                   metaContainer.innerHTML += `<span>${formatDuration(item.tmdbData.runtime)}</span>`;
-             }
+}
 
              const genresContainer = document.getElementById('cronograma-modal-genres');
-             const genresWrapper = document.getElementById('cronograma-modal-genres-container');
+const genresWrapper = document.getElementById('cronograma-modal-genres-container');
              if (genres.length > 0) {
                  genresWrapper.classList.remove('hidden');
-                 genresContainer.innerHTML = genres.slice(0, 3).map(g => `<span>${g.name}</span>`).join('');
+genresContainer.innerHTML = genres.slice(0, 3).map(g => `<span>${g.name}</span>`).join('');
              } else {
                  genresWrapper.classList.add('hidden');
-             }
+}
              
              const infoTv = document.getElementById('cronograma-modal-info-tv');
-             if (item.eps_hoje) {
+if (item.eps_hoje) {
                  infoTv.classList.remove('hidden');
-                 populateInfoTags('cronograma-modal-eps-hoje', item.eps_hoje);
+populateInfoTags('cronograma-modal-eps-hoje', item.eps_hoje);
              } else {
                  infoTv.classList.add('hidden');
-             }
+}
              
              const sponsorContainer = document.getElementById('cronograma-modal-sponsor-container-body');
-             const subtitle = document.getElementById('cronograma-modal-subtitle');
+const subtitle = document.getElementById('cronograma-modal-subtitle');
              
              if (typeLabel === 'Filme' || !item.eps_hoje) {
                  sponsorContainer.classList.add('hidden');
-                 subtitle.innerHTML = item.patrocinador ? `Patrocinado por <span style="color: #fff; font-weight: 700;">${item.patrocinador}</span>` : '';
-             } else {
+subtitle.innerHTML = item.patrocinador ? `Patrocinado por <span style="color: #fff; font-weight: 700;">${item.patrocinador}</span>` : '';
+} else {
                  subtitle.textContent = '';
-                 sponsorContainer.classList.remove('hidden');
+sponsorContainer.classList.remove('hidden');
                  populateInfoTags('cronograma-modal-sponsor', item.patrocinador);
              }
              
              document.getElementById('cronograma-details-modal').classList.add('visible');
-        }
+}
 
-        // --- SISTEMA INICIADO COM URLS LIMPAS ---
         init();
     </script>
 </body>
