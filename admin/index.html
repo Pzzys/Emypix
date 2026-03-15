@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loryez Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+
+    <style>
+        /* --- VARIÁVEIS LORYEZ --- */
+        :root {
+            --bg-primary: #050505;
+            --bg-secondary: #0f0f13;
+            --bg-tertiary: #181820;
+            --bg-accent: #20202a;
+            
+            --text-primary: #f0f2ff;
+            --text-secondary: #b8bbd6;
+            --text-muted: #8a8da8;
+            
+            --accent-primary: #9d4edd;
+            --accent-secondary: #7b2cbf;
+            --accent-tertiary: #c77dff;
+            --accent-glow: rgba(157, 78, 221, 0.35);
+
+            --success: #4cda64;
+            --warning: #ffb74d;
+            --error: #ff5252;
+            
+            --border-thin: 1px solid rgba(255, 255, 255, 0.07);
+            --border-medium: 1px solid rgba(255, 255, 255, 0.12);
+            --border-glow: 1px solid rgba(157, 78, 221, 0.2);
+            
+            --shadow-soft: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 25px rgba(157, 78, 221, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(123, 44, 191, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(157, 78, 221, 0.05) 0%, transparent 50%);
+        }
+
+        /* SCROLLBAR GERAL */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-primary); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-secondary); }
+
+        /* --- TELA DE LOGIN --- */
+        #login-screen {
+            display: flex; align-items: center; justify-content: center;
+            height: 100vh; width: 100%; position: fixed; z-index: 1000;
+            background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(10px);
+        }
+
+        .login-box {
+            background: var(--bg-secondary);
+            padding: 40px; border-radius: 16px; border: var(--border-glow);
+            width: 100%; max-width: 400px; text-align: center; box-shadow: var(--shadow-glow);
+        }
+
+        .login-box h1 {
+            font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+            background: linear-gradient(135deg, #fff, var(--accent-tertiary));
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+            margin-bottom: 30px; font-size: 2rem;
+        }
+
+        /* --- NAVBAR E CONTAINER --- */
+        #dashboard { display: none; width: 100%; }
+
+        .top-nav {
+            background: rgba(5, 5, 5, 0.95); padding: 20px 40px;
+            border-bottom: var(--border-thin);
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .brand { 
+            font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; 
+            color: var(--accent-tertiary); letter-spacing: 1px;
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+        
+        .logout-btn {
+            background: rgba(255, 82, 82, 0.1); border: 1px solid rgba(255, 82, 82, 0.3);
+            color: var(--error); padding: 8px 20px; border-radius: 8px; cursor: pointer;
+            transition: all 0.3s; font-weight: 600; font-family: 'Outfit', sans-serif;
+        }
+        .logout-btn:hover { background: var(--error); color: var(--text-primary); transform: translateY(-2px); }
+
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+
+        /* --- CABEÇALHO DO PAINEL --- */
+        .section-header {
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;
+            padding-bottom: 15px; border-bottom: 2px solid var(--accent-primary);
+        }
+        .section-header h2 { font-family: 'Jost', sans-serif; font-size: 1.8rem; font-weight: 600; }
+
+        .btn-add {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: var(--text-primary); border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600;
+            cursor: pointer; transition: all 0.3s; font-family: 'Outfit', sans-serif; font-size: 1rem;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .btn-add:hover { transform: translateY(-2px); box-shadow: var(--shadow-glow); }
+
+        /* --- CARDS E LISTAS --- */
+        .data-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+
+        .data-card {
+            background: var(--bg-secondary); border: var(--border-medium); border-radius: 16px;
+            padding: 24px; position: relative; transition: all 0.3s ease; display: flex; flex-direction: column;
+        }
+        .data-card:hover { transform: translateY(-5px); border-color: var(--accent-primary); box-shadow: var(--shadow-glow); }
+        
+        .data-card.paused { border-top: 3px solid var(--warning); background: linear-gradient(180deg, rgba(255, 183, 77, 0.05), transparent); }
+        .data-card.watched { border-top: 3px solid var(--success); background: linear-gradient(180deg, rgba(76, 218, 100, 0.05), transparent); }
+
+        .card-info { flex-grow: 1; }
+        .card-info h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; margin-bottom: 10px; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .card-info p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .card-info p i { color: var(--accent-tertiary); width: 16px; text-align: center; }
+        
+        .card-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 15px; }
+        .badge { font-size: 0.8rem; padding: 4px 12px; border-radius: 20px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+        .badge.patrocinado { background: rgba(157, 78, 221, 0.1); color: var(--accent-tertiary); border: 1px solid var(--accent-tertiary); }
+        .badge.assistido { background: rgba(76, 218, 100, 0.1); color: var(--success); border: 1px solid var(--success); }
+        .badge.pausado { background: rgba(255, 183, 77, 0.1); color: var(--warning); border: 1px solid var(--warning); }
+
+        .card-actions {
+            display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;
+            padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .btn-action {
+            background: var(--bg-tertiary); border: var(--border-medium); width: 36px; height: 36px;
+            border-radius: 8px; cursor: pointer; font-size: 1rem; transition: 0.2s; display: flex; align-items: center; justify-content: center;
+            color: var(--text-muted);
+        }
+        .btn-edit:hover { background: rgba(157, 78, 221, 0.1); border-color: var(--accent-primary); color: var(--accent-tertiary); }
+        .btn-delete:hover { background: rgba(255, 82, 82, 0.1); border-color: var(--error); color: var(--error); }
+
+        /* --- FORMULÁRIOS --- */
+        .form-row { display: flex; gap: 15px; margin-bottom: 15px; }
+        .form-col { flex: 1; }
+        
+        .input-group { margin-bottom: 20px; text-align: left; position: relative; }
+        .input-group label { display: block; color: var(--text-primary); font-weight: 500; margin-bottom: 8px; font-size: 0.95rem; }
+        .helper-text { display: block; font-size: 0.85rem; color: var(--text-muted); margin-top: 6px; }
+        
+        input, select {
+            width: 100%; padding: 14px 16px; background: var(--bg-tertiary);
+            border: var(--border-medium); border-radius: 8px;
+            color: var(--text-primary); font-family: 'Outfit', sans-serif; font-size: 1rem; transition: 0.3s;
+        }
+        input:focus, select:focus { outline: none; border-color: var(--accent-primary); box-shadow: 0 0 0 2px var(--accent-glow); }
+
+        /* --- LIVE SEARCH E SCROLLBAR DE RESULTADOS --- */
+        .search-wrapper { position: relative; }
+        .search-results-list {
+            position: absolute; top: calc(100% + 5px); left: 0; right: 0;
+            background: var(--bg-secondary); border: var(--border-glow); border-radius: 8px;
+            z-index: 2500; max-height: 350px; overflow-y: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            display: none;
+        }
+        .search-results-list.active { display: block; }
+        
+        /* Scrollbar customizada para a lista de resultados (Exibe todos os resultados) */
+        .search-results-list::-webkit-scrollbar { width: 8px; }
+        .search-results-list::-webkit-scrollbar-track { background: var(--bg-tertiary); border-radius: 0 8px 8px 0; }
+        .search-results-list::-webkit-scrollbar-thumb { background: var(--accent-primary); border-radius: 8px; }
+        
+        .search-result-item {
+            display: flex; align-items: center; gap: 15px; padding: 12px 15px;
+            cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.03); transition: 0.2s;
+        }
+        .search-result-item:last-child { border-bottom: none; }
+        .search-result-item:hover { background: rgba(157, 78, 221, 0.1); padding-left: 20px; border-left: 3px solid var(--accent-primary); }
+        .search-result-item img { width: 40px; height: 60px; object-fit: cover; border-radius: 4px; background: #222; }
+        .search-result-item div { flex: 1; }
+        .search-result-item strong { display: block; font-size: 1rem; color: var(--text-primary); margin-bottom: 4px; }
+        .search-result-item small { color: var(--text-muted); font-size: 0.85rem; }
+
+        /* TYPE TOGGLE (Filme vs Série) */
+        .type-toggle { display: flex; gap: 10px; margin-bottom: 20px; background: var(--bg-tertiary); padding: 6px; border-radius: 8px; border: var(--border-thin); }
+        .type-toggle label {
+            flex: 1; text-align: center; padding: 12px; cursor: pointer; background: transparent;
+            border-radius: 6px; font-weight: 500; transition: 0.3s; color: var(--text-muted); border: none; margin: 0;
+        }
+        .type-toggle input { display: none; }
+        .type-toggle input:checked + label { background: var(--accent-primary); color: var(--text-primary); box-shadow: var(--shadow-glow); }
+
+        /* --- MODAIS --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            z-index: 2000; display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: all 0.3s;
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        
+        .modal-box {
+            background: var(--bg-secondary); width: 100%; max-width: 700px; max-height: 90vh;
+            border-radius: 16px; border: var(--border-glow); padding: 40px; overflow-y: auto; position: relative;
+            transform: translateY(20px); transition: all 0.3s; box-shadow: var(--shadow-medium);
+        }
+        .modal-overlay.active .modal-box { transform: translateY(0); }
+
+        .modal-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; margin-bottom: 30px; color: var(--text-primary); }
+        
+        .close-modal {
+            position: absolute; top: 30px; right: 30px; background: transparent; border: none;
+            color: var(--text-muted); font-size: 1.5rem; cursor: pointer; transition: 0.2s;
+        }
+        .close-modal:hover { color: var(--accent-tertiary); transform: scale(1.1); }
+
+        .btn-submit {
+            width: 100%; padding: 16px; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: var(--text-primary); border: none; border-radius: 8px; font-weight: 600; font-size: 1.1rem;
+            cursor: pointer; margin-top: 20px; transition: 0.3s; font-family: 'Outfit', sans-serif; box-shadow: var(--shadow-glow);
+        }
+        .btn-submit:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        .checkbox-custom {
+            display: flex; align-items: center; gap: 12px; padding: 16px;
+            background: rgba(255, 183, 77, 0.05); border: 1px solid rgba(255, 183, 77, 0.2);
+            border-radius: 8px; cursor: pointer; transition: 0.2s; margin-top: 10px;
+        }
+        .checkbox-custom:hover { background: rgba(255, 183, 77, 0.1); }
+        .checkbox-custom input { width: 18px; height: 18px; accent-color: var(--warning); cursor: pointer; }
+        .checkbox-custom span { color: var(--warning); font-weight: 500; }
+        
+        .loading-text { text-align: center; color: var(--text-muted); padding: 50px; font-size: 1.1rem; }
+    </style>
+</head>
+<body>
+
+    <div id="login-screen">
+        <div class="login-box">
+            <h1>Loryez Admin</h1>
+            <div class="input-group">
+                <input type="email" id="email" placeholder="E-mail de Acesso">
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Sua Senha">
+            </div>
+            <button class="btn-submit" id="login-btn">Entrar</button>
+            <p id="login-error" style="color: var(--error); margin-top: 20px; font-size: 0.9rem;"></p>
+        </div>
+    </div>
+
+    <div id="dashboard">
+        <nav class="top-nav">
+            <div class="brand"><i class="fa-solid fa-bolt"></i> LORYEZ ADMIN</div>
+            <button class="logout-btn" id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Sair</button>
+        </nav>
+
+        <div class="container">
+            <div class="section-header">
+                <h2>Gerenciar Conteúdos</h2>
+                <button class="btn-add" onclick="openContentModal()"><i class="fa-solid fa-plus"></i> Adicionar Novo</button>
+            </div>
+            
+            <div class="input-group" style="max-width: 400px; margin-bottom: 30px;">
+                <input type="text" id="search-content" placeholder="Filtrar lista rapidamente...">
+            </div>
+            
+            <div id="content-list" class="data-grid">
+                <div class="loading-text"><i class="fa-solid fa-circle-notch fa-spin"></i> Carregando conteúdos...</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="content-modal" class="modal-overlay">
+        <div class="modal-box">
+            <button class="close-modal" onclick="closeModal('content-modal')"><i class="fa-solid fa-xmark"></i></button>
+            <h2 class="modal-title" id="content-modal-title">Adicionar Conteúdo</h2>
+            
+            <form id="content-form">
+                <input type="hidden" id="content-id">
+                
+                <div class="type-toggle">
+                    <input type="radio" id="content-type-movie" name="content-tmdb-type" value="movie" checked>
+                    <label for="content-type-movie"><i class="fa-solid fa-film"></i> Filme</label>
+                    
+                    <input type="radio" id="content-type-tv" name="content-tmdb-type" value="tv">
+                    <label for="content-type-tv"><i class="fa-solid fa-tv"></i> Série / Anime</label>
+                </div>
+
+                <div class="input-group search-wrapper">
+                    <label>Pesquisar Obra (TMDB) *</label>
+                    <input type="text" id="content-nome" autocomplete="off" placeholder="Digite o nome para buscar..." required>
+                    <span class="helper-text">Clique no resultado abaixo para preencher o ID automaticamente. Sem limite de resultados, use a barra de rolagem se precisar.</span>
+                    
+                    <div id="content-tmdb-results" class="search-results-list"></div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-col input-group">
+                        <label>ID TMDB *</label>
+                        <input type="number" id="content-tmdb-id" placeholder="Ex: 157336" required>
+                    </div>
+                    <div class="form-col input-group">
+                        <label>Categoria *</label>
+                        <select id="content-tipo" required>
+                            <option value="patrocinado">Patrocinado</option>
+                            <option value="assistido">Assistido</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Patrocinador(es)</label>
+                    <input type="text" id="content-patrocinador" placeholder="Ex: Joãozinho | Mariazinha">
+                    <span class="helper-text">Deixe em branco se não houver. Use " | " para separar vários.</span>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-col input-group">
+                        <label>Eps. Patrocinados</label>
+                        <input type="text" id="content-eps-p" placeholder="Ex: 12 ou 1ª Temporada">
+                    </div>
+                    <div class="form-col input-group">
+                        <label>Eps. Assistidos</label>
+                        <input type="text" id="content-eps-a" placeholder="Ex: 12 ou 1ª Temporada">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Nota da Lorena</label>
+                    <input type="number" step="0.5" min="0" max="5" id="content-nota" placeholder="Ex: 4.5">
+                    <span class="helper-text">Nota de 0 a 5. Avaliação que aparecerá na aba assistidos.</span>
+                </div>
+
+                <label class="checkbox-custom">
+                    <input type="checkbox" id="content-pausado">
+                    <span>Marcar como Pausado</span>
+                    <small style="font-weight: 300; color: var(--text-muted); margin-left: 5px;">(Por falta de patrocínio nos eps)</small>
+                </label>
+
+                <button type="submit" class="btn-submit"><i class="fa-solid fa-check"></i> Salvar Conteúdo</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        // --- CONFIGURAÇÕES SUPABASE E TMDB ---
+        // Credenciais fornecidas para o Loryez
+        const supabaseUrl = 'https://lybjuvhrilwoxaaqavnl.supabase.co';
+        const supabaseKey = 'sb_publishable_-naTbGoCSoJQHa4Q8N4okA_yQOeVQsJ';
+        const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+        const TMDB_API_KEY = 'ae110c8706fa5b6ed0a58125648e31b3';
+        const TMDB_IMG_URL = 'https://image.tmdb.org/t/p/w92';
+
+        // --- AUTH ---
+        document.getElementById('login-btn').addEventListener('click', async () => {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorP = document.getElementById('login-error');
+            
+            errorP.innerText = "Conectando...";
+            const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+            
+            if (error) {
+                errorP.innerText = "Credenciais inválidas. Tente novamente.";
+            } else {
+                checkUser();
+            }
+        });
+
+        document.getElementById('logout-btn').addEventListener('click', async () => {
+            await supabaseClient.auth.signOut();
+            window.location.reload();
+        });
+
+        async function checkUser() {
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            if (session) {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+                loadConteudos();
+            } else {
+                document.getElementById('login-screen').style.display = 'flex';
+                document.getElementById('dashboard').style.display = 'none';
+            }
+        }
+        checkUser();
+
+        // --- LÓGICA DE BUSCA AO VIVO (LIVE SEARCH TMDB) COM SCROLL COMPLETO ---
+        let searchTimeout;
+
+        document.getElementById('content-nome').addEventListener('input', (e) => {
+            const type = document.querySelector('input[name="content-tmdb-type"]:checked').value;
+            handleLiveSearch(e.target.value, type, 'content-tmdb-results', 'content');
+        });
+
+        document.addEventListener('click', (e) => {
+            if(!e.target.closest('.search-wrapper')) {
+                document.getElementById('content-tmdb-results').classList.remove('active');
+            }
+        });
+
+        function handleLiveSearch(query, type, listId, context) {
+            clearTimeout(searchTimeout);
+            const listEl = document.getElementById(listId);
+            
+            if (query.trim().length > 2) {
+                listEl.innerHTML = '<div style="padding:15px;text-align:center;color:var(--text-muted);"><i class="fa-solid fa-circle-notch fa-spin"></i> Buscando...</div>';
+                listEl.classList.add('active');
+                searchTimeout = setTimeout(() => executeTMDBFetch(query, type, listId, context), 400);
+            } else {
+                listEl.classList.remove('active');
+            }
+        }
+
+        async function executeTMDBFetch(query, type, listId, context) {
+            const listEl = document.getElementById(listId);
+            // Busca sem limitador (traz todos os resultados da página 1 da API TMDB)
+            const url = `https://api.themoviedb.org/3/search/${type}?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(query)}&language=pt-BR&include_adult=false`;
+            
+            try {
+                const res = await fetch(url);
+                const data = await res.json();
+                
+                listEl.innerHTML = '';
+                if(data.results && data.results.length > 0) {
+                    // Renderiza TODOS os resultados retornados
+                    data.results.forEach(item => {
+                        const title = item.title || item.name;
+                        const dateStr = item.release_date || item.first_air_date;
+                        const year = dateStr ? dateStr.split('-')[0] : 'Ano N/A';
+                        const img = item.poster_path ? TMDB_IMG_URL + item.poster_path : 'https://via.placeholder.com/40x60?text=S/Img';
+
+                        const div = document.createElement('div');
+                        div.className = 'search-result-item';
+                        div.innerHTML = `
+                            <img src="${img}" alt="poster">
+                            <div>
+                                <strong>${title}</strong>
+                                <small>${year} • TMDB: ${item.id}</small>
+                            </div>
+                        `;
+                        div.onclick = () => {
+                            document.getElementById('content-nome').value = title;
+                            document.getElementById('content-tmdb-id').value = item.id;
+                            listEl.classList.remove('active');
+                        };
+                        listEl.appendChild(div);
+                    });
+                } else {
+                    listEl.innerHTML = '<div style="padding:15px;text-align:center;color:var(--text-muted);">Nenhum resultado encontrado.</div>';
+                }
+            } catch (e) {
+                listEl.innerHTML = '<div style="padding:15px;text-align:center;color:var(--error);">Erro na busca da API.</div>';
+            }
+        }
+
+        // --- GERENCIAMENTO DE CONTEÚDOS (TABELA loryez) ---
+        let allContents = [];
+
+        async function loadConteudos() {
+            const list = document.getElementById('content-list');
+            list.innerHTML = '<div class="loading-text"><i class="fa-solid fa-circle-notch fa-spin"></i> Carregando dados do servidor...</div>';
+
+            const { data, error } = await supabaseClient
+                .from('loryez') // Apontando para a tabela loryez
+                .select('*')
+                .order('id', { ascending: false });
+
+            if (error) {
+                list.innerHTML = `<p style="color:var(--error); padding:20px;">Erro ao carregar: ${error.message}</p>`;
+                return;
+            }
+
+            allContents = data;
+            renderContentList(allContents);
+        }
+
+        function renderContentList(data) {
+            const list = document.getElementById('content-list');
+            list.innerHTML = '';
+            
+            if(data.length === 0) {
+                list.innerHTML = '<div style="padding:20px; color:var(--text-muted);">Nenhum conteúdo no banco de dados.</div>';
+                return;
+            }
+
+            data.forEach(item => {
+                const el = document.createElement('div');
+                el.className = `data-card ${item.pausado ? 'paused' : ''} ${item.tipo === 'assistido' ? 'watched' : ''}`;
+                
+                let badges = `<span class="badge ${item.tipo}">${item.tipo}</span>`;
+                if(item.pausado) badges += `<span class="badge pausado">Pausado</span>`;
+
+                el.innerHTML = `
+                    <div class="card-info">
+                        <h3>${item.nome}</h3>
+                        <p><i class="fa-solid fa-fingerprint"></i> <strong>ID TMDB:</strong> ${item.tmdb_id || 'N/A'}</p>
+                        <p><i class="fa-solid fa-hand-holding-dollar"></i> <strong>Patrocinador:</strong> ${item.patrocinador || 'Nenhum'}</p>
+                        ${item.eps_p ? `<p><i class="fa-solid fa-list-ol"></i> <strong>Eps P:</strong> ${item.eps_p}</p>` : ''}
+                        ${item.eps_a ? `<p><i class="fa-solid fa-eye"></i> <strong>Eps A:</strong> ${item.eps_a}</p>` : ''}
+                        ${item.nota ? `<p><i class="fa-solid fa-star"></i> <strong>Nota:</strong> ${item.nota}</p>` : ''}
+                        <div class="card-badges">${badges}</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-action btn-edit" title="Editar" onclick='editContent(${JSON.stringify(item).replace(/'/g, "&#39;")})'><i class="fa-solid fa-pen"></i></button>
+                        <button class="btn-action btn-delete" title="Excluir" onclick="deleteContent(${item.id})"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `;
+                list.appendChild(el);
+            });
+        }
+
+        document.getElementById('search-content').addEventListener('input', (e) => {
+            const val = e.target.value.toLowerCase();
+            const filtered = allContents.filter(c => c.nome.toLowerCase().includes(val));
+            renderContentList(filtered);
+        });
+
+        function openContentModal(item = null) {
+            const modal = document.getElementById('content-modal');
+            const title = document.getElementById('content-modal-title');
+            const form = document.getElementById('content-form');
+            form.reset();
+            document.getElementById('content-tmdb-results').classList.remove('active');
+
+            if (item) {
+                title.innerHTML = '<i class="fa-solid fa-pen-to-square"></i> Editar Conteúdo';
+                document.getElementById('content-id').value = item.id;
+                document.getElementById('content-nome').value = item.nome;
+                document.getElementById('content-tmdb-id').value = item.tmdb_id || '';
+                document.getElementById('content-tipo').value = item.tipo;
+                document.getElementById('content-patrocinador').value = item.patrocinador || '';
+                document.getElementById('content-eps-p').value = item.eps_p || '';
+                document.getElementById('content-eps-a').value = item.eps_a || '';
+                document.getElementById('content-nota').value = item.nota || '';
+                document.getElementById('content-pausado').checked = item.pausado;
+            } else {
+                title.innerHTML = '<i class="fa-solid fa-square-plus"></i> Adicionar Conteúdo';
+                document.getElementById('content-id').value = '';
+                document.getElementById('content-pausado').checked = false;
+            }
+            modal.classList.add('active');
+        }
+
+        function editContent(item) { openContentModal(item); }
+
+        document.getElementById('content-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('content-id').value;
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            
+            submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Salvando...';
+            submitBtn.disabled = true;
+            
+            const payload = {
+                nome: document.getElementById('content-nome').value,
+                tmdb_id: document.getElementById('content-tmdb-id').value || null,
+                tipo: document.getElementById('content-tipo').value,
+                patrocinador: document.getElementById('content-patrocinador').value || null,
+                eps_p: document.getElementById('content-eps-p').value || null,
+                eps_a: document.getElementById('content-eps-a').value || null,
+                nota: document.getElementById('content-nota').value || null,
+                pausado: document.getElementById('content-pausado').checked
+            };
+
+            const res = id ? await supabaseClient.from('loryez').update(payload).eq('id', id) 
+                           : await supabaseClient.from('loryez').insert([payload]);
+
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> Salvar Conteúdo';
+
+            if (res.error) {
+                alert('Erro ao salvar: ' + res.error.message);
+            } else {
+                closeModal('content-modal');
+                loadConteudos();
+            }
+        });
+
+        async function deleteContent(id) {
+            if(!confirm('Tem certeza absoluta que deseja apagar este conteúdo? Esta ação é irreversível.')) return;
+            const { error } = await supabaseClient.from('loryez').delete().eq('id', id);
+            if(error) alert('Erro ao apagar.');
+            else loadConteudos();
+        }
+
+        // --- UTILS ---
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+    </script>
+</body>
+</html>
