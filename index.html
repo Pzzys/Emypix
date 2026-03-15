@@ -1822,7 +1822,6 @@
 
                 if (Array.isArray(data)) {
                     nudezIds = data.map(item => item["IDS DE FILMES COM NUDEZ"].toString());
-                    console.log("Lista de nudez carregada:", nudezIds.length, "itens.");
                 }
             } catch (error) {
                 console.error("Erro ao buscar lista de nudez:", error);
@@ -2125,7 +2124,7 @@
             }
         }
 
-        // LÓGICA DO SUPABASE 
+        // LÓGICA DO SUPABASE PARA O CONFIG MODAL
         async function fetchSponsoredData() {
             state.derived.listInfo.loading = true;
             state.derived.listInfo.sponsoredEpisodes = 0;
@@ -2148,25 +2147,26 @@
                 if (error) throw error;
                 
                 if (data && data.length > 0) {
-                    let sponsoredItem = null;
-                    if (state.mediaType === 'tv') {
-                        sponsoredItem = data.find(d => d.eps_p || d.eps_a);
-                    } else {
-                        sponsoredItem = data.find(d => !d.eps_p && !d.eps_a);
-                    }
-                    
-                    if (!sponsoredItem && data.length > 0) {
-                        if (data.length === 1) sponsoredItem = data[0];
-                    }
+                    // Prevenir de sobrescrever dados se a série tiver registro de patrocinado e assistido separados no Supabase
+                    let eps_p_list = [];
+                    let eps_a_list = [];
+                    let patrocinador = "";
 
-                    if (sponsoredItem) {
-                        const mappedItem = {
-                            "Episódios Patrocinados": sponsoredItem.eps_p,
-                            "Episódios Assistidos": sponsoredItem.eps_a,
-                            "Patrocinador": sponsoredItem.patrocinador
-                        };
-                        processSponsoredData(mappedItem);
-                    }
+                    data.forEach(d => {
+                        if (d.eps_p) eps_p_list.push(d.eps_p);
+                        if (d.eps_a) eps_a_list.push(d.eps_a);
+                        if (d.patrocinador && !patrocinador) patrocinador = d.patrocinador;
+                    });
+
+                    // Mesmo sendo filme (ambos null), pegamos o patrocinador do 1º item encontrado
+                    if (data[0].patrocinador && !patrocinador) patrocinador = data[0].patrocinador;
+
+                    const mappedItem = {
+                        "Episódios Patrocinados": eps_p_list.join(' | '),
+                        "Episódios Assistidos": eps_a_list.join(' | '),
+                        "Patrocinador": patrocinador
+                    };
+                    processSponsoredData(mappedItem);
                 }
             } catch (error) {
                 console.error('Erro ao buscar dados de patrocínio do Supabase:', error);
@@ -2240,7 +2240,7 @@
                         state.derived.listInfo.sponsoredRanges.push({ season: info.season, start: 1, end: info.count });
                         state.derived.listInfo.temporadasPatrocinadas.push({ temporada: info.season, episodios: info.count, completa: false });
                     } else if (info.type === 'simple_count') {
-                        state.derived.listInfo.totalPatrocinados = info.count;
+                        state.derived.listInfo.totalPatrocinados += info.count; // Acumula contagem global (Ex: 25)
                     }
                 });
             }
@@ -2275,7 +2275,7 @@
                     if (specific) isSponsored = true;
                 }
 
-                // CORREÇÃO: Aplica a contagem global caso 'hasTemporadas' seja falso
+                // APLICA A CONTAGEM GLOBAL (Ex: 25 eps) SOMANDO TEMPORADAS
                 if (!isSponsored && state.derived.listInfo.totalPatrocinados > 0) {
                      if (!state.derived.listInfo.hasTemporadas) {
                          let episodesInPreviousSeasons = 0;
@@ -2287,7 +2287,7 @@
                          }
                          
                          let globalEpisodeNumber = episode.episode_number;
-                         // TMDB padroniza a numeração de episódios recomeçando do 1 por temporada
+                         // O TMDB zera a numeração para 1 por temporada
                          if (state.derived.seasonEpisodesData.length > 0 && state.derived.seasonEpisodesData[0].episode_number === 1) {
                              globalEpisodeNumber = episodesInPreviousSeasons + episode.episode_number;
                          }
@@ -2296,7 +2296,6 @@
                              isSponsored = true;
                          }
                      } else {
-                         // Se tiver formatação mista com temporada (ex: 1ª temp completa | 5 eps), aplica apenas os 5 eps na temporada 1
                          if (currentSeasonNumber === 1 && episode.episode_number <= state.derived.listInfo.totalPatrocinados) {
                              isSponsored = true;
                          }
@@ -2842,15 +2841,13 @@
 
                 total += baseCost;
                 
-                const episodesLeftInSeason = state.derived.seasonEpisodesData.filter(ep => {
-                    const existingInfo = state.options.selectedEpisodes.find(s => s.id === ep.id);
-                    return !(existingInfo && existingInfo.alreadySponsored);
-                }).length;
+                const nonSponsoredSelectedCount = nonSponsoredSelected.length;
+                const totalInSeason = state.derived.seasonEpisodesData.length;
                 
                 if (state.derived.tvType === 'series' && 
                     !state.derived.listInfo.isCurrentSeasonFullySponsored && 
                     hasNonSponsoredEpisodes &&
-                    nonSponsoredSelected.length === episodesLeftInSeason && episodesLeftInSeason === state.derived.seasonEpisodes) {
+                    nonSponsoredSelectedCount === totalInSeason) {
                     const discount = total * 0.15;
                     total -= discount;
                     breakdownHTML += `<p style="color: var(--success);"><span>Desconto Temporada Completa</span><span>-${format(discount)}</span></p>`;
@@ -3191,10 +3188,28 @@
             }
         }
 
+        // CARREGA TODOS OS DADOS DO SUPABASE PARA PREVENIR ERROS DE 'TIPO' FALTANDO NO BANCO DE DADOS
+        async function fetchAllSupabaseData() {
+            if (window.loryezDataCache) return window.loryezDataCache;
+            const { data, error } = await supabaseClient.from('loryez').select('*');
+            if (error) throw error;
+            window.loryezDataCache = data;
+            return data;
+        }
+
         async function loadSponsoredContent() {
             try {
-                const { data: sponsoredItems, error } = await supabaseClient.from('loryez').select('*').eq('tipo', 'patrocinado');
-                if (error) throw error;
+                const allData = await fetchAllSupabaseData();
+                
+                // Filtro robusto: Olha a coluna tipo, ou recai para eps_p / falta de eps_a
+                const sponsoredItems = allData.filter(item => {
+                    if (item.tipo === 'patrocinado') return true;
+                    if (!item.tipo) {
+                        if (item.eps_p) return true;
+                        if (!item.eps_p && !item.eps_a && !item.nota) return true; // Classificado como filme patrocinado
+                    }
+                    return false;
+                });
 
                 const detailedItems = await Promise.all(
                     sponsoredItems.map(async (item) => {
@@ -3255,7 +3270,10 @@
                     <div class="media-card-title">${item.title || item.name}</div>
                 `;
 
-                if (item.pausado === true) {
+                // Verifica possíveis variações do pausado se não estiver estritamente em boolean
+                const isPausado = item.pausado === true || String(item.pausado).toUpperCase() === 'SIM' || item.Pausado === true;
+
+                if (isPausado) {
                     card.dataset.type = 'pausados';
                     containers.pausados.appendChild(card);
                 } else {
@@ -3348,9 +3366,17 @@
 
         async function loadAssistidosContent() {
             try {
-                const { data: assistidosItems, error } = await supabaseClient.from('loryez').select('*').eq('tipo', 'assistido');
-                if (error) throw error;
+                const allData = await fetchAllSupabaseData();
                 
+                // Filtro robusto: Olha a coluna tipo, ou recai para eps_a e nota
+                const assistidosItems = allData.filter(item => {
+                    if (item.tipo === 'assistido') return true;
+                    if (!item.tipo) {
+                        if (item.eps_a || item.nota) return true;
+                    }
+                    return false;
+                });
+
                 const detailedItems = await Promise.all(
                     assistidosItems.map(async (item) => {
                         const tmdbId = item.tmdb_id;
@@ -3389,7 +3415,7 @@
         function renderAssistidosContent(items) {
             const containers = {
                 filmes: document.getElementById('assistidos-filmes-grid'),
-                series: document.getElementById('series-grid'),
+                series: document.getElementById('assistidos-series-grid'),
                 animes: document.getElementById('assistidos-animes-grid')
             };
 
