@@ -2275,9 +2275,31 @@
                     if (specific) isSponsored = true;
                 }
 
+                // CORREÇÃO: Aplica a contagem global caso 'hasTemporadas' seja falso
                 if (!isSponsored && state.derived.listInfo.totalPatrocinados > 0) {
-                     if (episode.episode_number <= state.derived.listInfo.totalPatrocinados && (currentSeasonNumber === 1 || !state.derived.listInfo.hasTemporadas)) {
-                         isSponsored = true;
+                     if (!state.derived.listInfo.hasTemporadas) {
+                         let episodesInPreviousSeasons = 0;
+                         for (let i = 1; i < currentSeasonNumber; i++) {
+                             const prevSeason = state.selectedItem.seasons.find(s => s.season_number === i);
+                             if (prevSeason) {
+                                 episodesInPreviousSeasons += prevSeason.episode_count;
+                             }
+                         }
+                         
+                         let globalEpisodeNumber = episode.episode_number;
+                         // TMDB padroniza a numeração de episódios recomeçando do 1 por temporada
+                         if (state.derived.seasonEpisodesData.length > 0 && state.derived.seasonEpisodesData[0].episode_number === 1) {
+                             globalEpisodeNumber = episodesInPreviousSeasons + episode.episode_number;
+                         }
+
+                         if (globalEpisodeNumber <= state.derived.listInfo.totalPatrocinados) {
+                             isSponsored = true;
+                         }
+                     } else {
+                         // Se tiver formatação mista com temporada (ex: 1ª temp completa | 5 eps), aplica apenas os 5 eps na temporada 1
+                         if (currentSeasonNumber === 1 && episode.episode_number <= state.derived.listInfo.totalPatrocinados) {
+                             isSponsored = true;
+                         }
                      }
                 }
 
@@ -2668,11 +2690,15 @@
             
             if (state.mediaType === 'tv') {
                 const nonSponsoredSelectedCount = state.options.selectedEpisodes.filter(ep => !ep.alreadySponsored).length;
-                const totalInSeason = state.derived.seasonEpisodesData.length;
+                const episodesLeftInSeason = state.derived.seasonEpisodesData.filter(ep => {
+                    const existingInfo = state.options.selectedEpisodes.find(s => s.id === ep.id);
+                    return !(existingInfo && existingInfo.alreadySponsored);
+                }).length;
                 
                 if (state.derived.tvType === 'series' && 
+                    !state.derived.listInfo.isCurrentSeasonFullySponsored && 
                     nonSponsoredSelectedCount > 0 && 
-                    nonSponsoredSelectedCount === totalInSeason) {
+                    nonSponsoredSelectedCount === episodesLeftInSeason && episodesLeftInSeason === state.derived.seasonEpisodes) {
                     state.derived.discountNotice = '🎉 15% de desconto pela temporada completa!';
                 }
                 
@@ -2816,12 +2842,15 @@
 
                 total += baseCost;
                 
-                const nonSponsoredSelectedCount = nonSponsoredSelected.length;
-                const totalInSeason = state.derived.seasonEpisodesData.length;
+                const episodesLeftInSeason = state.derived.seasonEpisodesData.filter(ep => {
+                    const existingInfo = state.options.selectedEpisodes.find(s => s.id === ep.id);
+                    return !(existingInfo && existingInfo.alreadySponsored);
+                }).length;
                 
                 if (state.derived.tvType === 'series' && 
-                    nonSponsoredSelectedCount > 0 && 
-                    nonSponsoredSelectedCount === totalInSeason) {
+                    !state.derived.listInfo.isCurrentSeasonFullySponsored && 
+                    hasNonSponsoredEpisodes &&
+                    nonSponsoredSelected.length === episodesLeftInSeason && episodesLeftInSeason === state.derived.seasonEpisodes) {
                     const discount = total * 0.15;
                     total -= discount;
                     breakdownHTML += `<p style="color: var(--success);"><span>Desconto Temporada Completa</span><span>-${format(discount)}</span></p>`;
@@ -3360,7 +3389,7 @@
         function renderAssistidosContent(items) {
             const containers = {
                 filmes: document.getElementById('assistidos-filmes-grid'),
-                series: document.getElementById('assistidos-series-grid'),
+                series: document.getElementById('series-grid'),
                 animes: document.getElementById('assistidos-animes-grid')
             };
 
