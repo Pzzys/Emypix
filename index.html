@@ -1332,7 +1332,8 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        .card, .media-card { animation: fadeIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        /* ANIMAÇÃO REMOVIDA DOS PAINÉIS PRINCIPAIS (AGORA É INSTANTÂNEO NA TROCA DE ABA) */
+        .media-card { animation: fadeIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
 
         /* --- RESPONSIVIDADE --- */
         @media (max-width: 1200px) {
@@ -2147,19 +2148,27 @@
                 if (error) throw error;
                 
                 if (data && data.length > 0) {
-                    // Prevenir de sobrescrever dados se a série tiver registro de patrocinado e assistido separados no Supabase
                     let eps_p_list = [];
                     let eps_a_list = [];
                     let patrocinador = "";
 
+                    // AQUI ESTÁ A CORREÇÃO:
                     data.forEach(d => {
-                        if (d.eps_p) eps_p_list.push(d.eps_p);
+                        // Coleta eps_a para exibir na info, independente do tipo
                         if (d.eps_a) eps_a_list.push(d.eps_a);
-                        if (d.patrocinador && !patrocinador) patrocinador = d.patrocinador;
+                        
+                        // SÓ PEGA PATROCÍNIO SE O TIPO NÃO FOR 'assistido'
+                        if (d.tipo !== 'assistido') {
+                            if (d.eps_p) eps_p_list.push(d.eps_p);
+                            if (d.patrocinador && !patrocinador) patrocinador = d.patrocinador;
+                        }
                     });
 
-                    // Mesmo sendo filme (ambos null), pegamos o patrocinador do 1º item encontrado
-                    if (data[0].patrocinador && !patrocinador) patrocinador = data[0].patrocinador;
+                    // Mesmo sendo filme (ambos null), pegamos o patrocinador do 1º item válido encontrado
+                    const firstValid = data.find(d => d.tipo !== 'assistido');
+                    if (firstValid && firstValid.patrocinador && !patrocinador) {
+                        patrocinador = firstValid.patrocinador;
+                    }
 
                     const mappedItem = {
                         "Episódios Patrocinados": eps_p_list.join(' | '),
