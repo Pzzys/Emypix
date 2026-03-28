@@ -1010,16 +1010,17 @@
             border-radius: var(--radius-md);
             overflow: hidden;
             border: var(--border-thin);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             cursor: pointer;
             position: relative;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            /* ANIMAÇÃO REMOVIDA PARA TROCA INSTANTÂNEA DE ABA */
         }
         
         .media-card:hover {
             transform: translateY(-8px) scale(1.02);
             box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 15px rgba(157, 78, 221, 0.2);
             border-color: var(--accent-primary);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         
         .media-card img {
@@ -1063,7 +1064,6 @@
             border-radius: var(--radius-lg);
             border: 1px dashed rgba(255, 255, 255, 0.1);
             margin-top: 20px;
-            animation: fadeIn 0.5s;
         }
         
         .empty-search-state i {
@@ -1325,15 +1325,6 @@
             color: #8ab4ff;
             font-weight: 500;
         }
-
-        /* --- ANIMAÇÕES ADICIONAIS --- */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* ANIMAÇÃO REMOVIDA DOS PAINÉIS PRINCIPAIS (AGORA É INSTANTÂNEO NA TROCA DE ABA) */
-        .media-card { animation: fadeIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
 
         /* --- RESPONSIVIDADE --- */
         @media (max-width: 1200px) {
@@ -2125,6 +2116,25 @@
             }
         }
 
+        // CARREGA TODOS OS DADOS DO SUPABASE PARA PREVENIR ERROS DE 'TIPO' FALTANDO NO BANCO DE DADOS
+        async function fetchAllSupabaseData() {
+            if (window.loryezDataCache) return window.loryezDataCache;
+            
+            // Tenta buscar ordenando pela ID para garantir a ordem exata da tabela
+            let { data, error } = await supabaseClient.from('loryez').select('*').order('id', { ascending: true });
+            
+            // Fallback: se a tabela não tiver a coluna 'id', busca sem a ordenação explícita
+            if (error) {
+                console.warn("Coluna 'id' não encontrada, buscando sem ordenação explícita.");
+                const fallback = await supabaseClient.from('loryez').select('*');
+                if (fallback.error) throw fallback.error;
+                data = fallback.data;
+            }
+            
+            window.loryezDataCache = data;
+            return data;
+        }
+
         // LÓGICA DO SUPABASE PARA O CONFIG MODAL
         async function fetchSponsoredData() {
             state.derived.listInfo.loading = true;
@@ -2140,19 +2150,18 @@
 
             const currentItemId = state.selectedItem.id;
             try {
-                const { data, error } = await supabaseClient
-                    .from('loryez')
-                    .select('*')
-                    .eq('tmdb_id', currentItemId);
-                
-                if (error) throw error;
+                // Ao invés de fazer um fetch separado que pode vir sem a ordem certa, 
+                // vamos reaproveitar o fetch ordenado para garantir exatidão
+                const allData = await fetchAllSupabaseData();
+                const data = allData.filter(item => item.tmdb_id == currentItemId);
                 
                 if (data && data.length > 0) {
                     let eps_p_list = [];
                     let eps_a_list = [];
                     let patrocinador = "";
 
-                    // AQUI ESTÁ A CORREÇÃO:
+                    // CORREÇÃO: Garante que os episódios marcados como JÁ PATROCINADOS 
+                    // ignorem os registros que são apenas de assistidos!
                     data.forEach(d => {
                         // Coleta eps_a para exibir na info, independente do tipo
                         if (d.eps_a) eps_a_list.push(d.eps_a);
@@ -3200,8 +3209,18 @@
         // CARREGA TODOS OS DADOS DO SUPABASE PARA PREVENIR ERROS DE 'TIPO' FALTANDO NO BANCO DE DADOS
         async function fetchAllSupabaseData() {
             if (window.loryezDataCache) return window.loryezDataCache;
-            const { data, error } = await supabaseClient.from('loryez').select('*');
-            if (error) throw error;
+            
+            // Tenta buscar ordenando pela ID para garantir a ordem exata da tabela
+            let { data, error } = await supabaseClient.from('loryez').select('*').order('id', { ascending: true });
+            
+            // Fallback: se a tabela não tiver a coluna 'id', busca sem a ordenação explícita
+            if (error) {
+                console.warn("Coluna 'id' não encontrada, buscando sem ordenação explícita.");
+                const fallback = await supabaseClient.from('loryez').select('*');
+                if (fallback.error) throw fallback.error;
+                data = fallback.data;
+            }
+            
             window.loryezDataCache = data;
             return data;
         }
