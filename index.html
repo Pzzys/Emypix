@@ -71,10 +71,12 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
         }
         
         ::-webkit-scrollbar { 
             width: 8px;
+            height: 8px;
         }
         ::-webkit-scrollbar-track { 
             background: var(--bg-secondary);
@@ -559,6 +561,7 @@
            cursor: pointer; 
            position: relative; 
            transition: all 0.2s ease;
+           flex-shrink: 0;
         }
         
         input[type="checkbox"]:checked { 
@@ -768,6 +771,7 @@
             font-weight: 600;
             transition: all 0.2s;
             font-family: 'Space Grotesk', sans-serif;
+            white-space: nowrap;
         }
         
         .change-button:hover {
@@ -1013,7 +1017,6 @@
             cursor: pointer;
             position: relative;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            /* ANIMAÇÃO REMOVIDA PARA TROCA INSTANTÂNEA DE ABA */
         }
         
         .media-card:hover {
@@ -1326,7 +1329,7 @@
             font-weight: 500;
         }
 
-        /* --- RESPONSIVIDADE --- */
+        /* --- RESPONSIVIDADE (MELHORADA E PERFEITA) --- */
         @media (max-width: 1200px) {
             .main-container { grid-template-columns: 1fr; gap: 30px; }
             .media-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; }
@@ -1334,23 +1337,66 @@
 
         @media (max-width: 768px) {
             .top-nav { height: auto; padding: 15px; flex-direction: column; gap: 15px; }
-            .nav-links-container { width: 100%; justify-content: space-between; overflow-x: auto; padding-bottom: 5px; flex-wrap: nowrap; }
-            .nav-link { padding: 0 10px; font-size: 0.85rem; flex-shrink: 0; }
+            .nav-links-container { 
+                width: 100%; 
+                justify-content: flex-start; 
+                overflow-x: auto; 
+                padding-bottom: 5px; 
+                flex-wrap: nowrap; 
+                -webkit-overflow-scrolling: touch;
+            }
+            .nav-link { padding: 0 15px; font-size: 0.9rem; flex-shrink: 0; }
             
             .tab-content { padding: 1.5rem 1rem; }
             .patrocinar-header h1 { font-size: 2.2rem; }
             
-            .modal-content { padding: 25px; max-height: 95vh; }
-            .modal-body { flexDirection: column; align-items: center; text-align: center; gap: 25px; }
-            .modal-poster img { width: 180px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+            .modal-content { padding: 25px; max-height: 90vh; width: 95%; margin: 10px; }
+            .modal-body { flex-direction: column; align-items: center; text-align: center; gap: 20px; overflow-y: auto; }
+            .modal-poster img { width: 180px; max-width: 100%; box-shadow: 0 10px 20px rgba(0,0,0,0.3); margin-bottom: 10px; }
             .modal-meta, .modal-genres, .info-tag-container { justify-content: center; }
-            .modal-header { padding-right: 0; text-align: center; margin-bottom: 20px; }
+            .modal-header { padding-right: 0; text-align: center; margin-bottom: 15px; }
             .modal-title { font-size: 1.6rem; }
+            .modal-close { top: 15px; right: 15px; font-size: 2rem; background: rgba(0,0,0,0.5); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
             
-            .preview-content { flexDirection: column; align-items: center; text-align: center; }
-            .preview-content .poster { width: 140px; height: 210px; }
+            .preview-content { flex-direction: column; align-items: center; text-align: center; }
+            .preview-content .poster { width: 150px; height: auto; aspect-ratio: 2/3; }
             
-            .sponsored-search-controls, .assistidos-search-controls { flexDirection: column; }
+            .sponsored-search-controls, .assistidos-search-controls { flex-direction: column; }
+            .tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 5px; justify-content: flex-start; }
+            .tab-button { flex: 0 0 auto; white-space: nowrap; }
+        }
+
+        @media (max-width: 480px) {
+            .tab-content { padding: 1rem 0.5rem; }
+            .card { padding: 20px; }
+            h2 { font-size: 1.5rem; margin-bottom: 16px; }
+            .patrocinar-header h1 { font-size: 1.6rem; line-height: 1.2; }
+            .patrocinar-header p { font-size: 1rem; }
+            
+            .media-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 15px; }
+            .media-card-title { padding: 12px; font-size: 0.85rem; }
+            
+            .episode-item { flex-direction: column; align-items: flex-start; gap: 8px; position: relative; padding: 12px 12px 12px 45px; }
+            .episode-checkbox { position: absolute; top: 12px; left: 12px; }
+            .episode-info { padding-right: 0; }
+            
+            .modal-content { padding: 15px; }
+            .modal-poster img { width: 140px; }
+            .modal-title { font-size: 1.3rem; }
+            
+            .total { flex-direction: column; align-items: center; gap: 10px; text-align: center; }
+            .total .price { font-size: 1.8rem; }
+            
+            /* Ajuste do resumo no mobile */
+            #summary-content > div:first-child { flex-direction: column; align-items: center; text-align: center; }
+            #summary-content .poster { width: 120px; height: auto; aspect-ratio: 2/3; margin-bottom: 10px; }
+        }
+
+        @media (max-width: 360px) {
+            .media-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; }
+            .card { padding: 15px; }
+            .preview-content .poster { width: 120px; }
+            .modal-poster img { width: 120px; }
         }
     </style>
 </head>
