@@ -23,7 +23,7 @@
             --text-primary: #f0f2ff;
             --text-secondary: #b8bbd6;
             --text-muted: #8a8da8;
-
+            
             /* Tons de Roxo como base */
             --accent-primary: #9d4edd; /* Roxo vibrante */
             --accent-secondary: #7b2cbf; /* Roxo escuro */
@@ -53,7 +53,7 @@
 
         /* --- RESET E ESTILOS GLOBAIS --- */
         * { 
-            margin: 0;
+            margin: 0; 
             padding: 0; 
             box-sizing: border-box; 
         }
@@ -75,18 +75,18 @@
         }
         
         ::-webkit-scrollbar { 
-            width: 8px;
+            width: 8px; 
             height: 8px;
         }
         ::-webkit-scrollbar-track { 
-            background: var(--bg-secondary);
+            background: var(--bg-secondary); 
         }
         ::-webkit-scrollbar-thumb { 
-            background: var(--bg-accent);
+            background: var(--bg-accent); 
             border-radius: 4px; 
         }
         ::-webkit-scrollbar-thumb:hover { 
-            background: var(--accent-primary);
+            background: var(--accent-primary); 
         }
 
         /* --- NAVEGAÇÃO --- */
@@ -210,7 +210,7 @@
         }
         
         .hidden { 
-            display: none !important;
+            display: none !important; 
         }
 
         /* --- LAYOUT PRINCIPAL --- */
@@ -223,7 +223,7 @@
         }
         
         .column { 
-            display: flex;
+            display: flex; 
             flex-direction: column; 
             gap: 32px; 
         }
@@ -245,7 +245,7 @@
         }
 
         .full-width { 
-            grid-column: 1 / -1;
+            grid-column: 1 / -1; 
         }
 
         h2 { 
@@ -280,7 +280,7 @@
 
         /* --- ABAS DE BUSCA / FILTROS --- */
         .tabs { 
-            display: flex;
+            display: flex; 
             gap: 8px; 
             margin-bottom: 24px; 
             background-color: var(--bg-tertiary);
@@ -291,7 +291,7 @@
         }
         
         .tab-button {
-            background: transparent;
+            background: transparent; 
             border: none; 
             color: var(--text-secondary);
             padding: 14px 20px; 
@@ -335,12 +335,12 @@
 
         /* --- BUSCA E RESULTADOS --- */
         .search-wrapper { 
-            position: relative;
+            position: relative; 
             width: 100%;
         }
         
         #search-input, #sponsored-search-input, #assistidos-search-input { 
-            width: 100%;
+            width: 100%; 
             background-color: var(--bg-tertiary); 
             border: var(--border-medium); 
             border-radius: var(--radius-md); 
@@ -359,7 +359,7 @@
         }
         
         #search-results-list {
-            position: absolute;
+            position: absolute; 
             top: calc(100% + 8px); 
             left: 0; 
             right: 0; 
@@ -373,7 +373,7 @@
         }
         
         .search-result-item { 
-            padding: 16px 20px;
+            padding: 16px 20px; 
             cursor: pointer; 
             display: flex; 
             align-items: center; 
@@ -396,7 +396,7 @@
         }
         
         .search-result-item img { 
-            width: 45px;
+            width: 45px; 
             height: 68px; 
             object-fit: cover; 
             border-radius: 4px; 
@@ -404,13 +404,13 @@
         }
         
         .search-result-item p { 
-            font-weight: 600;
+            font-weight: 600; 
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1rem;
         }
         
         .search-result-item span { 
-            font-size: 0.85rem;
+            font-size: 0.85rem; 
             color: var(--text-muted); 
             display: block;
             margin-top: 2px;
@@ -418,7 +418,7 @@
 
         /* --- PREVIEW E BOTÕES --- */
         #search-preview.card { 
-            margin-top: 24px;
+            margin-top: 24px; 
             display: flex; 
             flex-direction: column;
             gap: 24px;
@@ -426,12 +426,12 @@
         }
         
         .preview-content { 
-            display: flex;
+            display: flex; 
             gap: 24px; 
         }
         
         .preview-content .poster { 
-            width: 160px;
+            width: 160px; 
             height: 240px; 
             object-fit: cover; 
             border-radius: var(--radius-md); 
@@ -440,7 +440,7 @@
         }
         
         .preview-content .synopsis { 
-            font-size: 1rem;
+            font-size: 1rem; 
             margin-top: 16px; 
             line-height: 1.6;
             max-height: 150px;
@@ -531,11 +531,11 @@
         .class-age[data-rating="18"] { background-color: #000000; border: 1px solid #fff; color: #fff; }
         
         .config-group { 
-            margin-bottom: 28px;
+            margin-bottom: 28px; 
         }
         
         .checkbox-group label {
-            display: flex;
+            display: flex; 
             align-items: center; 
             gap: 12px; 
             padding: 14px;
@@ -548,7 +548,7 @@
         }
         
         .checkbox-group label:hover { 
-            background-color: var(--bg-accent);
+            background-color: var(--bg-accent); 
         }
 
         input[type="checkbox"] {
@@ -606,7 +606,7 @@
         }
         
         .number-input-wrapper { 
-            display: flex;
+            display: flex; 
             justify-content: space-between; 
             align-items: center; 
             padding: 4px 12px; 
@@ -617,7 +617,7 @@
         }
         
         .number-input-wrapper input { 
-            background: none;
+            background: none; 
             border: none;
             outline: none; 
             color: var(--text-primary); 
@@ -629,7 +629,7 @@
         }
         
         .num-btn { 
-            background: none;
+            background: none; 
             border: none; 
             color: var(--accent-primary); 
             font-size: 1.5rem; 
@@ -641,13 +641,13 @@
         }
         
         .num-btn:hover { 
-            background-color: rgba(157, 78, 221, 0.2);
+            background-color: rgba(157, 78, 221, 0.2); 
             color: var(--text-primary);
         }
 
         /* --- RESUMO --- */
         #summary-content .poster { 
-            width: 80px;
+            width: 80px; 
             height: 120px; 
             object-fit: cover; 
             border-radius: var(--radius-sm); 
@@ -657,7 +657,7 @@
         #price-breakdown { padding: 16px 0; }
         
         #price-breakdown p { 
-            display: flex;
+            display: flex; 
             justify-content: space-between; 
             color: var(--text-secondary); 
             font-size: 0.95rem; 
@@ -667,18 +667,18 @@
         }
         
         #price-breakdown p:last-child {
-            border-bottom: none;
+            border-bottom: none; 
             margin-bottom: 0;
         }
         
         .divider { 
-            height: 1px;
+            height: 1px; 
             background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent); 
             margin: 20px 0; 
         }
         
         .total { 
-            display: flex;
+            display: flex; 
             justify-content: space-between; 
             align-items: center; 
             padding-top: 10px; 
@@ -690,7 +690,7 @@
         }
         
         .total .total-text { 
-            font-size: 1.2rem;
+            font-size: 1.2rem; 
             font-weight: 600; 
             font-family: 'Jost', sans-serif;
         }
@@ -715,7 +715,7 @@
         }
         
         .placeholder { 
-            padding: 16px;
+            padding: 16px; 
             color: var(--text-muted); 
             text-align: center; 
             font-style: italic; 
@@ -1329,6 +1329,79 @@
             font-weight: 500;
         }
 
+        /* --- ESTILOS DO CARRINHO --- */
+        .cart-fab {
+            position: fixed; 
+            bottom: 30px; 
+            right: 30px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white; 
+            width: 60px; 
+            height: 60px; 
+            border-radius: 50%;
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            font-size: 1.5rem; 
+            cursor: pointer; 
+            box-shadow: var(--shadow-medium);
+            z-index: 1500; 
+            transition: all 0.3s ease;
+        }
+        .cart-fab:hover { 
+            transform: scale(1.1) translateY(-5px); 
+            box-shadow: 0 15px 30px rgba(157, 78, 221, 0.5); 
+        }
+        .cart-count {
+            position: absolute; 
+            top: -5px; 
+            right: -5px;
+            background: var(--error); 
+            color: white; 
+            font-size: 0.8rem;
+            width: 24px; 
+            height: 24px; 
+            border-radius: 50%;
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            font-weight: bold;
+            border: 2px solid var(--bg-primary);
+        }
+        
+        .cart-item {
+            display: flex; 
+            gap: 16px; 
+            padding: 16px; 
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius-md); 
+            margin-bottom: 12px; 
+            position: relative;
+        }
+        .cart-item img { 
+            width: 60px; 
+            height: 90px; 
+            object-fit: cover; 
+            border-radius: var(--radius-sm); 
+        }
+        .cart-item-details { flex: 1; padding-right: 20px; }
+        .cart-item-title { font-weight: bold; font-size: 1.1rem; margin-bottom: 4px; color: var(--text-primary); }
+        .cart-item-info { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 8px; }
+        .cart-item-price { font-weight: bold; color: var(--accent-tertiary); font-size: 1.1rem; }
+        .remove-cart-item {
+            position: absolute; 
+            top: 16px; 
+            right: 16px; 
+            background: none; 
+            border: none;
+            color: var(--error); 
+            cursor: pointer; 
+            font-size: 1.2rem; 
+            transition: all 0.2s;
+        }
+        .remove-cart-item:hover { transform: scale(1.2); }
+
         /* --- RESPONSIVIDADE (MELHORADA E PERFEITA) --- */
         @media (max-width: 1200px) {
             .main-container { grid-template-columns: 1fr; gap: 30px; }
@@ -1338,12 +1411,8 @@
         @media (max-width: 768px) {
             .top-nav { height: auto; padding: 15px; flex-direction: column; gap: 15px; }
             .nav-links-container { 
-                width: 100%; 
-                justify-content: flex-start; 
-                overflow-x: auto; 
-                padding-bottom: 5px; 
-                flex-wrap: nowrap; 
-                -webkit-overflow-scrolling: touch;
+                width: 100%; justify-content: flex-start; overflow-x: auto; 
+                padding-bottom: 5px; flex-wrap: nowrap; -webkit-overflow-scrolling: touch;
             }
             .nav-link { padding: 0 15px; font-size: 0.9rem; flex-shrink: 0; }
             
@@ -1390,6 +1459,10 @@
             /* Ajuste do resumo no mobile */
             #summary-content > div:first-child { flex-direction: column; align-items: center; text-align: center; }
             #summary-content .poster { width: 120px; height: auto; aspect-ratio: 2/3; margin-bottom: 10px; }
+            
+            .cart-item { flex-direction: column; align-items: center; text-align: center; }
+            .cart-item img { width: 80px; height: 120px; }
+            .cart-item-details { padding-right: 0; margin-top: 10px; }
         }
 
         @media (max-width: 360px) {
@@ -1406,6 +1479,11 @@
         <div class="quick-loading-spinner"></div>
         <div class="quick-loading-text">Carregando informações...</div>
         <div class="quick-loading-subtext">Isso levará apenas alguns segundos</div>
+    </div>
+
+    <div id="cart-fab" class="cart-fab hidden" onclick="toggleCartModal()">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cart-count" class="cart-count">0</span>
     </div>
 
     <nav class="top-nav">
@@ -1472,19 +1550,26 @@
                             <div class="divider"></div>
                             <div id="price-breakdown"></div>
                             <div class="divider"></div>
-      
+                            
                             <div class="total">
                                 <p class="total-text">Total:</p>
                                 <p class="price" id="total-price">R$ 0,00</p>
                             </div>
                             
-                            <a id="pay-button" href="https://livepix.gg/loryez" target="_blank" class="pay-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
-                                    <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
-                                </svg>
-                                Pagar no LivePix
-                            </a>
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                                <button id="add-to-cart-button" class="pay-button" style="background: var(--bg-tertiary); border: 1px solid var(--accent-primary); color: var(--text-primary);">
+                                    <i class="fas fa-cart-plus"></i> Adicionar ao Carrinho
+                                </button>
+                                
+                                <a id="pay-button" href="https://livepix.gg/loryez" target="_blank" class="pay-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
+                                        <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
+                                    </svg>
+                                    Pagar no LivePix
+                                </a>
+                            </div>
+
                             <div id="restriction-warning" class="error-notice hidden" style="margin-top: 16px;"></div>
                         </div>
                     </div>
@@ -1597,6 +1682,27 @@
         </div>
     </main>
 
+    <div id="cart-modal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-backdrop-bg"></div>
+            <button class="modal-close" onclick="toggleCartModal()">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title">Seu Carrinho</h2>
+                <div class="modal-subtitle">Revise seus itens antes de pagar</div>
+            </div>
+            <div class="modal-body" style="flex-direction: column; overflow-y: auto; max-height: 50vh;" id="cart-items-container">
+                </div>
+            <div class="divider"></div>
+            <div class="total" style="margin-top: 16px;">
+                <p class="total-text">Total do Carrinho:</p>
+                <p class="price" id="cart-total-price">R$ 0,00</p>
+            </div>
+            <a id="cart-checkout-button" href="#" target="_blank" class="pay-button" style="margin-top: 16px;">
+                <i class="fas fa-check-circle"></i> Pagar Carrinho no LivePix
+            </a>
+        </div>
+    </div>
+
     <div id="details-modal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-backdrop-bg"></div>
@@ -1631,13 +1737,13 @@
                     <div class="modal-info-group" id="modal-sponsor-container-body">
                         <strong>Patrocinador:</strong>
                         <div id="modal-sponsor" class="info-tag-container"></div>
-                     </div>
+                    </div>
 
                     <div class="modal-info-group">
                         <strong>Sinopse:</strong>
                         <p id="modal-synopsis"></p>
                     </div>
-                
+                 
                     <div id="modal-genres-container" class="modal-info-group hidden">
                         <strong>Gêneros:</strong>
                         <div id="modal-genres" class="modal-genres"></div>
@@ -1704,16 +1810,16 @@
         const BASE_URL = 'https://api.themoviedb.org/3';
         const IMG_URL = 'https://image.tmdb.org/t/p/w500';
         const BACKDROP_URL = 'https://image.tmdb.org/t/p/original';
-
+        
         // CONFIGURAÇÃO DO SUPABASE
         const supabaseUrl = 'https://lybjuvhrilwoxaaqavnl.supabase.co';
         const supabaseKey = 'sb_publishable_-naTbGoCSoJQHa4Q8N4okA_yQOeVQsJ';
         const { createClient } = supabase;
         const supabaseClient = createClient(supabaseUrl, supabaseKey);
-
-        const gritoIds = ["1970", "465086", "11838", "9666", "1975", "382602", "1977", "259233", "400703", "103445", "376788", "199766", "199774", "36917", "26693", "32250", "44203", "347946", "1192702"];
         
+        const gritoIds = ["1970", "465086", "11838", "9666", "1975", "382602", "1977", "259233", "400703", "103445", "376788", "199766", "199774", "36917", "26693", "32250", "44203", "347946", "1192702"];
         let nudezIds = [];
+        
         // URL DO GOOGLE APPS SCRIPT PARA LISTA DE NUDEZ
         const NUDEZ_LIST_URL = 'https://script.google.com/macros/s/AKfycbwOxm_qIqkfQl9JOOo89y7fueg1CMEj7yIwYatBAOWQf1HYUfYBehNUYbDuKpEewANaNg/exec';
         
@@ -1721,6 +1827,7 @@
             mediaType: 'movie',
             selectedItem: null,
             tempItem: null,
+            currentPrice: 0, 
             options: {
                 season: 1,
                 episodes: 3,
@@ -1761,9 +1868,16 @@
             }
         };
 
+        // LÓGICA DO CARRINHO DE COMPRAS COM LOCALSTORAGE
+        let shoppingCart = JSON.parse(localStorage.getItem('loryezCart')) || []; 
+
+        function saveCart() {
+            localStorage.setItem('loryezCart', JSON.stringify(shoppingCart));
+        }
+
         const $ = (selector) => document.querySelector(selector);
         const $$ = (selector) => document.querySelectorAll(selector);
-
+        
         // Sistema de Loading Otimizado
         class LoadingSystem {
             constructor() {
@@ -1802,10 +1916,14 @@
         }
         
         const loadingSystem = new LoadingSystem();
-
+        
         function init() {
             $$('#search-block .tab-button').forEach(tab => tab.addEventListener('click', selectTab));
             $('#search-input').addEventListener('input', handleSearchInput);
+            
+            // Botão Adicionar ao Carrinho
+            const btnAddToCart = $('#add-to-cart-button');
+            if(btnAddToCart) btnAddToCart.addEventListener('click', addToCart);
             
             // CARREGAR TUDO AUTOMATICAMENTE AO INICIAR
             fetchNudezIds();
@@ -1818,9 +1936,11 @@
                     switchTab(link.dataset.tab); 
                 });
             });
-
             // Definir aba inicial
             switchTab('patrocinar');
+
+            // Renderiza o carrinho assim que a página abre, caso tenha itens salvos do F5
+            updateCartUI(); 
         }
 
         function switchTab(tabName) {
@@ -1830,7 +1950,6 @@
             document.querySelectorAll('.tab-content').forEach(content => {
                 content.classList.toggle('hidden', content.id !== `${tabName}-tab`);
             });
-
             if (tabName === 'patrocinar') {
                 const isConfigActive = !$('#config-block').classList.contains('hidden');
                 if (isConfigActive) {
@@ -1981,7 +2100,6 @@
             
             loadingSystem.updateStage(1);
             loadingSystem.progress(40);
-
             if (state.mediaType === 'tv') {
                 state.derived.totalEpisodes = state.selectedItem.number_of_episodes || 0;
             }
@@ -1991,7 +2109,6 @@
 
             state.derived.isGrito = gritoIds.includes(state.selectedItem.id.toString());
             state.derived.temNudezEspecial = !state.derived.isGrito && nudezIds.includes(state.selectedItem.id.toString());
-
             const tasks = [];
             tasks.push(fetchContentRating().then(() => loadingSystem.progress(50)));
             tasks.push(getProductionInfo());
@@ -2005,14 +2122,12 @@
             }
             
             await Promise.all(tasks);
-
             state.derived.hasNudez = !state.derived.isGrito && (state.selectedItem.adult || false);
             loadingSystem.updateStage(3);
             loadingSystem.progress(70);
             
             // Buscar informações de patrocínio do Supabase (tabela loryez)
             await fetchSponsoredData();
-            
             if (state.mediaType === 'tv') {
                 markSponsoredEpisodes();
             }
@@ -2162,26 +2277,6 @@
             }
         }
 
-        // CARREGA TODOS OS DADOS DO SUPABASE PARA PREVENIR ERROS DE 'TIPO' FALTANDO NO BANCO DE DADOS
-        async function fetchAllSupabaseData() {
-            if (window.loryezDataCache) return window.loryezDataCache;
-            
-            // Tenta buscar ordenando pela ID para garantir a ordem exata da tabela
-            let { data, error } = await supabaseClient.from('loryez').select('*').order('id', { ascending: true });
-            
-            // Fallback: se a tabela não tiver a coluna 'id', busca sem a ordenação explícita
-            if (error) {
-                console.warn("Coluna 'id' não encontrada, buscando sem ordenação explícita.");
-                const fallback = await supabaseClient.from('loryez').select('*');
-                if (fallback.error) throw fallback.error;
-                data = fallback.data;
-            }
-            
-            window.loryezDataCache = data;
-            return data;
-        }
-
-        // LÓGICA DO SUPABASE PARA O CONFIG MODAL
         async function fetchSponsoredData() {
             state.derived.listInfo.loading = true;
             state.derived.listInfo.sponsoredEpisodes = 0;
@@ -2196,8 +2291,6 @@
 
             const currentItemId = state.selectedItem.id;
             try {
-                // Ao invés de fazer um fetch separado que pode vir sem a ordem certa, 
-                // vamos reaproveitar o fetch ordenado para garantir exatidão
                 const allData = await fetchAllSupabaseData();
                 const data = allData.filter(item => item.tmdb_id == currentItemId);
                 
@@ -2206,20 +2299,13 @@
                     let eps_a_list = [];
                     let patrocinador = "";
 
-                    // CORREÇÃO: Garante que os episódios marcados como JÁ PATROCINADOS 
-                    // ignorem os registros que são apenas de assistidos!
                     data.forEach(d => {
-                        // Coleta eps_a para exibir na info, independente do tipo
                         if (d.eps_a) eps_a_list.push(d.eps_a);
-                        
-                        // SÓ PEGA PATROCÍNIO SE O TIPO NÃO FOR 'assistido'
                         if (d.tipo !== 'assistido') {
                             if (d.eps_p) eps_p_list.push(d.eps_p);
                             if (d.patrocinador && !patrocinador) patrocinador = d.patrocinador;
                         }
                     });
-
-                    // Mesmo sendo filme (ambos null), pegamos o patrocinador do 1º item válido encontrado
                     const firstValid = data.find(d => d.tipo !== 'assistido');
                     if (firstValid && firstValid.patrocinador && !patrocinador) {
                         patrocinador = firstValid.patrocinador;
@@ -2278,7 +2364,6 @@
                     matched = true;
                 }
                 if (matched) return;
-
                 const simpleNumber = /^(\d+)\s*(?:eps?|epis[oó]dios?)?$/i.exec(p);
                 if (simpleNumber) {
                      results.push({ type: 'simple_count', count: parseInt(simpleNumber[1]) });
@@ -2304,7 +2389,7 @@
                         state.derived.listInfo.sponsoredRanges.push({ season: info.season, start: 1, end: info.count });
                         state.derived.listInfo.temporadasPatrocinadas.push({ temporada: info.season, episodios: info.count, completa: false });
                     } else if (info.type === 'simple_count') {
-                        state.derived.listInfo.totalPatrocinados += info.count; // Acumula contagem global (Ex: 25)
+                        state.derived.listInfo.totalPatrocinados += info.count;
                     }
                 });
             }
@@ -2316,7 +2401,6 @@
             
             const seasonIsFullySponsored = state.derived.listInfo.temporadasPatrocinadas.some(t => t.temporada === currentSeasonNumber && t.completa);
             state.derived.listInfo.isCurrentSeasonFullySponsored = seasonIsFullySponsored;
-            
             state.derived.seasonEpisodesData.forEach(episode => {
                 let isSponsored = false;
 
@@ -2339,7 +2423,6 @@
                     if (specific) isSponsored = true;
                 }
 
-                // APLICA A CONTAGEM GLOBAL (Ex: 25 eps) SOMANDO TEMPORADAS
                 if (!isSponsored && state.derived.listInfo.totalPatrocinados > 0) {
                      if (!state.derived.listInfo.hasTemporadas) {
                          let episodesInPreviousSeasons = 0;
@@ -2351,7 +2434,6 @@
                          }
                          
                          let globalEpisodeNumber = episode.episode_number;
-                         // O TMDB zera a numeração para 1 por temporada
                          if (state.derived.seasonEpisodesData.length > 0 && state.derived.seasonEpisodesData[0].episode_number === 1) {
                              globalEpisodeNumber = episodesInPreviousSeasons + episode.episode_number;
                          }
@@ -2386,7 +2468,7 @@
 
         function autoSelectNextEpisodes() {
             if (state.mediaType === 'tv' && !state.derived.listInfo.isCurrentSeasonFullySponsored) {
-                const episodesToSelect = 3; 
+                const episodesToSelect = 3;
                 let selectedCount = 0;
                 
                 for (let i = 0; i < state.derived.seasonEpisodesData.length && selectedCount < episodesToSelect; i++) {
@@ -2430,7 +2512,6 @@
             const year = (state.selectedItem.release_date || state.selectedItem.first_air_date)?.split('-')[0] || 'N/A';
             const movieInfo = `Filme ${infoSep} ${year} ${infoSep} ${formatDuration(state.selectedItem.runtime)}`;
             const tvInfo = `${state.derived.tvType === 'anime' ? 'Anime' : 'Série'} ${infoSep} ${year}`;
-
             let optionsHTML = `
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <h2>Item Selecionado</h2>
@@ -2443,7 +2524,6 @@
                     <p class="media-info">${state.mediaType === 'movie' ? movieInfo : tvInfo}</p>
                 </div>
             </div>`;
-
             if (state.derived.listInfo.loading) {
                 optionsHTML += `<div class="list-info-notice"><span class="loading"></span> Verificando informações de patrocínio...</div>`;
             }
@@ -2489,19 +2569,16 @@
                     <div style="margin-bottom: 8px;"><strong>Estúdios detectados:</strong> <span class="studio-list">${state.derived.productionCompanies.join(', ') || 'Não disponível'}</span></div>
                     <div><strong>Lançado em:</strong> <span class="release-info">${state.derived.releaseDate}</span></div>
                 </div>`;
-
             if (state.mediaType === 'tv') {
                 const seasons = state.selectedItem.seasons.filter(s => s.season_number > 0 && s.episode_count > 0);
                 const seasonsHTML = seasons.map(s => {
                     return `<option value="${s.season_number}" data-episodes="${s.episode_count}" ${s.season_number === state.options.season ? 'selected' : ''}>${s.name} (${s.episode_count} eps)</option>`;
                 }).join('');
-                
                 optionsHTML += `
                     <div class="config-group">
                         <h3>Temporada</h3>
                         <select id="season-select" class="select-input">${seasonsHTML}</select>
                     </div>`;
-
                 optionsHTML += `
                     <div class="config-group">
                         <h3>Selecionar Episódios</h3>
@@ -2517,7 +2594,6 @@
                 optionsHTML += `
                     <div class="config-group checkbox-group" style="margin-top: 24px;">
                         <h3 style="margin-top: 16px;">Conteúdo de Risco</h3>`;
-                        
                 if (state.derived.temNudezEspecial) {
                     state.options.nudez = true;
                     optionsHTML += `<label><input type="checkbox" data-option="nudez" checked disabled class="nudez-checkbox"> Contém Nudez (automático)</label>`;
@@ -2531,7 +2607,6 @@
                 }
                         
                 optionsHTML += `</div>`;
-                
                 if (state.mediaType === 'tv' && state.options.nudez) {
                     optionsHTML += `
                         <div class="nudez-episodes-config">
@@ -2546,13 +2621,11 @@
             }
             
             $('#config-options').innerHTML = optionsHTML;
-            
             if (state.mediaType === 'tv') {
                 renderEpisodesList();
             }
             
             $('#change-item').addEventListener('click', resetToSearch);
-            
             if (state.mediaType === 'tv') {
                 $('#season-select').addEventListener('change', handleSeasonChange);
                 if (!state.derived.isGrito && $('#nudez-episodes-count')) {
@@ -2566,7 +2639,7 @@
             if (!state.derived.isGrito) {
                 $$('.checkbox-group input').forEach(cb => {
                     if (!cb.disabled) {
-                        cb.addEventListener('change', handleCheckbox);
+                         cb.addEventListener('change', handleCheckbox);
                     }
                 });
             }
@@ -2577,7 +2650,6 @@
             episodesList.innerHTML = '';
 
             const selectedEpisodesMap = new Map(state.options.selectedEpisodes.map(ep => [ep.id, ep]));
-            
             state.derived.seasonEpisodesData.forEach(episode => {
                 const selectionInfo = selectedEpisodesMap.get(episode.id);
                 const isSelected = !!selectionInfo;
@@ -2686,7 +2758,6 @@
             }
             
             state.options.episodes = state.options.selectedEpisodes.filter(ep => !ep.alreadySponsored).length;
-            
             if (!state.derived.isGrito && $('#nudez-episodes-count')) {
                 $('#nudez-episodes-count').max = state.options.episodes;
                 if (state.options.nudezEpisodes > state.options.episodes) {
@@ -2708,7 +2779,6 @@
             state.derived.seasonEpisodes = parseInt(selectedOption.dataset.episodes);
             state.options.selectedEpisodes = [];
             state.options.nudezEpisodes = 0;
-            
             await fetchSeasonDetails();
             state.options.episodes = state.options.selectedEpisodes.filter(ep => !ep.alreadySponsored).length;
 
@@ -2750,14 +2820,12 @@
             }
 
             state.derived.discountNotice = '';
-            
             if (state.mediaType === 'tv') {
                 const nonSponsoredSelectedCount = state.options.selectedEpisodes.filter(ep => !ep.alreadySponsored).length;
                 const episodesLeftInSeason = state.derived.seasonEpisodesData.filter(ep => {
                     const existingInfo = state.options.selectedEpisodes.find(s => s.id === ep.id);
                     return !(existingInfo && existingInfo.alreadySponsored);
                 }).length;
-                
                 if (state.derived.tvType === 'series' && 
                     !state.derived.listInfo.isCurrentSeasonFullySponsored && 
                     nonSponsoredSelectedCount > 0 && 
@@ -2812,7 +2880,6 @@
                             <button class="num-btn" data-action="inc-nudez">+</button>
                         </div>
                     </div>`;
-                
                 const nudezSection = document.querySelector('.nudez-episodes-config');
                 if (nudezSection) {
                     nudezSection.outerHTML = nudezConfigHTML;
@@ -2854,7 +2921,6 @@
             const nudezMovieTax = 15;
             const nudezEpisodeTax = 10;
             const extraMinuteTax = 1.00;
-            
             const nonSponsoredSelected = state.options.selectedEpisodes.filter(ep => !ep.alreadySponsored);
             const hasNonSponsoredEpisodes = nonSponsoredSelected.length > 0;
             
@@ -2904,7 +2970,6 @@
                 });
 
                 total += baseCost;
-                
                 const nonSponsoredSelectedCount = nonSponsoredSelected.length;
                 const totalInSeason = state.derived.seasonEpisodesData.length;
                 
@@ -2929,11 +2994,13 @@
                 }
             }
             
+            // Salvar preço no state
+            state.currentPrice = total;
+
             const item = state.selectedItem;
             const infoSep = " ‧ ";
             $('#summary-poster').src = item.poster_path ? IMG_URL + item.poster_path : 'https://via.placeholder.com/80x120/333333/ffffff?text=No+Image';
             $('#summary-title').textContent = item.title || item.name;
-            
             if (state.mediaType === 'movie') {
                 $('#summary-info').textContent = `Filme ${infoSep} ${(item.release_date || '').split('-')[0] || 'N/A'} ${infoSep} ${formatDuration(item.runtime)}`;
             } else {
@@ -2945,22 +3012,118 @@
             
             const warningDiv = $('#restriction-warning');
             const payButton = $('#pay-button');
-            
+            const cartBtn = $('#add-to-cart-button');
+
             if (state.mediaType === 'tv' && state.derived.listInfo.isCurrentSeasonFullySponsored) {
                 payButton.classList.add('disabled');
                 payButton.removeAttribute('href');
+                cartBtn.classList.add('disabled');
+                cartBtn.disabled = true;
                 warningDiv.textContent = `Esta temporada já foi patrocinada, selecione outra (se disponível) para ver os preços.`;
                 warningDiv.classList.remove('hidden');
             } else if (state.mediaType === 'tv' && !hasNonSponsoredEpisodes) {
                 payButton.classList.add('disabled');
                 payButton.removeAttribute('href');
+                cartBtn.classList.add('disabled');
+                cartBtn.disabled = true;
                 warningDiv.textContent = `Não há episódios disponíveis para patrocínio nesta temporada.`;
                 warningDiv.classList.remove('hidden');
             } else {
                 payButton.classList.remove('disabled');
                 payButton.href = `https://livepix.gg/loryez?amount=${total.toFixed(2)}`;
+                cartBtn.classList.remove('disabled');
+                cartBtn.disabled = false;
                 warningDiv.classList.add('hidden');
             }
+        }
+
+        // FUNÇÕES DO CARRINHO
+        function addToCart() {
+            if (state.currentPrice <= 0) return;
+
+            let description = state.mediaType === 'movie' ? 
+                'Filme' : `${state.derived.tvType === 'anime' ? 'Anime' : 'Série'} - Temp ${state.options.season} (${state.options.episodes} eps)`;
+
+            if (state.options.nudez || state.derived.temNudezEspecial) {
+                description += ' + Taxa Nudez';
+            }
+
+            const cartItem = {
+                id: Date.now(), 
+                tmdbId: state.selectedItem.id,
+                title: state.selectedItem.title || state.selectedItem.name,
+                poster: state.selectedItem.poster_path ? IMG_URL + state.selectedItem.poster_path : 'https://via.placeholder.com/80x120/333333/ffffff?text=No+Image',
+                description: description,
+                price: state.currentPrice
+            };
+
+            shoppingCart.push(cartItem);
+            saveCart(); // SALVA O CARRINHO
+            updateCartUI();
+            resetToSearch();
+
+            // Rolar pro topo para ver a busca
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateCartUI() {
+            const count = shoppingCart.length;
+            const fab = document.getElementById('cart-fab');
+            const countBadge = document.getElementById('cart-count');
+
+            if (count > 0) {
+                fab.classList.remove('hidden');
+                countBadge.textContent = count;
+            } else {
+                fab.classList.add('hidden');
+                document.getElementById('cart-modal').classList.remove('visible'); 
+            }
+            renderCartItems();
+        }
+
+        function toggleCartModal() {
+            const modal = document.getElementById('cart-modal');
+            if (shoppingCart.length > 0) {
+                modal.classList.add('visible');
+            }
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cart-items-container');
+            const totalPriceEl = document.getElementById('cart-total-price');
+            const checkoutBtn = document.getElementById('cart-checkout-button');
+
+            container.innerHTML = '';
+            let total = 0;
+
+            shoppingCart.forEach((item, index) => {
+                total += item.price;
+                const formatPrice = `R$ ${item.price.toFixed(2).replace('.', ',')}`;
+
+                const div = document.createElement('div');
+                div.className = 'cart-item';
+                div.innerHTML = `
+                    <img src="${item.poster}" alt="Poster">
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">${item.title}</div>
+                        <div class="cart-item-info">${item.description}</div>
+                        <div class="cart-item-price">${formatPrice}</div>
+                    </div>
+                    <button class="remove-cart-item" onclick="removeFromCart(${index})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                `;
+                container.appendChild(div);
+            });
+
+            totalPriceEl.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+            checkoutBtn.href = `https://livepix.gg/loryez?amount=${total.toFixed(2)}`;
+        }
+
+        function removeFromCart(index) {
+            shoppingCart.splice(index, 1);
+            saveCart(); // SALVA A REMOÇÃO NO CARRINHO
+            updateCartUI();
         }
 
         function switchToConfigView() {
@@ -2984,7 +3147,6 @@
             $('#summary-content').classList.add('hidden');
             $('#patrocinar-header').classList.remove('hidden');
             state.derived.discountNotice = '';
-            
             state.options = {
                 season: 1, 
                 episodes: 3, 
@@ -3007,7 +3169,7 @@
         let assistidosPage = 1;
         let currentFilter = 'filmes';
         let currentAssistidosFilter = 'filmes';
-
+        
         (function() {
             const assistidosSearchInput = document.getElementById('assistidos-search-input');
             const assistidosTabs = document.querySelectorAll('#assistidos-tabs .tab-button');
@@ -3015,7 +3177,7 @@
             function applyAssistidosFilter() {
                 const query = assistidosSearchInput.value.toLowerCase().trim();
                 const allCards = Array.from(document.querySelectorAll('#assistidos-tab .media-card'));
-                
+                 
                 let filteredCards = [];
                 allCards.forEach(card => {
                     const title = card.querySelector('.media-card-title').textContent.toLowerCase();
@@ -3029,7 +3191,7 @@
                         card.style.display = 'none';
                     }
                 });
-
+                
                 const sections = {
                     filmes: document.getElementById('assistidos-filmes-section'),
                     series: document.getElementById('assistidos-series-section'),
@@ -3045,7 +3207,7 @@
                         }
                     }
                 });
-
+                
                 const totalPages = Math.ceil(filteredCards.length / 60) || 1;
                 if (assistidosPage > totalPages) assistidosPage = 1;
                 
@@ -3212,7 +3374,7 @@
                 }
             });
         });
-
+        
         function renderStars(rating) {
             if (!rating || rating === '') return '<span class="no-rating">Sem avaliação</span>';
             const numericRating = parseFloat(rating);
@@ -3226,7 +3388,6 @@
             for (let i = 0; i < fullStars; i++) starsHTML += '<span class="star filled">★</span>';
             if (hasHalfStar) starsHTML += '<span class="star half">★</span>';
             for (let i = 0; i < emptyStars; i++) starsHTML += '<span class="star">★</span>';
-            
             return starsHTML;
         }
 
@@ -3255,10 +3416,8 @@
         // CARREGA TODOS OS DADOS DO SUPABASE PARA PREVENIR ERROS DE 'TIPO' FALTANDO NO BANCO DE DADOS
         async function fetchAllSupabaseData() {
             if (window.loryezDataCache) return window.loryezDataCache;
-            
             // Tenta buscar ordenando pela ID para garantir a ordem exata da tabela
             let { data, error } = await supabaseClient.from('loryez').select('*').order('id', { ascending: true });
-            
             // Fallback: se a tabela não tiver a coluna 'id', busca sem a ordenação explícita
             if (error) {
                 console.warn("Coluna 'id' não encontrada, buscando sem ordenação explícita.");
@@ -3274,7 +3433,6 @@
         async function loadSponsoredContent() {
             try {
                 const allData = await fetchAllSupabaseData();
-                
                 // Filtro robusto: Olha a coluna tipo, ou recai para eps_p / falta de eps_a
                 const sponsoredItems = allData.filter(item => {
                     if (item.tipo === 'patrocinado') return true;
@@ -3327,7 +3485,7 @@
                 animes: document.getElementById('animes-grid'),
                 pausados: document.getElementById('pausados-grid')
             };
-
+            
             Object.values(containers).forEach(c => c.innerHTML = '');
 
             items.forEach(item => {
@@ -3391,7 +3549,8 @@
             const bodySponsorContainer = document.getElementById('modal-sponsor-container-body');
             
             if (item.media_type_custom === 'movie') {
-                subtitleEl.innerHTML = item.Patrocinador ? `Patrocinado por <span style="color: #fff; font-weight: 700;">${item.Patrocinador}</span>` : '';
+                subtitleEl.innerHTML = item.Patrocinador ?
+                    `Patrocinado por <span style="color: #fff; font-weight: 700;">${item.Patrocinador}</span>` : '';
                 bodySponsorContainer.classList.add('hidden');
             } else {
                 subtitleEl.textContent = '';
@@ -3441,7 +3600,6 @@
         async function loadAssistidosContent() {
             try {
                 const allData = await fetchAllSupabaseData();
-                
                 // Filtro robusto: Olha a coluna tipo, ou recai para eps_a e nota
                 const assistidosItems = allData.filter(item => {
                     if (item.tipo === 'assistido') return true;
@@ -3450,7 +3608,7 @@
                     }
                     return false;
                 });
-
+                
                 const detailedItems = await Promise.all(
                     assistidosItems.map(async (item) => {
                         const tmdbId = item.tmdb_id;
@@ -3477,6 +3635,7 @@
                         }
                     })
                 );
+                
                 document.getElementById('assistidos-loading-message').classList.add('hidden');
                 renderAssistidosContent(detailedItems.filter(item => item !== null));
 
@@ -3494,7 +3653,7 @@
             };
 
             Object.values(containers).forEach(c => c.innerHTML = '');
-
+            
             items.forEach(item => {
                 assistidosDataCache.push(item);
                 
@@ -3524,6 +3683,7 @@
                     }
                 }
                 card.dataset.type = typeKey;
+                
                 card.addEventListener('click', () => showAssistidosDetailsModal(item.id));
             });
             if (window.applyAssistidosFilter) window.applyAssistidosFilter();
@@ -3549,7 +3709,8 @@
             const bodySponsorContainer = document.getElementById('assistidos-modal-sponsor-container-body');
             
             if (item.media_type_custom === 'movie') {
-                subtitleEl.innerHTML = item.Patrocinador ? `Patrocinado por <span style="color: #fff; font-weight: 700;">${item.Patrocinador}</span>` : '';
+                subtitleEl.innerHTML = item.Patrocinador ?
+                    `Patrocinado por <span style="color: #fff; font-weight: 700;">${item.Patrocinador}</span>` : '';
                 bodySponsorContainer.classList.add('hidden');
             } else {
                 subtitleEl.textContent = '';
