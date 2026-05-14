@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -48,6 +49,7 @@
             --radius-sm: 8px;
             --radius-md: 12px;
             --radius-lg: 18px;
+            --radius-xl: 20px; /* adicionado para compatibilidade visual */
             --radius-pill: 50px;
         }
 
@@ -161,15 +163,6 @@
             color: var(--text-primary);
             font-weight: 600;
             background: linear-gradient(to bottom, transparent, rgba(157, 78, 221, 0.05));
-        }
-
-        .nav-link svg {
-            transition: all 0.3s ease;
-        }
-        
-        .nav-link.active svg {
-            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
-            color: var(--accent-tertiary);
         }
 
         /* --- HEADER DAS ABAS --- */
@@ -1008,7 +1001,8 @@
             gap: 28px;
             margin-bottom: 60px;
         }
-        
+
+        /* --- CARDS ESTILIZADOS (COM BARRA DE PROGRESSO E NOTAS) --- */
         .media-card {
             background-color: var(--bg-secondary);
             border-radius: var(--radius-md);
@@ -1017,13 +1011,13 @@
             cursor: pointer;
             position: relative;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         
         .media-card:hover {
             transform: translateY(-8px) scale(1.02);
             box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 15px rgba(157, 78, 221, 0.2);
             border-color: var(--accent-primary);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         
         .media-card img {
@@ -1033,17 +1027,59 @@
             aspect-ratio: 2 / 3;
             object-fit: cover;
         }
-        
+
+        .media-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 16px 12px 12px;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 60%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            z-index: 2;
+        }
+
         .media-card-title {
-            padding: 16px;
             font-size: 0.95rem;
             font-weight: 600;
-            text-align: center;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             font-family: 'Space Grotesk', sans-serif;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: var(--text-primary);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .media-card-rating {
+            font-size: 0.85rem;
+            color: var(--yellow);
+            font-weight: 600;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .card-progress-container {
+            width: 100%;
+            height: 5px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 4px;
+        }
+
+        .card-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-tertiary));
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .card-progress-bar.finished {
+            background: linear-gradient(90deg, #4cda64, #00a82d);
         }
 
         .sponsored-search-controls, .assistidos-search-controls {
@@ -1113,19 +1149,24 @@
             border: none;
         }
 
-        /* --- MODAIS --- */
+        /* =============================================
+           MODAIS - VISUAL DO PRIMEIRO CÓDIGO (ROXO)
+           ============================================= */
         .modal-overlay {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 8, 0.9);
+            backdrop-filter: blur(10px);
             z-index: 2000;
             display: flex;
             justify-content: center;
             align-items: center;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.4s ease;
             padding: 20px;
         }
         
@@ -1135,198 +1176,341 @@
         }
         
         .modal-content {
-            background: rgba(20, 20, 25, 0.85);
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            max-width: 900px;
-            width: 95%;
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            max-width: 820px;
+            width: 90%;
             max-height: 90vh;
             display: flex;
-            flex-direction: column;
-            padding: 40px;
+            flex-direction: column; 
+            padding: 28px; 
             position: relative;
-            transform: scale(0.9) translateY(20px);
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            transform: scale(0.95);
+            transition: all 0.4s ease;
+            box-shadow: 0 0 25px rgba(157, 78, 221, 0.25);
             overflow: hidden;
         }
         
         .modal-overlay.visible .modal-content {
-            transform: scale(1) translateY(0);
-        }
-
-        .modal-backdrop-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover;
-            background-position: center top;
-            opacity: 0.1;
-            z-index: -1;
-            filter: blur(60px) saturate(1.5);
-            pointer-events: none;
+            transform: scale(1);
         }
 
         .modal-header {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             width: 100%;
             padding-right: 40px; 
-            position: relative;
-            z-index: 2;
         }
 
         .modal-title {
             font-family: 'Raleway', sans-serif;
-            font-size: 2.2rem; 
-            font-weight: 800;
-            margin-bottom: 8px;
+            font-size: 1.6rem; 
+            font-weight: 700;
+            margin-bottom: 4px;
             color: var(--text-primary);
-            line-height: 1.1;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            text-shadow: none;
+            line-height: 1.2;
         }
 
         .modal-subtitle {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            color: var(--accent-tertiary); 
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+            color: #888; 
+            font-weight: 500;
         }
         
         .modal-body {
             display: flex;
-            gap: 40px;
+            gap: 24px;
             overflow: hidden;
             flex: 1;
-            position: relative;
-            z-index: 2;
         }
         
         .modal-close {
             position: absolute;
-            top: 25px;
-            right: 25px;
-            font-size: 1.8rem;
-            color: rgba(255,255,255,0.5);
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: var(--text-muted);
             cursor: pointer;
             transition: all 0.3s;
             border: none;
             background: transparent; 
+            width: auto;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             z-index: 10;
         }
         
         .modal-close:hover {
-            color: var(--accent-primary);
-            transform: rotate(90deg);
+            color: var(--text-primary);
+            transform: scale(1.1);
         }
         
         .modal-poster img {
-            width: 280px;
+            width: 220px; 
             height: auto;
             aspect-ratio: 2 / 3;
             object-fit: cover;
-            border-radius: 16px;
+            border-radius: var(--radius-md);
             flex-shrink: 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: var(--shadow-soft);
+            border: none; 
         }
         
         .modal-details {
             overflow-y: auto;
-            padding-right: 12px;
+            padding-right: 8px;
             flex-grow: 1;
         }
         
-        .modal-details::-webkit-scrollbar { width: 6px; }
-        .modal-details::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); }
-        
         .modal-meta {
             display: flex;
-            gap: 12px;
-            margin-bottom: 24px;
-            color: var(--text-secondary);
-            font-weight: 600;
+            gap: 10px;
+            margin-bottom: 16px;
+            color: var(--text-muted);
+            font-weight: 500;
             flex-wrap: wrap;
         }
         
         .modal-meta span {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 6px 14px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.15); 
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
         }
         
-        .modal-info-group { margin-bottom: 24px; }
+        .modal-info-group {
+            margin-bottom: 16px; 
+        }
         
         .modal-info-group strong {
             display: block;
             color: var(--text-primary);
-            margin-bottom: 8px;
-            font-size: 1.1rem; 
+            margin-bottom: 6px;
+            font-size: 0.95rem; 
             font-family: 'Montserrat', sans-serif;
         }
         
         .modal-info-group p {
             color: var(--text-secondary);
-            line-height: 1.7;
-            font-size: 1rem; 
+            line-height: 1.5;
+            font-size: 0.9rem; 
             text-align: justify;
-            font-weight: 300;
         }
         
         .modal-genres {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
         }
          
         .modal-genres span {
             background: rgba(157, 78, 221, 0.1);
             border: 1px solid rgba(157, 78, 221, 0.3);
-            color: var(--accent-tertiary);
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
         }
 
         .stars-rating {
             display: flex;
             align-items: center;
-            gap: 6px;
-            margin-top: 8px;
+            gap: 4px;
+            margin-top: 6px;
         }
         
-        .star { color: rgba(255,255,255,0.2); font-size: 1.4rem; }
-        .star.filled { color: var(--yellow); text-shadow: 0 0 10px rgba(255, 215, 0, 0.4); }
-        .star.half { position: relative; color: rgba(255,255,255,0.2); }
+        .star {
+            color: var(--text-muted);
+            font-size: 1.1rem; 
+        }
+        
+        .star.filled {
+            color: var(--warning);
+        }
+        
+        .star.half {
+            position: relative;
+            color: var(--text-muted);
+        }
+        
         .star.half::before {
             content: '★';
             position: absolute;
             left: 0;
             width: 50%;
             overflow: hidden;
-            color: var(--yellow);
+            color: var(--warning);
         }
         
-        .no-rating { color: var(--text-muted); font-style: italic; font-size: 0.9rem; }
+        .no-rating {
+            color: var(--text-muted);
+            font-style: italic;
+            font-size: 0.85rem;
+        }
 
         .info-tag-container {
             display: flex;
             flex-wrap: wrap;
             gap: 8px; 
-            margin-top: 6px;
+            margin-top: 4px;
         }
         
         .info-tag {
-            background: rgba(68, 138, 255, 0.1);
-            border: 1px solid rgba(68, 138, 255, 0.3);
-            padding: 6px 12px; 
-            border-radius: 8px;
-            font-size: 0.9rem; 
-            color: #8ab4ff;
+            background: rgba(157, 78, 221, 0.1);
+            border: 1px solid rgba(157, 78, 221, 0.3);
+            padding: 4px 10px; 
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem; 
+            color: var(--text-secondary);
             font-weight: 500;
+            line-height: 1.4;
+        }
+
+        /* BACKDROP DO MODAL (SUAVE, COMO NO PRIMEIRO CÓDIGO) */
+        .modal-backdrop-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center top;
+            opacity: 0.15;
+            z-index: -1;
+            filter: blur(2px);
+            border-radius: var(--radius-xl);
+            pointer-events: none;
+        }
+
+        /* --- BARRAS DE PROGRESSO (MODAL INTERNO COM BOLINHAS EXATAS) --- */
+        .modal-progress-section {
+            margin-top: 24px;
+            margin-bottom: 24px;
+            background: rgba(0, 0, 0, 0.25);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .progress-item {
+            margin-bottom: 35px; /* Aumentado para dar espaço aos balõezinhos */
+        }
+        .progress-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* ESTILO DA BARRA (TRACK) */
+        .progress-track {
+            height: 10px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 5px;
+            position: relative;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+            margin-top: 28px; /* Espaço para o tooltip do avulso ficar acima */
+        }
+
+        .progress-fill-container {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 5px;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-tertiary));
+            transition: width 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .progress-fill.finished {
+            background: linear-gradient(90deg, #4cda64, #00a82d);
+        }
+
+        /* BOLINHAS DOS EPS AVULSOS (POSIÇÃO ABSOLUTA) */
+        .avulso-dot {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 14px;
+            height: 14px;
+            background-color: var(--bg-tertiary);
+            border: 2px solid var(--accent-primary);
+            border-radius: 50%;
+            z-index: 5;
+            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+        }
+
+        .avulso-dot.finished {
+            border-color: #4cda64;
+            background-color: #4cda64;
+        }
+
+        .avulso-label {
+            position: absolute;
+            bottom: 20px; /* Fica em cima da bolinha */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+            color: #fff;
+            background: var(--accent-primary);
+            padding: 4px 8px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            white-space: nowrap;
+        }
+
+        .avulso-dot.finished .avulso-label {
+            background: #4cda64;
+            color: #000;
+        }
+
+        /* Triangulozinho em baixo do texto (estilo balaozinho) */
+        .avulso-label::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px 5px 0;
+            border-style: solid;
+            border-color: var(--accent-primary) transparent transparent transparent;
+        }
+
+        .avulso-dot.finished .avulso-label::after {
+            border-color: #4cda64 transparent transparent transparent;
         }
 
         /* --- ESTILOS DO CARRINHO --- */
@@ -1443,7 +1627,6 @@
             .patrocinar-header p { font-size: 1rem; }
             
             .media-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 15px; }
-            .media-card-title { padding: 12px; font-size: 0.85rem; }
             
             .episode-item { flex-direction: column; align-items: flex-start; gap: 8px; position: relative; padding: 12px 12px 12px 45px; }
             .episode-checkbox { position: absolute; top: 12px; left: 12px; }
@@ -1488,23 +1671,9 @@
 
     <nav class="top-nav">
         <div class="nav-links-container">
-            <button class="nav-link active" data-tab="patrocinar">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
-                </svg>
-                Patrocinar
-            </button>
-            <button class="nav-link" data-tab="patrocinados">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/></svg>
-                Patrocinados
-            </button>
-            <button class="nav-link" data-tab="assistidos">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                </svg>
-                Assistidos
-            </button>
+            <button class="nav-link active" data-tab="patrocinar">Patrocinar</button>
+            <button class="nav-link" data-tab="patrocinados">Patrocinados</button>
+            <button class="nav-link" data-tab="assistidos">Assistidos</button>
         </div>
     </nav>
 
@@ -1719,23 +1888,11 @@
                 <div class="modal-details">
                     <div id="modal-meta" class="modal-meta"></div>
                     
-                    <div id="modal-info-tv" class="hidden">
-                        <div id="modal-total-eps-group" class="modal-info-group hidden">
-                            <strong>Episódios Totais:</strong>
-                             <div id="modal-total-eps" class="info-tag-container"></div>
-                        </div>
-                        <div class="modal-info-group">
-                            <strong>Episódios Patrocinados:</strong>
-                             <div id="modal-sponsored-eps" class="info-tag-container"></div>
-                        </div>
-                        <div class="modal-info-group">
-                            <strong>Episódios Assistidos:</strong>
-                            <div id="modal-watched-eps" class="info-tag-container"></div>
-                       </div>
-                    </div>
+                    <!-- NOVO CONTAINER DE PROGRESSO (SÉRIES/ANIMES) -->
+                    <div id="modal-progress-container" class="modal-progress-section hidden"></div>
 
                     <div class="modal-info-group" id="modal-sponsor-container-body">
-                        <strong>Patrocinador:</strong>
+                        <strong id="modal-sponsor-label">Patrocinador(es):</strong>
                         <div id="modal-sponsor" class="info-tag-container"></div>
                     </div>
 
@@ -1769,19 +1926,11 @@
                 <div class="modal-details">
                     <div id="assistidos-modal-meta" class="modal-meta"></div>
                     
-                    <div id="assistidos-modal-info-tv" class="hidden">
-                        <div class="modal-info-group">
-                            <strong>Episódios Patrocinados:</strong>
-                            <div id="assistidos-modal-sponsored-eps" class="info-tag-container"></div>
-                        </div>
-                        <div class="modal-info-group">
-                            <strong>Episódios Assistidos:</strong>
-                            <div id="assistidos-modal-watched-eps" class="info-tag-container"></div>
-                        </div>
-                    </div>
+                    <!-- NOVO CONTAINER DE PROGRESSO (SÉRIES/ANIMES) -->
+                    <div id="assistidos-modal-progress-container" class="modal-progress-section hidden"></div>
 
                     <div class="modal-info-group" id="assistidos-modal-sponsor-container-body">
-                        <strong>Patrocinador:</strong>
+                        <strong id="assistidos-modal-sponsor-label">Patrocinador(es):</strong>
                         <div id="assistidos-modal-sponsor" class="info-tag-container"></div>
                     </div>
 
@@ -1939,7 +2088,7 @@
             // Definir aba inicial
             switchTab('patrocinar');
 
-            // Renderiza o carrinho assim que a página abre, caso tenha itens salvos do F5
+            // Renderiza o carrinho assim que a página abre
             updateCartUI(); 
         }
 
@@ -2126,7 +2275,6 @@
             loadingSystem.updateStage(3);
             loadingSystem.progress(70);
             
-            // Buscar informações de patrocínio do Supabase (tabela loryez)
             await fetchSponsoredData();
             if (state.mediaType === 'tv') {
                 markSponsoredEpisodes();
@@ -3122,7 +3270,7 @@
 
         function removeFromCart(index) {
             shoppingCart.splice(index, 1);
-            saveCart(); // SALVA A REMOÇÃO NO CARRINHO
+            saveCart(); 
             updateCartUI();
         }
 
@@ -3346,8 +3494,259 @@
             }
         }
 
-        // --- SCRIPT PARA CARREGAR CONTEÚDOS PATROCINADOS E ASSISTIDOS DO SUPABASE ---
-        
+        // --- SISTEMA DE PROGRESSO DE SÉRIES/ANIMES (COM CÁLCULO DE POSIÇÃO BASEADO NO TMDB) ---
+        function analyzeTVProgress(eps_p, eps_a, totalTmdbEps, tmdbSeasons) {
+            const pData = parseSponsoredString(eps_p || '');
+            const aData = parseSponsoredString(eps_a || '');
+            
+            let seasons = {};
+            let simpleP = 0;
+            let simpleA = 0;
+            
+            const addSeasonData = (season, type, count, isFull = false, specificEp = null) => {
+                if(!seasons[season]) seasons[season] = { p: 0, a: 0, full_p: false, full_a: false, specific_p: [], specific_a: [] };
+                if(type === 'p') {
+                    if(isFull) seasons[season].full_p = true;
+                    else if(specificEp !== null) seasons[season].specific_p.push(specificEp);
+                    else if(count > seasons[season].p) seasons[season].p = count;
+                } else {
+                    if(isFull) seasons[season].full_a = true;
+                    else if(specificEp !== null) seasons[season].specific_a.push(specificEp);
+                    else if(count > seasons[season].a) seasons[season].a = count;
+                }
+            };
+
+            pData.forEach(d => {
+                if(d.type === 'full_season') addSeasonData(d.season, 'p', 0, true);
+                else if(d.type === 'range_start') addSeasonData(d.season, 'p', d.count);
+                else if(d.type === 'specific') addSeasonData(d.season, 'p', 0, false, d.episode);
+                else if(d.type === 'simple_count') simpleP += d.count;
+            });
+            
+            aData.forEach(d => {
+                if(d.type === 'full_season') addSeasonData(d.season, 'a', 0, true);
+                else if(d.type === 'range_start') addSeasonData(d.season, 'a', d.count);
+                else if(d.type === 'specific') addSeasonData(d.season, 'a', 0, false, d.episode);
+                else if(d.type === 'simple_count') simpleA += d.count;
+            });
+            
+            return { seasons, simpleP, simpleA, totalTmdbEps, tmdbSeasons };
+        }
+
+        function buildProgressUI(analyzedData, isCard = false) {
+            let html = '';
+            let totalWatched = 0;
+            let totalSponsored = 0;
+            
+            const seasonKeys = Object.keys(analyzedData.seasons).sort((a,b) => parseInt(a)-parseInt(b));
+            let tmdbSeasons = analyzedData.tmdbSeasons || [];
+            
+            // SE TEM DADOS DE TEMPORADA
+            if (seasonKeys.length > 0) {
+                seasonKeys.forEach(s => {
+                    const data = analyzedData.seasons[s];
+                    let p = data.p; // Eps contínuos pagos
+                    let a = data.a; // Eps contínuos assistidos
+                    
+                    // Busca total de eps desta temp na API
+                    let tmdbSeason = tmdbSeasons.find(ts => ts.season_number == s);
+                    let totalEpsInSeason = tmdbSeason ? tmdbSeason.episode_count : 0;
+                    
+                    let specificP = data.specific_p || [];
+                    let specificA = data.specific_a || [];
+                    let allSpecifics = [...new Set([...specificP, ...specificA])].sort((x,y)=>x-y);
+                    
+                    // Se não tiver a API pra calcular 100%, recai para o maior episódio listado
+                    let maxKnownEp = Math.max(p, a, ...allSpecifics);
+                    if (totalEpsInSeason < maxKnownEp) totalEpsInSeason = maxKnownEp;
+                    if (totalEpsInSeason === 0) totalEpsInSeason = 1; 
+
+                    let isFullP = data.full_p || (p >= totalEpsInSeason && totalEpsInSeason > 0);
+                    let isFullA = data.full_a || (a >= totalEpsInSeason && totalEpsInSeason > 0);
+
+                    if (isFullP) p = totalEpsInSeason;
+                    if (isFullA) a = totalEpsInSeason;
+
+                    totalWatched += a + specificA.length;
+                    totalSponsored += Math.max(p, specificP.length);
+                    
+                    // Lógica de preenchimento contínuo BASEADO APENAS EM ASSISTIDOS (a)
+                    let continuousPercent = (a / totalEpsInSeason) * 100;
+                    if (continuousPercent > 100) continuousPercent = 100;
+
+                    let isFinished = isFullA || (a >= totalEpsInSeason && totalEpsInSeason > 0 && allSpecifics.every(ep => specificA.includes(ep) || a >= ep));
+                    if (isFinished) continuousPercent = 100;
+
+                    let hasAvulso = allSpecifics.length > 0;
+                    let isAvulsoOnly = a === 0 && specificA.length > 0 && p === 0 && specificP.length > 0;
+
+                    let textLeft = `${s}ª Temporada`;
+                    let textRight = ``;
+
+                    // Textos Dinâmicos Acima da Barra
+                    let assistidosText = isFullA ? 'Todos' : (a > 0 ? a : 0);
+                    if (specificA.length > 0 && a === 0) assistidosText = 'Avulso(s)';
+                    else if (specificA.length > 0) assistidosText += ' + Avulso(s)';
+                    if (isFinished && !hasAvulso) assistidosText = 'Todos';
+
+                    let patrocinadosText = isFullP ? 'Todos' : (p > 0 ? p : 0);
+                    if (specificP.length > 0 && p === 0) patrocinadosText = 'Avulso(s)';
+                    else if (specificP.length > 0) patrocinadosText += ' + Avulso(s)';
+
+                    textRight = `<span style="color: var(--accent-tertiary); font-weight: 600;">Pago: ${patrocinadosText}</span> &nbsp;|&nbsp; Visto: ${assistidosText} / ${totalEpsInSeason}`;
+
+                    if (isFinished && !hasAvulso) {
+                        textLeft = `<i class="fas fa-check-circle" style="color: var(--success); margin-right: 6px; font-size: 0.9em;"></i>${s}ª Temporada (Finalizada)`;
+                        textRight = `<span style="color: var(--success); font-weight: 600;">Completa</span>`;
+                    }
+
+                    if (!isCard) {
+                        let htmlTrack = '';
+                        
+                        // Barra preenchida principal
+                        if (continuousPercent > 0) {
+                            htmlTrack += `
+                                <div class="progress-fill-container">
+                                    <div class="progress-fill ${isFinished ? 'finished' : ''}" style="width: ${continuousPercent}%;"></div>
+                                </div>
+                            `;
+                        }
+
+                        // Bolinhas (Dots) exatas para os Eps Avulsos
+                        if (hasAvulso) {
+                            let dotsHtml = allSpecifics.map(ep => {
+                                let isWatched = specificA.includes(ep) || a >= ep || isFullA;
+                                let dotPos = (ep / totalEpsInSeason) * 100;
+                                if(dotPos > 98) dotPos = 98; // Impede vazar do container
+                                if(dotPos < 2) dotPos = 2;
+
+                                return `
+                                    <div class="avulso-dot ${isWatched ? 'finished' : ''}" style="left: ${dotPos}%;">
+                                        <span class="avulso-label">${ep}</span>
+                                    </div>
+                                `;
+                            }).join('');
+                            htmlTrack += dotsHtml;
+                        }
+
+                        html += `
+                            <div class="progress-item">
+                                <div class="progress-header">
+                                    <span>${textLeft}</span>
+                                    <span style="color: var(--text-secondary); font-size: 0.85rem;">${textRight}</span>
+                                </div>
+                                <div class="progress-track" style="overflow: visible;">
+                                    ${htmlTrack}
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+            } 
+            // SE TEM APENAS CONTAGEM SIMPLES DE EPS (EX: "25")
+            else if (analyzedData.simpleP > 0 || analyzedData.simpleA > 0) {
+                let a = analyzedData.simpleA;
+                let p = analyzedData.simpleP;
+                let total = analyzedData.totalTmdbEps || Math.max(p, a); 
+                
+                totalWatched += a;
+                totalSponsored += p;
+                
+                let percent = (a / total) * 100;
+                if (percent > 100) percent = 100;
+                
+                let isFinished = a >= total && total > 0;
+                
+                if (!isCard) {
+                    html += `
+                        <div class="progress-item">
+                            <div class="progress-header">
+                                <span>Progresso Geral</span>
+                                <span style="color: var(--text-secondary); font-size: 0.85rem;"><span style="color: var(--accent-tertiary); font-weight: 600;">Pago: ${p}</span> &nbsp;|&nbsp; Visto: ${a} / ${total}</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill-container">
+                                    <div class="progress-fill ${isFinished ? 'finished' : ''}" style="width: ${percent}%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            
+            // RENDERIZAÇÃO DO CARD (Externa): Mini barra na base da imagem (Usa apenas assistidos)
+            if (isCard && (totalWatched > 0 || totalSponsored > 0 || analyzedData.simpleA > 0 || analyzedData.simpleP > 0)) {
+                let tw = totalWatched || analyzedData.simpleA;
+                let t_max = analyzedData.totalTmdbEps || Math.max(totalSponsored, analyzedData.simpleP, tw);
+                
+                if (t_max <= 0) t_max = 1;
+                
+                let p_card = (tw / t_max) * 100;
+                if(p_card > 100) p_card = 100;
+                const cardFinished = (tw >= t_max && t_max > 0) || (p_card === 100);
+                
+                return `
+                    <div class="card-progress-container">
+                        <div class="card-progress-bar ${cardFinished ? 'finished' : ''}" style="width: ${p_card}%;"></div>
+                    </div>
+                `;
+            }
+            
+            return html;
+        }
+
+        // --- FUNÇÕES DE LIMPEZA E FORMATAÇÃO ---
+        function cleanSponsorName(name) {
+            if (!name) return 'N/A';
+            return name.toString().replace(/\([^)]*\d+[^)]*\)/g, '').replace(/\s*-\s*$/, '').trim() || name;
+        }
+
+        function renderStars(rating) {
+            if (!rating || rating === '') return '<span class="no-rating">Sem avaliação</span>';
+            const numericRating = parseFloat(rating);
+            if (isNaN(numericRating)) return '<span class="no-rating">Sem avaliação</span>';
+            
+            const fullStars = Math.floor(numericRating);
+            const hasHalfStar = numericRating % 1 >= 0.5;
+            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+            let starsHTML = '';
+            
+            for (let i = 0; i < fullStars; i++) starsHTML += '<span class="star filled">★</span>';
+            if (hasHalfStar) starsHTML += '<span class="star half">★</span>';
+            for (let i = 0; i < emptyStars; i++) starsHTML += '<span class="star">★</span>';
+            return starsHTML;
+        }
+
+        function renderStarsCard(rating) {
+            if (!rating || rating === '') return '';
+            const numericRating = parseFloat(rating);
+            if (isNaN(numericRating)) return '';
+            return `<div class="media-card-rating"><i class="fas fa-star"></i> ${numericRating.toFixed(1)}</div>`;
+        }
+
+        function populateInfoTags(containerId, dataString) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = ''; 
+            if (dataString && dataString.toString().trim() !== "") {
+                const parts = dataString.toString().split(/[|\/]/);
+                parts.forEach(part => {
+                    const cleanPart = part.trim();
+                    if (cleanPart) {
+                        const tag = document.createElement('span');
+                        tag.className = 'info-tag';
+                        tag.textContent = cleanPart;
+                        container.appendChild(tag);
+                    }
+                });
+            } else {
+                const tag = document.createElement('span');
+                tag.className = 'info-tag';
+                tag.textContent = 'N/A';
+                container.appendChild(tag);
+            }
+        }
+
+        // --- CARREGA CONTEÚDOS DO SUPABASE ---
         function renderErrorButton(containerId, retryFunction) {
             const container = document.getElementById(containerId);
             container.innerHTML = `
@@ -3375,57 +3774,15 @@
             });
         });
         
-        function renderStars(rating) {
-            if (!rating || rating === '') return '<span class="no-rating">Sem avaliação</span>';
-            const numericRating = parseFloat(rating);
-            if (isNaN(numericRating)) return '<span class="no-rating">Sem avaliação</span>';
-            
-            const fullStars = Math.floor(numericRating);
-            const hasHalfStar = numericRating % 1 >= 0.5;
-            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-            let starsHTML = '';
-            
-            for (let i = 0; i < fullStars; i++) starsHTML += '<span class="star filled">★</span>';
-            if (hasHalfStar) starsHTML += '<span class="star half">★</span>';
-            for (let i = 0; i < emptyStars; i++) starsHTML += '<span class="star">★</span>';
-            return starsHTML;
-        }
-
-        function populateInfoTags(containerId, dataString) {
-            const container = document.getElementById(containerId);
-            container.innerHTML = ''; 
-            if (dataString && dataString.toString().trim() !== "") {
-                const parts = dataString.toString().split(/[|\/]/);
-                parts.forEach(part => {
-                    const cleanPart = part.trim();
-                    if (cleanPart) {
-                        const tag = document.createElement('span');
-                        tag.className = 'info-tag';
-                        tag.textContent = cleanPart;
-                        container.appendChild(tag);
-                    }
-                });
-            } else {
-                const tag = document.createElement('span');
-                tag.className = 'info-tag';
-                tag.textContent = 'N/A';
-                container.appendChild(tag);
-            }
-        }
-
-        // CARREGA TODOS OS DADOS DO SUPABASE PARA PREVENIR ERROS DE 'TIPO' FALTANDO NO BANCO DE DADOS
         async function fetchAllSupabaseData() {
             if (window.loryezDataCache) return window.loryezDataCache;
-            // Tenta buscar ordenando pela ID para garantir a ordem exata da tabela
             let { data, error } = await supabaseClient.from('loryez').select('*').order('id', { ascending: true });
-            // Fallback: se a tabela não tiver a coluna 'id', busca sem a ordenação explícita
             if (error) {
                 console.warn("Coluna 'id' não encontrada, buscando sem ordenação explícita.");
                 const fallback = await supabaseClient.from('loryez').select('*');
                 if (fallback.error) throw fallback.error;
                 data = fallback.data;
             }
-            
             window.loryezDataCache = data;
             return data;
         }
@@ -3433,12 +3790,11 @@
         async function loadSponsoredContent() {
             try {
                 const allData = await fetchAllSupabaseData();
-                // Filtro robusto: Olha a coluna tipo, ou recai para eps_p / falta de eps_a
                 const sponsoredItems = allData.filter(item => {
                     if (item.tipo === 'patrocinado') return true;
                     if (!item.tipo) {
                         if (item.eps_p) return true;
-                        if (!item.eps_p && !item.eps_a && !item.nota) return true; // Classificado como filme patrocinado
+                        if (!item.eps_p && !item.eps_a && !item.nota) return true; 
                     }
                     return false;
                 });
@@ -3462,7 +3818,7 @@
                                 overview: tmdbData.overview, poster_path: tmdbData.poster_path, backdrop_path: tmdbData.backdrop_path,
                                 release_date: tmdbData.release_date, first_air_date: tmdbData.first_air_date, genres: tmdbData.genres,
                                 runtime: tmdbData.runtime, Patrocinador: item.patrocinador, 'Episódios Patrocinados': item.eps_p,
-                                'Episódios Assistidos': item.eps_a, 'Episódios Totais': tmdbData.number_of_episodes, media_type_custom: mediaType
+                                'Episódios Assistidos': item.eps_a, 'Episódios Totais': tmdbData.number_of_episodes, seasons: tmdbData.seasons, media_type_custom: mediaType
                             };
                         } catch (e) {
                             return null;
@@ -3497,12 +3853,28 @@
                 
                 const posterPath = item.poster_path ? `${IMG_URL}${item.poster_path}` : 'https://via.placeholder.com/200x300?text=Sem+Imagem';
                 
+                // Progress Bar para Séries/Animes
+                let progressHtml = '';
+                if (item.media_type_custom === 'tv') {
+                     const progressData = analyzeTVProgress(item['Episódios Patrocinados'], item['Episódios Assistidos'], item['Episódios Totais'], item.seasons);
+                     progressHtml = buildProgressUI(progressData, true);
+                }
+                
+                // Nota da Lorena se houver
+                let ratingHtml = '';
+                if (item['Nota da Lorena']) {
+                     ratingHtml = renderStarsCard(item['Nota da Lorena']);
+                }
+
                 card.innerHTML = `
                     <img src="${posterPath}" alt="Pôster de ${item.title || item.name}">
-                    <div class="media-card-title">${item.title || item.name}</div>
+                    <div class="media-card-content">
+                        <div class="media-card-title">${item.title || item.name}</div>
+                        ${ratingHtml}
+                        ${progressHtml}
+                    </div>
                 `;
 
-                // Verifica possíveis variações do pausado se não estiver estritamente em boolean
                 const isPausado = item.pausado === true || String(item.pausado).toUpperCase() === 'SIM' || item.Pausado === true;
 
                 if (isPausado) {
@@ -3547,22 +3919,24 @@
             
             const subtitleEl = document.getElementById('modal-subtitle');
             const bodySponsorContainer = document.getElementById('modal-sponsor-container-body');
+            const sponsorNameClean = cleanSponsorName(item.Patrocinador);
             
             if (item.media_type_custom === 'movie') {
-                subtitleEl.innerHTML = item.Patrocinador ?
-                    `Patrocinado por <span style="color: #fff; font-weight: 700;">${item.Patrocinador}</span>` : '';
+                subtitleEl.innerHTML = sponsorNameClean !== 'N/A' ?
+                    `Patrocinado por <span style="color: #fff; font-weight: 700;">${sponsorNameClean}</span>` : '';
                 bodySponsorContainer.classList.add('hidden');
             } else {
                 subtitleEl.textContent = '';
                 bodySponsorContainer.classList.remove('hidden');
-                populateInfoTags('modal-sponsor', item.Patrocinador);
+                document.getElementById('modal-sponsor-label').textContent = 'Patrocinador(es):';
+                populateInfoTags('modal-sponsor', sponsorNameClean);
             }
 
             const metaContainer = document.getElementById('modal-meta');
             metaContainer.innerHTML = '';
 
-            document.getElementById('modal-info-tv').classList.toggle('hidden', item.media_type_custom === 'movie');
             document.getElementById('modal-genres-container').classList.toggle('hidden', item.media_type_custom !== 'movie');
+            const progressContainer = document.getElementById('modal-progress-container');
             
             if (item.media_type_custom === 'movie') {
                 const year = item.release_date ? item.release_date.split('-')[0] : 'N/A';
@@ -3575,6 +3949,7 @@
                 if (item.genres) {
                     genresContainer.innerHTML = item.genres.slice(0, 3).map(g => `<span>${g.name}</span>`).join('');
                 }
+                progressContainer.classList.add('hidden');
             } else {
                 const type = item.genres && item.genres.some(g => g.id === 16) ? 'Anime' : 'Série';
                 const year = item.first_air_date ? item.first_air_date.split('-')[0] : 'N/A';
@@ -3582,16 +3957,16 @@
                     <span>${type}</span>
                     <span>${year}</span>
                 `;
-                const totalEpsGroup = document.getElementById('modal-total-eps-group');
-                if (item['Episódios Totais'] && item['Episódios Totais'].toString().trim() !== '') {
-                    populateInfoTags('modal-total-eps', item['Episódios Totais']);
-                    totalEpsGroup.classList.remove('hidden');
-                } else {
-                    totalEpsGroup.classList.add('hidden');
-                }
                 
-                populateInfoTags('modal-sponsored-eps', item['Episódios Patrocinados']);
-                populateInfoTags('modal-watched-eps', item['Episódios Assistidos']);
+                // RENDERIZAR NOVO SISTEMA DE PROGRESSO
+                const progressData = analyzeTVProgress(item['Episódios Patrocinados'], item['Episódios Assistidos'], item['Episódios Totais'], item.seasons);
+                const progressHtml = buildProgressUI(progressData, false);
+                if (progressHtml) {
+                    progressContainer.innerHTML = progressHtml;
+                    progressContainer.classList.remove('hidden');
+                } else {
+                    progressContainer.classList.add('hidden');
+                }
             }
 
             document.getElementById('details-modal').classList.add('visible');
@@ -3600,7 +3975,6 @@
         async function loadAssistidosContent() {
             try {
                 const allData = await fetchAllSupabaseData();
-                // Filtro robusto: Olha a coluna tipo, ou recai para eps_a e nota
                 const assistidosItems = allData.filter(item => {
                     if (item.tipo === 'assistido') return true;
                     if (!item.tipo) {
@@ -3628,7 +4002,7 @@
                                 overview: tmdbData.overview, poster_path: tmdbData.poster_path, backdrop_path: tmdbData.backdrop_path,
                                 release_date: tmdbData.release_date, first_air_date: tmdbData.first_air_date, genres: tmdbData.genres,
                                 runtime: tmdbData.runtime, Patrocinador: item.patrocinador, 'Episódios Patrocinados': item.eps_p,
-                                'Episódios Assistidos': item.eps_a, 'Nota da Lorena': item.nota, media_type_custom: mediaType
+                                'Episódios Assistidos': item.eps_a, 'Nota da Lorena': item.nota, 'Episódios Totais': tmdbData.number_of_episodes, seasons: tmdbData.seasons, media_type_custom: mediaType
                             };
                         } catch (e) {
                             return null;
@@ -3663,9 +4037,26 @@
                 
                 const posterPath = item.poster_path ? `${IMG_URL}${item.poster_path}` : 'https://via.placeholder.com/200x300?text=Sem+Imagem';
                 
+                // Progress Bar para Séries/Animes
+                let progressHtml = '';
+                if (item.media_type_custom === 'tv') {
+                     const progressData = analyzeTVProgress(item['Episódios Patrocinados'], item['Episódios Assistidos'], item['Episódios Totais'], item.seasons);
+                     progressHtml = buildProgressUI(progressData, true);
+                }
+                
+                // Nota da Lorena
+                let ratingHtml = '';
+                if (item['Nota da Lorena']) {
+                     ratingHtml = renderStarsCard(item['Nota da Lorena']);
+                }
+
                 card.innerHTML = `
                     <img src="${posterPath}" alt="Pôster de ${item.title || item.name}">
-                    <div class="media-card-title">${item.title || item.name}</div>
+                    <div class="media-card-content">
+                        <div class="media-card-title">${item.title || item.name}</div>
+                        ${ratingHtml}
+                        ${progressHtml}
+                    </div>
                 `;
 
                 let typeKey;
@@ -3707,22 +4098,24 @@
             
             const subtitleEl = document.getElementById('assistidos-modal-subtitle');
             const bodySponsorContainer = document.getElementById('assistidos-modal-sponsor-container-body');
+            const sponsorNameClean = cleanSponsorName(item.Patrocinador);
             
             if (item.media_type_custom === 'movie') {
-                subtitleEl.innerHTML = item.Patrocinador ?
-                    `Patrocinado por <span style="color: #fff; font-weight: 700;">${item.Patrocinador}</span>` : '';
+                subtitleEl.innerHTML = sponsorNameClean !== 'N/A' ?
+                    `Patrocinado por <span style="color: #fff; font-weight: 700;">${sponsorNameClean}</span>` : '';
                 bodySponsorContainer.classList.add('hidden');
             } else {
                 subtitleEl.textContent = '';
                 bodySponsorContainer.classList.remove('hidden');
-                populateInfoTags('assistidos-modal-sponsor', item.Patrocinador);
+                document.getElementById('assistidos-modal-sponsor-label').textContent = 'Patrocinador(es):';
+                populateInfoTags('assistidos-modal-sponsor', sponsorNameClean);
             }
 
             const metaContainer = document.getElementById('assistidos-modal-meta');
             metaContainer.innerHTML = '';
 
-            document.getElementById('assistidos-modal-info-tv').classList.toggle('hidden', item.media_type_custom === 'movie');
             document.getElementById('assistidos-modal-genres-container').classList.toggle('hidden', item.media_type_custom !== 'movie');
+            const progressContainer = document.getElementById('assistidos-modal-progress-container');
             
             if (item.media_type_custom === 'movie') {
                 const year = item.release_date ? item.release_date.split('-')[0] : 'N/A';
@@ -3735,6 +4128,7 @@
                 if (item.genres) {
                     genresContainer.innerHTML = item.genres.slice(0, 3).map(g => `<span>${g.name}</span>`).join('');
                 }
+                progressContainer.classList.add('hidden');
             } else {
                 const type = item.genres && item.genres.some(g => g.id === 16) ? 'Anime' : 'Série';
                 const year = item.first_air_date ? item.first_air_date.split('-')[0] : 'N/A';
@@ -3742,8 +4136,16 @@
                     <span>${type}</span>
                     <span>${year}</span>
                 `;
-                populateInfoTags('assistidos-modal-sponsored-eps', item['Episódios Patrocinados']);
-                populateInfoTags('assistidos-modal-watched-eps', item['Episódios Assistidos']);
+                
+                // RENDERIZAR NOVO SISTEMA DE PROGRESSO
+                const progressData = analyzeTVProgress(item['Episódios Patrocinados'], item['Episódios Assistidos'], item['Episódios Totais'], item.seasons);
+                const progressHtml = buildProgressUI(progressData, false);
+                if (progressHtml) {
+                    progressContainer.innerHTML = progressHtml;
+                    progressContainer.classList.remove('hidden');
+                } else {
+                    progressContainer.classList.add('hidden');
+                }
             }
 
             document.getElementById('assistidos-details-modal').classList.add('visible');
