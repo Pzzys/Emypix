@@ -14,42 +14,43 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
-        /* --- NOVA PALETA (ROXO E PRETO) E VARIÁVEIS GLOBAIS --- */
+        /* --- PALETA ROXA COM TOQUE NEON/GLASSMORPHISM --- */
         :root {
-            --bg-primary: #050505;
-            --bg-secondary: #0f0f13;
-            --bg-tertiary: #181820;
-            --bg-accent: #20202a;
+            --bg-primary: #0a0812; 
+            --bg-secondary: #131022; 
+            --bg-tertiary: #1c1731;
+            --bg-accent: #271f45;
             
-            --text-primary: #f0f2ff;
-            --text-secondary: #b8bbd6;
-            --text-muted: #8a8da8;
+            --text-primary: #ffffff;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
             
-            /* Tons de Roxo como base */
+            /* Tons de Roxo (Restaurados para o Roxo Original, mas mais vibrantes) */
             --accent-primary: #9d4edd; /* Roxo vibrante */
             --accent-secondary: #7b2cbf; /* Roxo escuro */
             --accent-tertiary: #c77dff; /* Lilás */
-            --accent-glow: rgba(157, 78, 221, 0.35);
+            --accent-glow: rgba(157, 78, 221, 0.4);
 
             /* Cores adicionais */
-            --yellow: #ffd700;
-            --success: #4cda64;
-            --warning: #ffb74d;
-            --error: #ff5252;
-            --info: #448aff;
+            --yellow: #fcd34d;
+            --success: #4ade80;
+            --warning: #fb923c;
+            --error: #f87171;
+            --info: #38bdf8;
 
-            --border-thin: 1px solid rgba(255, 255, 255, 0.08);
-            --border-medium: 1px solid rgba(255, 255, 255, 0.12);
+            --border-thin: 1px solid rgba(255, 255, 255, 0.05);
+            --border-medium: 1px solid rgba(255, 255, 255, 0.1);
             --border-active: 1px solid rgba(157, 78, 221, 0.5);
 
-            --shadow-soft: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-            --shadow-medium: 0 15px 40px -12px rgba(0, 0, 0, 0.7);
-            --shadow-glow: 0 0 25px rgba(157, 78, 221, 0.25);
+            --shadow-soft: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+            --shadow-medium: 0 15px 40px -12px rgba(0, 0, 0, 0.8);
+            --shadow-glow: 0 0 30px rgba(157, 78, 221, 0.2);
+            --shadow-neon: 0 0 15px rgba(157, 78, 221, 0.5), 0 0 30px rgba(123, 44, 191, 0.3);
             
             --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 18px;
-            --radius-xl: 20px; /* adicionado para compatibilidade visual */
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 30px; 
             --radius-pill: 50px;
         }
 
@@ -67,9 +68,12 @@
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             text-rendering: optimizeLegibility;
+            /* Fundos com brilhos radiais roxos para dar vida */
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(157, 78, 221, 0.06) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(68, 138, 255, 0.04) 0%, transparent 40%);
+                radial-gradient(circle at 15% 10%, rgba(157, 78, 221, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 85% 40%, rgba(123, 44, 191, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 50% 90%, rgba(199, 125, 255, 0.08) 0%, transparent 50%);
+            background-attachment: fixed;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -81,7 +85,7 @@
             height: 8px;
         }
         ::-webkit-scrollbar-track { 
-            background: var(--bg-secondary); 
+            background: var(--bg-primary); 
         }
         ::-webkit-scrollbar-thumb { 
             background: var(--bg-accent); 
@@ -97,21 +101,21 @@
             align-items: center;
             justify-content: center;
             padding: 0 2rem;
-            background-color: rgba(15, 15, 18, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(10, 8, 18, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             position: sticky;
             top: 0;
             z-index: 1000;
             width: 100%;
             height: 80px;
-            border-bottom: 1px solid rgba(157, 78, 221, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .nav-links-container {
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 15px;
             height: 100%;
         }
 
@@ -124,30 +128,30 @@
             color: var(--text-muted);
             text-decoration: none;
             font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-            font-size: 0.95rem;
+            font-weight: 600;
+            font-size: 1rem;
             cursor: pointer;
             position: relative;
             transition: all 0.3s ease;
             background: transparent;
             border: none;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             gap: 8px;
         }
         
         .nav-link::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -1px;
             left: 50%;
             transform: translateX(-50%);
             width: 0;
-            height: 3px;
-            background: linear-gradient(to right, var(--accent-primary), var(--accent-tertiary));
-            border-radius: 3px 3px 0 0;
-            transition: width 0.3s ease;
-            box-shadow: 0 -2px 10px var(--accent-glow);
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 4px 4px 0 0;
+            transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 -2px 15px var(--accent-glow);
         }
         
         .nav-link:hover {
@@ -156,42 +160,43 @@
 
         .nav-link:hover::after,
         .nav-link.active::after {
-            width: 80%;
+            width: 100%;
         }
         
         .nav-link.active {
             color: var(--text-primary);
-            font-weight: 600;
-            background: linear-gradient(to bottom, transparent, rgba(157, 78, 221, 0.05));
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
 
         /* --- HEADER DAS ABAS --- */
         .patrocinar-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 3.5rem;
             padding: 0 1rem;
         }
         
         .patrocinar-header h1 {
             font-family: 'Poppins', sans-serif;
-            font-size: 2.8rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--accent-primary), #fff 80%);
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 20%, var(--accent-primary) 80%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             margin-bottom: 1rem;
-            text-shadow: 0 5px 30px rgba(157, 78, 221, 0.3);
-            letter-spacing: -1px;
+            text-shadow: 0 10px 40px rgba(157, 78, 221, 0.3);
+            letter-spacing: -1.5px;
+            text-transform: uppercase;
         }
         
         .patrocinar-header p {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: var(--text-secondary);
-            max-width: 650px;
+            max-width: 700px;
             margin: 0 auto;
             line-height: 1.6;
+            font-weight: 300;
         }
 
         /* --- CONTEÚDO DAS ABAS --- */
@@ -222,19 +227,20 @@
         }
 
         .card { 
-            background-color: var(--bg-secondary);
+            background: rgba(19, 16, 34, 0.6);
+            backdrop-filter: blur(16px);
             border-radius: var(--radius-lg);
             padding: 32px;
-            border: var(--border-thin);
-            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
             position: relative;
             overflow: visible;
         }
         
         .card:hover {
-            box-shadow: var(--shadow-medium);
-            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border-color: rgba(157, 78, 221, 0.2);
         }
 
         .full-width { 
@@ -259,8 +265,9 @@
             left: 0;
             width: 50px;
             height: 4px;
-            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
             border-radius: 2px;
+            box-shadow: 0 0 10px var(--accent-glow);
         }
         
         h3 { 
@@ -271,15 +278,15 @@
             color: var(--text-primary); 
         }
 
-        /* --- ABAS DE BUSCA / FILTROS --- */
+        /* --- ABAS DE BUSCA / FILTROS (Aba Patrocinar) --- */
         .tabs { 
             display: flex; 
             gap: 8px; 
             margin-bottom: 24px; 
-            background-color: var(--bg-tertiary);
+            background: rgba(0, 0, 0, 0.3);
             padding: 6px;
             border-radius: var(--radius-md);
-            border: var(--border-thin);
+            border: 1px solid rgba(255,255,255,0.05);
             flex-wrap: wrap;
         }
         
@@ -312,9 +319,9 @@
         }
         
         .tab-button.active { 
-            color: var(--text-primary);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(157, 78, 221, 0.3);
         }
         
         .tab-button.active::before {
@@ -326,16 +333,16 @@
             color: var(--text-primary);
         }
 
-        /* --- BUSCA E RESULTADOS --- */
+        /* --- BUSCA E RESULTADOS (Aba Patrocinar) --- */
         .search-wrapper { 
             position: relative; 
             width: 100%;
         }
         
-        #search-input, #sponsored-search-input, #assistidos-search-input { 
+        #search-input { 
             width: 100%; 
-            background-color: var(--bg-tertiary); 
-            border: var(--border-medium); 
+            background: rgba(0, 0, 0, 0.4); 
+            border: 1px solid rgba(255,255,255,0.1); 
             border-radius: var(--radius-md); 
             padding: 18px 24px;
             color: var(--text-primary); 
@@ -344,11 +351,11 @@
             font-family: 'Outfit', sans-serif;
         }
         
-        #search-input:focus, #sponsored-search-input:focus, #assistidos-search-input:focus {
+        #search-input:focus {
             outline: none;
             border-color: var(--accent-primary);
-            box-shadow: 0 0 0 3px var(--accent-glow);
-            background-color: var(--bg-accent);
+            box-shadow: 0 0 0 3px rgba(157, 78, 221, 0.2);
+            background: rgba(0, 0, 0, 0.6);
         }
         
         #search-results-list {
@@ -356,13 +363,14 @@
             top: calc(100% + 8px); 
             left: 0; 
             right: 0; 
-            background-color: var(--bg-tertiary);
-            border: var(--border-medium); 
+            background: rgba(20, 15, 30, 0.95);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(157, 78, 221, 0.3); 
             border-radius: var(--radius-md);
             z-index: 100;
             max-height: 350px; 
             overflow-y: auto;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.8);
         }
         
         .search-result-item { 
@@ -380,33 +388,31 @@
         }
         
         .search-result-item:hover { 
-            background-color: var(--accent-primary);
-            color: white;
-        }
-        
-        .search-result-item:hover span {
-            color: rgba(255,255,255,0.8);
+            background: linear-gradient(90deg, rgba(157, 78, 221, 0.2), transparent);
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 16px;
         }
         
         .search-result-item img { 
             width: 45px; 
             height: 68px; 
             object-fit: cover; 
-            border-radius: 4px; 
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            border-radius: 6px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
         
         .search-result-item p { 
             font-weight: 600; 
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1rem;
+            color: #fff;
         }
         
         .search-result-item span { 
             font-size: 0.85rem; 
             color: var(--text-muted); 
             display: block;
-            margin-top: 2px;
+            margin-top: 4px;
         }
 
         /* --- PREVIEW E BOTÕES --- */
@@ -415,7 +421,8 @@
             display: flex; 
             flex-direction: column;
             gap: 24px;
-            border-color: var(--accent-glow);
+            border-color: rgba(157, 78, 221, 0.3);
+            box-shadow: 0 0 30px rgba(157, 78, 221, 0.1);
         }
         
         .preview-content { 
@@ -429,7 +436,7 @@
             object-fit: cover; 
             border-radius: var(--radius-md); 
             flex-shrink: 0; 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
         }
         
         .preview-content .synopsis { 
@@ -451,7 +458,7 @@
             font-weight: 700; 
             font-size: 1.05rem;
             cursor: pointer; 
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             text-align: center;
             width: 100%;
             display: flex;
@@ -460,21 +467,23 @@
             gap: 12px;
             text-decoration: none;
             font-family: 'Jost', sans-serif;
-            box-shadow: 0 4px 15px rgba(157, 78, 221, 0.3);
+            box-shadow: 0 8px 20px rgba(157, 78, 221, 0.3);
             position: relative;
             overflow: hidden;
             letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
         
         .continue-button:hover, .pay-button:hover, .retry-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(157, 78, 221, 0.5);
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 0 15px 30px rgba(157, 78, 221, 0.5);
+            background: linear-gradient(135deg, #b066ff, #8a40f0);
         }
 
         .retry-btn {
             margin-top: 16px;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-medium);
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
             color: var(--text-primary);
             width: auto;
             min-width: 200px;
@@ -484,7 +493,7 @@
         }
 
         .retry-btn:hover {
-            background: var(--bg-accent);
+            background: rgba(157, 78, 221, 0.2);
             border-color: var(--accent-primary);
             color: white;
         }
@@ -494,16 +503,16 @@
             display: flex;
             align-items: center;
             gap: 16px;
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(0, 0, 0, 0.3);
             border-radius: var(--radius-md);
             padding: 16px;
             margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             flex-wrap: wrap;
         }
         
         .class-age {
-            font-weight: 800;
+            font-weight: 900;
             font-size: 1.4rem;
             width: 45px;
             height: 45px;
@@ -514,14 +523,15 @@
             background: var(--bg-primary);
             color: #ffffff;
             flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
-        .class-age[data-rating="L"] { background-color: #00a82d; }
-        .class-age[data-rating="10"] { background-color: #0096d6; }
-        .class-age[data-rating="12"] { background-color: #f7d000; color: #000; }
-        .class-age[data-rating="14"] { background-color: #f77f00; color: #fff; }
-        .class-age[data-rating="16"] { background-color: #e6322e; color: #fff; }
-        .class-age[data-rating="18"] { background-color: #000000; border: 1px solid #fff; color: #fff; }
+        .class-age[data-rating="L"] { background-color: #4ade80; color: #000; }
+        .class-age[data-rating="10"] { background-color: #38bdf8; color: #000;}
+        .class-age[data-rating="12"] { background-color: #facc15; color: #000; }
+        .class-age[data-rating="14"] { background-color: #fb923c; color: #fff; }
+        .class-age[data-rating="16"] { background-color: #ef4444; color: #fff; }
+        .class-age[data-rating="18"] { background-color: #000000; border: 2px solid #fff; color: #fff; }
         
         .config-group { 
             margin-bottom: 28px; 
@@ -531,29 +541,31 @@
             display: flex; 
             align-items: center; 
             gap: 12px; 
-            padding: 14px;
+            padding: 16px;
             font-size: 0.95rem; 
             cursor: pointer;
             border-radius: var(--radius-md);
-            transition: background-color 0.2s ease;
-            border: var(--border-thin);
-            margin-bottom: 8px;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 10px;
+            background: rgba(0,0,0,0.2);
         }
         
         .checkbox-group label:hover { 
-            background-color: var(--bg-accent); 
+            background: rgba(157, 78, 221, 0.1); 
+            border-color: rgba(157, 78, 221, 0.3);
         }
 
         input[type="checkbox"] {
            appearance: none;
-           width: 22px; 
-           height: 22px; 
-           border: 2px solid rgba(255,255,255,0.3);
+           width: 24px; 
+           height: 24px; 
+           border: 2px solid rgba(255,255,255,0.2);
            border-radius: 6px; 
-           background-color: var(--bg-tertiary); 
+           background-color: rgba(0,0,0,0.5); 
            cursor: pointer; 
            position: relative; 
-           transition: all 0.2s ease;
+           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
            flex-shrink: 0;
         }
         
@@ -561,6 +573,7 @@
             background: var(--accent-primary);
             border-color: var(--accent-primary); 
             transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(157, 78, 221, 0.4);
         }
         
         input[type="checkbox"]:checked::after { 
@@ -576,10 +589,10 @@
 
         .select-input {
             width: 100%;
-            background-color: var(--bg-tertiary); 
-            border: var(--border-medium);
+            background-color: rgba(0,0,0,0.4); 
+            border: 1px solid rgba(255,255,255,0.1);
             border-radius: var(--radius-md); 
-            padding: 14px 18px; 
+            padding: 16px 20px; 
             color: var(--text-primary); 
             font-size: 1rem;
             appearance: none;
@@ -587,7 +600,7 @@
             background-repeat: no-repeat;
             background-position: right 1.2rem center;
             background-size: 0.8em;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             font-family: 'Outfit', sans-serif;
             cursor: pointer;
         }
@@ -595,17 +608,18 @@
         .select-input:focus {
             outline: none;
             border-color: var(--accent-primary);
-            box-shadow: 0 0 0 2px var(--accent-glow);
+            box-shadow: 0 0 0 3px rgba(157, 78, 221, 0.2);
+            background-color: rgba(0,0,0,0.6);
         }
         
         .number-input-wrapper { 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            padding: 4px 12px; 
-            background-color: var(--bg-tertiary);
-            border-radius: var(--radius-md);
-            border: var(--border-medium);
+            padding: 6px 16px; 
+            background-color: rgba(0,0,0,0.4);
+            border-radius: 50px; 
+            border: 1px solid rgba(255,255,255,0.1);
             max-width: 200px;
         }
         
@@ -616,35 +630,40 @@
             color: var(--text-primary); 
             text-align: center; 
             width: 50px; 
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-family: 'Space Grotesk', sans-serif;
-            font-weight: 600;
+            font-weight: 700;
         }
         
         .num-btn { 
-            background: none; 
+            background: rgba(255,255,255,0.05); 
             border: none; 
-            color: var(--accent-primary); 
-            font-size: 1.5rem; 
+            color: #fff; 
+            font-size: 1.2rem; 
             cursor: pointer; 
-            padding: 4px 12px; 
-            border-radius: 4px;
-            transition: background-color 0.2s;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
             font-weight: bold;
         }
         
         .num-btn:hover { 
-            background-color: rgba(157, 78, 221, 0.2); 
-            color: var(--text-primary);
+            background: var(--accent-primary); 
+            color: #fff;
+            box-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
         }
 
         /* --- RESUMO --- */
         #summary-content .poster { 
-            width: 80px; 
-            height: 120px; 
+            width: 90px; 
+            height: 135px; 
             object-fit: cover; 
             border-radius: var(--radius-sm); 
-            box-shadow: var(--shadow-soft);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
         }
         
         #price-breakdown { padding: 16px 0; }
@@ -666,8 +685,8 @@
         
         .divider { 
             height: 1px; 
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent); 
-            margin: 20px 0; 
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent); 
+            margin: 24px 0; 
         }
         
         .total { 
@@ -675,32 +694,36 @@
             justify-content: space-between; 
             align-items: center; 
             padding-top: 10px; 
-            background: rgba(255,255,255,0.03);
-            padding: 20px;
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.05), rgba(123, 44, 191, 0.05));
+            padding: 24px;
             border-radius: var(--radius-md);
             border: 1px solid rgba(157, 78, 221, 0.2);
             margin-bottom: 24px;
+            box-shadow: inset 0 0 20px rgba(157, 78, 221, 0.05);
         }
         
         .total .total-text { 
             font-size: 1.2rem; 
             font-weight: 600; 
             font-family: 'Jost', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .total .price { 
             font-family: 'Jost', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 800; 
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
+            font-size: 2.5rem;
+            font-weight: 900; 
+            background: linear-gradient(135deg, var(--accent-primary), #fff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0 0 15px rgba(157, 78, 221, 0.2);
+            text-shadow: 0 0 20px rgba(157, 78, 221, 0.3);
+            line-height: 1;
         }
 
         .pay-button.disabled { 
-            background: var(--bg-tertiary);
+            background: rgba(0,0,0,0.4);
             color: var(--text-muted);
             cursor: not-allowed; 
             transform: none;
@@ -708,20 +731,24 @@
         }
         
         .placeholder { 
-            padding: 16px; 
+            padding: 30px; 
             color: var(--text-muted); 
             text-align: center; 
             font-style: italic; 
+            background: rgba(0,0,0,0.2);
+            border-radius: var(--radius-md);
+            border: 1px dashed rgba(255,255,255,0.1);
         }
 
         /* --- CAIXA DE INFORMAÇÕES --- */
         .info-box {
             grid-column: 1 / -1;
-            background: rgba(255, 255, 255, 0.02);
+            background: linear-gradient(to right, rgba(0,0,0,0.4), rgba(157, 78, 221, 0.05));
             border-radius: var(--radius-lg);
             padding: 24px;
             margin-top: 16px;
-            border: var(--border-thin);
+            border: 1px solid rgba(157, 78, 221, 0.1);
+            border-left: 4px solid var(--accent-primary);
             position: relative;
         }
         
@@ -735,42 +762,44 @@
         .info-box li {
             margin-bottom: 8px;
             position: relative;
+            list-style-type: none;
         }
         
         .info-box li::before {
-            content: '▶';
+            content: '✨';
             position: absolute;
-            left: -18px;
+            left: -24px;
             color: var(--accent-primary);
-            font-size: 0.8rem;
+            font-size: 1rem;
         }
         
         .nudez-episodes-config {
             margin-top: 16px;
-            padding: 16px;
-            background-color: rgba(255, 255, 255, 0.03);
+            padding: 20px;
+            background: rgba(0,0,0,0.3);
             border-radius: var(--radius-md);
-            border: var(--border-medium);
+            border: 1px solid rgba(255,255,255,0.05);
         }
         
         .change-button {
             background: rgba(157, 78, 221, 0.1);
             border: 1px solid rgba(157, 78, 221, 0.3);
             color: var(--accent-primary);
-            padding: 8px 20px;
+            padding: 8px 24px;
             border-radius: var(--radius-pill);
             cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.2s;
+            font-size: 0.95rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
             font-family: 'Space Grotesk', sans-serif;
-            white-space: nowrap;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .change-button:hover {
-            background-color: var(--accent-primary);
+            background: var(--accent-primary);
             color: white;
-            box-shadow: 0 0 15px var(--accent-glow);
+            box-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
         }
         
         .nudez-checkbox { 
@@ -780,99 +809,108 @@
         /* --- AVISOS E NOTIFICAÇÕES --- */
         .discount-notice, .warning-notice, .error-notice, .list-info-notice {
             font-size: 0.95rem;
-            margin-top: 12px;
-            font-weight: 500;
-            padding: 16px;
+            margin-top: 16px;
+            font-weight: 600;
+            padding: 16px 20px;
             border-radius: var(--radius-md);
             border-left: 4px solid;
             font-family: 'Space Grotesk', sans-serif;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
         .discount-notice {
             color: var(--success);
-            background: rgba(76, 218, 100, 0.1);
+            background: rgba(74, 222, 128, 0.1);
             border-color: var(--success);
         }
         
         .warning-notice {
             color: var(--warning);
-            background: rgba(255, 183, 77, 0.1);
+            background: rgba(251, 146, 60, 0.1);
             border-color: var(--warning);
         }
         
         .error-notice {
             color: var(--error);
-            background: rgba(255, 82, 82, 0.1);
+            background: rgba(248, 113, 113, 0.1);
             border-color: var(--error);
         }
         
         .list-info-notice {
             color: var(--info);
-            background: rgba(68, 138, 255, 0.1);
+            background: rgba(56, 189, 248, 0.1);
             border-color: var(--info);
         }
         
         .media-info {
             color: var(--text-muted) !important;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             margin-top: 4px;
         }
         
         .info-content {
-            background: rgba(255,255,255,0.02);
+            background: rgba(0,0,0,0.2);
             border-radius: var(--radius-md);
-            padding: 18px;
-            margin-bottom: 20px;
+            padding: 20px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255,255,255,0.05);
         }
         
         .studio-list, .release-info {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1rem;
+            font-size: 1.05rem;
             margin-top: 8px;
             line-height: 1.5;
-            font-weight: 500;
+            font-weight: 600;
         }
         
-        .studio-list { color: var(--accent-primary); }
-        .release-info { color: var(--accent-tertiary); }
+        .studio-list { color: var(--accent-primary); text-shadow: 0 0 10px rgba(157, 78, 221, 0.2); }
+        .release-info { color: var(--accent-secondary); text-shadow: 0 0 10px rgba(123, 44, 191, 0.2);}
 
         /* --- LISTA DE EPISÓDIOS --- */
         .episode-selector {
             margin-top: 16px;
-            border: var(--border-medium);
+            border: 1px solid rgba(255,255,255,0.05);
             border-radius: var(--radius-md);
             padding: 20px;
-            background-color: var(--bg-tertiary);
+            background: rgba(0,0,0,0.3);
         }
         
         .episode-item {
             display: flex;
             align-items: center;
-            margin-bottom: 6px;
-            padding: 14px;
+            margin-bottom: 8px;
+            padding: 16px;
             border-radius: var(--radius-sm);
-            transition: background-color 0.2s;
+            transition: all 0.2s ease;
             gap: 16px;
-            border-bottom: 1px solid rgba(255,255,255,0.03);
+            background: rgba(255,255,255,0.02);
+            border: 1px solid transparent;
         }
         
         .episode-item:hover { 
-            background-color: rgba(255,255,255,0.05);
+            background: rgba(157, 78, 221, 0.05);
+            border-color: rgba(157, 78, 221, 0.2);
+            transform: translateX(4px);
         }
         
         .episode-info { 
             flex: 1;
+            font-weight: 500;
         }
         
         .episode-duration {
             color: var(--text-muted);
             font-size: 0.85rem;
+            background: rgba(0,0,0,0.5);
+            padding: 4px 10px;
+            border-radius: 12px;
         }
         
         .nudez-warning {
             color: var(--warning);
             margin-top: 8px;
-            font-weight: 500;
+            font-weight: 600;
             display: block;
         }
         
@@ -884,16 +922,17 @@
         }
         
         .grito-notice {
-            background: rgba(255, 215, 0, 0.1);
-            border-left: 4px solid gold;
+            background: rgba(252, 211, 77, 0.1);
+            border-left: 4px solid var(--yellow);
             border-radius: var(--radius-md);
             padding: 16px 20px;
             margin: 20px 0;
-            font-size: 1rem;
-            color: gold;
+            font-size: 1.05rem;
+            color: var(--yellow);
             text-align: center;
-            font-weight: 600;
+            font-weight: 700;
             font-family: 'Jost', sans-serif;
+            box-shadow: 0 0 20px rgba(252, 211, 77, 0.1);
         }
 
         /* --- NOVO SISTEMA DE LOADING --- */
@@ -901,10 +940,10 @@
             display: none;
             width: 100%;
             height: 6px;
-            background: var(--bg-tertiary);
+            background: rgba(0,0,0,0.5);
             border-radius: 3px;
             overflow: hidden;
-            margin-top: 16px;
+            margin-top: 20px;
             position: relative;
         }
         
@@ -917,19 +956,19 @@
             top: 0;
             left: 0;
             height: 100%;
-            background: linear-gradient(90deg, var(--accent-primary), var(--accent-tertiary));
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
             border-radius: 3px;
             transition: width 0.3s ease;
             width: 0%;
-            box-shadow: 0 0 10px var(--accent-primary);
+            box-shadow: 0 0 15px var(--accent-primary);
         }
 
         /* Estilos do loading rápido */
         .quick-loading {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5, 5, 5, 0.9);
-            backdrop-filter: blur(15px);
+            background: rgba(10, 8, 18, 0.85);
+            backdrop-filter: blur(20px);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -946,30 +985,32 @@
         }
         
         .quick-loading-spinner {
-            width: 70px;
-            height: 70px;
+            width: 80px;
+            height: 80px;
             border: 4px solid rgba(157, 78, 221, 0.1);
             border-radius: 50%;
             border-top-color: var(--accent-primary);
+            border-right-color: var(--accent-secondary);
             animation: spin 1s linear infinite;
             margin-bottom: 24px;
-            box-shadow: 0 0 20px rgba(157, 78, 221, 0.1);
+            box-shadow: 0 0 30px rgba(157, 78, 221, 0.2);
         }
         
         .quick-loading-text {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             color: var(--text-primary);
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 8px;
             font-family: 'Jost', sans-serif;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
         }
         
         .quick-loading-subtext {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: var(--text-muted);
             max-width: 300px;
             text-align: center;
-            line-height: 1.4;
+            line-height: 1.5;
         }
         
         @keyframes spin {
@@ -978,9 +1019,11 @@
         
         .already-sponsored {
             color: var(--success);
-            font-weight: 500;
+            font-weight: 600;
             margin-left: 8px;
             font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         /* --- NOVOS ESTILOS - ABAS "PATROCINADOS/ASSISTIDOS" --- */
@@ -988,36 +1031,239 @@
             max-width: 1400px;
             margin: 0 auto;
         }
-        
-        .sponsored-section h2 {
-            border-left: 5px solid var(--accent-primary);
-            padding-left: 20px;
-            margin-bottom: 30px;
+
+        /* --- BARRA DE FILTROS ELEGANTE (GLASSMORPHISM) --- */
+        .filter-container {
+            background: rgba(19, 16, 34, 0.5); 
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: var(--radius-xl);
+            padding: 20px 28px;
+            margin-bottom: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+
+        .filter-search-row {
+            position: relative;
+            width: 100%;
+        }
+
+        .filter-search-row i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-primary);
+            font-size: 1.2rem;
+            text-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
+        }
+
+        .filter-search-row input {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-pill);
+            padding: 16px 20px 16px 54px;
+            color: var(--text-primary);
+            font-size: 1.05rem;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .filter-search-row input:focus {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(157, 78, 221, 0.2);
+        }
+
+        .filter-search-row input::placeholder {
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        .filter-options-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .filter-dropdowns {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        /* Estilo "Pill" para os Selects */
+        .filter-select {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
+            padding: 10px 40px 10px 20px;
+            border-radius: var(--radius-pill);
+            appearance: none;
+            outline: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            font-family: 'Outfit', sans-serif;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%239d4edd' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .filter-select:hover {
+            background-color: rgba(157, 78, 221, 0.1);
+            border-color: rgba(157, 78, 221, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(157, 78, 221, 0.15);
+        }
+
+        .filter-select:focus {
+            border-color: var(--accent-primary);
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .filter-select option {
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+            padding: 10px;
+        }
+
+        .sort-toggle-btn {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--accent-primary);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .sort-toggle-btn:hover {
+            color: #fff;
+            border-color: var(--accent-primary);
+            background-color: var(--accent-primary);
+            transform: translateY(-2px) rotate(180deg);
+            box-shadow: 0 6px 15px rgba(157, 78, 221, 0.4);
+        }
+
+        .clear-filters-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            font-family: 'Outfit', sans-serif;
+            transition: color 0.2s;
+            white-space: nowrap;
+            padding: 8px 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .clear-filters-btn:hover {
+            color: var(--accent-tertiary);
+            text-decoration: underline;
+        }
+
+        /* --- CARDS DE ESTATÍSTICAS (INSPIRADOS NA FOTO) --- */
+        .stats-container {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
         }
         
+        .stat-card {
+            background: rgba(19, 16, 34, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex: 1;
+            min-width: 160px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(157, 78, 221, 0.15);
+            border-color: rgba(157, 78, 221, 0.2);
+            background: rgba(157, 78, 221, 0.05);
+        }
+
+        .stat-card i {
+            font-size: 1.8rem;
+            color: var(--accent-primary);
+            background: rgba(157, 78, 221, 0.1);
+            padding: 14px;
+            border-radius: 14px;
+            box-shadow: inset 0 0 10px rgba(157, 78, 221, 0.2);
+        }
+
+        .stat-card-info strong {
+            display: block;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.1;
+        }
+
+        .stat-card-info span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        
+        /* --- GRADE UNIFICADA E CARDS DE MÍDIA --- */
         .media-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
             gap: 28px;
             margin-bottom: 60px;
         }
 
-        /* --- CARDS ESTILIZADOS (COM BARRA DE PROGRESSO E NOTAS) --- */
         .media-card {
             background-color: var(--bg-secondary);
             border-radius: var(--radius-md);
             overflow: hidden;
-            border: var(--border-thin);
+            border: 1px solid rgba(255,255,255,0.05);
             cursor: pointer;
             position: relative;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         
         .media-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 15px rgba(157, 78, 221, 0.2);
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(157, 78, 221, 0.25);
             border-color: var(--accent-primary);
+            z-index: 5;
         }
         
         .media-card img {
@@ -1026,6 +1272,11 @@
             display: block;
             aspect-ratio: 2 / 3;
             object-fit: cover;
+            transition: filter 0.4s;
+        }
+
+        .media-card:hover img {
+            filter: brightness(1.1) contrast(1.1);
         }
 
         .media-card-content {
@@ -1033,8 +1284,8 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            padding: 16px 12px 12px;
-            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 60%, transparent 100%);
+            padding: 20px 14px 14px;
+            background: linear-gradient(to top, rgba(10,8,18,0.95) 0%, rgba(10,8,18,0.8) 50%, transparent 100%);
             display: flex;
             flex-direction: column;
             gap: 6px;
@@ -1042,21 +1293,21 @@
         }
 
         .media-card-title {
-            font-size: 0.95rem;
-            font-weight: 600;
+            font-size: 1rem;
+            font-weight: 700;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             font-family: 'Space Grotesk', sans-serif;
             color: var(--text-primary);
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            text-shadow: 0 2px 5px rgba(0,0,0,0.9);
         }
 
         .media-card-rating {
             font-size: 0.85rem;
             color: var(--yellow);
-            font-weight: 600;
-            text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+            font-weight: 700;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
             display: flex;
             align-items: center;
             gap: 4px;
@@ -1065,92 +1316,89 @@
         .card-progress-container {
             width: 100%;
             height: 5px;
-            background: rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.1);
             border-radius: 3px;
             overflow: hidden;
             margin-top: 4px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
         }
 
         .card-progress-bar {
             height: 100%;
-            background: linear-gradient(90deg, var(--accent-primary), var(--accent-tertiary));
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
             border-radius: 3px;
             transition: width 0.3s ease;
+            box-shadow: 0 0 5px var(--accent-primary);
         }
 
         .card-progress-bar.finished {
-            background: linear-gradient(90deg, #4cda64, #00a82d);
-        }
-
-        .sponsored-search-controls, .assistidos-search-controls {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            margin-bottom: 32px;
-            position: relative;
-        }
-
-        .sponsored-search-controls .search-wrapper, .assistidos-search-controls .search-wrapper {
-            width: 100%;
+            background: linear-gradient(90deg, #4ade80, #16a34a);
+            box-shadow: 0 0 5px #4ade80;
         }
 
         /* --- MENSAGEM DE VAZIO (EMPTY STATE) --- */
         .empty-search-state {
             text-align: center;
-            padding: 60px 20px;
+            padding: 80px 20px;
             color: var(--text-muted);
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: var(--radius-lg);
+            background: rgba(19, 16, 34, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-xl);
             border: 1px dashed rgba(255, 255, 255, 0.1);
             margin-top: 20px;
         }
         
         .empty-search-state i {
-            font-size: 3rem;
-            margin-bottom: 16px;
-            color: var(--accent-tertiary);
-            opacity: 0.7;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--accent-primary);
+            opacity: 0.5;
+            filter: drop-shadow(0 0 15px rgba(157, 78, 221, 0.3));
         }
         
         .empty-search-state h3 {
-            font-size: 1.4rem;
-            margin-bottom: 8px;
+            font-size: 1.6rem;
+            margin-bottom: 10px;
             color: var(--text-primary);
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         /* --- PAGINATION --- */
         .pagination-container {
             display: flex;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             margin-top: 40px;
             flex-wrap: wrap;
         }
         .page-btn {
-            background: var(--bg-tertiary);
-            border: var(--border-medium);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
             color: var(--text-secondary);
-            width: 40px;
-            height: 40px;
-            border-radius: var(--radius-sm);
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
+            font-size: 1rem;
         }
         .page-btn:hover {
-            background: var(--bg-accent);
+            background: rgba(157, 78, 221, 0.1);
             color: var(--text-primary);
             border-color: var(--accent-primary);
+            transform: translateY(-2px);
         }
         .page-btn.active {
             background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
             color: #fff;
             border: none;
+            box-shadow: 0 5px 15px rgba(157, 78, 221, 0.4);
         }
 
         /* =============================================
-           MODAIS - VISUAL DO PRIMEIRO CÓDIGO (ROXO)
+           MODAIS - VISUAL ELEGANTE E COLORIDO
            ============================================= */
         .modal-overlay {
             position: fixed;
@@ -1158,8 +1406,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(5, 5, 8, 0.9);
-            backdrop-filter: blur(10px);
+            background: rgba(5, 4, 8, 0.85);
+            backdrop-filter: blur(15px);
             z-index: 2000;
             display: flex;
             justify-content: center;
@@ -1176,19 +1424,19 @@
         }
         
         .modal-content {
-            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            background: rgba(19, 16, 34, 0.85);
             border-radius: var(--radius-xl);
             border: 1px solid rgba(157, 78, 221, 0.2);
-            max-width: 820px;
-            width: 90%;
+            max-width: 850px;
+            width: 95%;
             max-height: 90vh;
             display: flex;
             flex-direction: column; 
-            padding: 28px; 
+            padding: 36px; 
             position: relative;
             transform: scale(0.95);
-            transition: all 0.4s ease;
-            box-shadow: 0 0 25px rgba(157, 78, 221, 0.25);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8), 0 0 40px rgba(157, 78, 221, 0.15);
             overflow: hidden;
         }
         
@@ -1197,47 +1445,48 @@
         }
 
         .modal-header {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             width: 100%;
             padding-right: 40px; 
         }
 
         .modal-title {
             font-family: 'Raleway', sans-serif;
-            font-size: 1.6rem; 
-            font-weight: 700;
-            margin-bottom: 4px;
+            font-size: 2rem; 
+            font-weight: 800;
+            margin-bottom: 6px;
             color: var(--text-primary);
-            text-shadow: none;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
             line-height: 1.2;
         }
 
         .modal-subtitle {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.85rem;
-            color: #888; 
+            font-size: 0.95rem;
+            color: var(--text-muted); 
             font-weight: 500;
         }
         
         .modal-body {
             display: flex;
-            gap: 24px;
+            gap: 32px;
             overflow: hidden;
             flex: 1;
         }
         
         .modal-close {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 1.5rem;
+            top: 20px;
+            right: 20px;
+            font-size: 1.8rem;
             color: var(--text-muted);
             cursor: pointer;
             transition: all 0.3s;
             border: none;
-            background: transparent; 
-            width: auto;
-            height: auto;
+            background: rgba(255,255,255,0.05); 
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1245,60 +1494,69 @@
         }
         
         .modal-close:hover {
-            color: var(--text-primary);
-            transform: scale(1.1);
+            color: #fff;
+            background: var(--error);
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 0 15px rgba(248, 113, 113, 0.5);
         }
         
         .modal-poster img {
-            width: 220px; 
+            width: 240px; 
             height: auto;
             aspect-ratio: 2 / 3;
             object-fit: cover;
-            border-radius: var(--radius-md);
+            border-radius: var(--radius-lg);
             flex-shrink: 0;
-            box-shadow: var(--shadow-soft);
-            border: none; 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.05); 
         }
         
         .modal-details {
             overflow-y: auto;
-            padding-right: 8px;
+            padding-right: 12px;
             flex-grow: 1;
         }
         
         .modal-meta {
             display: flex;
-            gap: 10px;
-            margin-bottom: 16px;
+            gap: 12px;
+            margin-bottom: 20px;
             color: var(--text-muted);
-            font-weight: 500;
+            font-weight: 600;
             flex-wrap: wrap;
         }
         
         .modal-meta span {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.15); 
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.8rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1); 
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
         }
         
         .modal-info-group {
-            margin-bottom: 16px; 
+            margin-bottom: 20px; 
+            background: rgba(0,0,0,0.2);
+            padding: 16px;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255,255,255,0.03);
         }
         
         .modal-info-group strong {
             display: block;
-            color: var(--text-primary);
-            margin-bottom: 6px;
-            font-size: 0.95rem; 
-            font-family: 'Montserrat', sans-serif;
+            color: var(--accent-primary);
+            margin-bottom: 8px;
+            font-size: 1rem; 
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .modal-info-group p {
             color: var(--text-secondary);
-            line-height: 1.5;
-            font-size: 0.9rem; 
+            line-height: 1.6;
+            font-size: 0.95rem; 
             text-align: justify;
         }
         
@@ -1309,11 +1567,13 @@
         }
          
         .modal-genres span {
-            background: rgba(157, 78, 221, 0.1);
-            border: 1px solid rgba(157, 78, 221, 0.3);
-            padding: 6px 12px;
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.1), rgba(123, 44, 191, 0.1));
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            padding: 6px 14px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
+            color: #fff;
+            font-weight: 500;
         }
 
         .stars-rating {
@@ -1324,17 +1584,18 @@
         }
         
         .star {
-            color: var(--text-muted);
-            font-size: 1.1rem; 
+            color: rgba(255,255,255,0.1);
+            font-size: 1.3rem; 
         }
         
         .star.filled {
-            color: var(--warning);
+            color: var(--yellow);
+            text-shadow: 0 0 10px rgba(252, 211, 77, 0.5);
         }
         
         .star.half {
             position: relative;
-            color: var(--text-muted);
+            color: rgba(255,255,255,0.1);
         }
         
         .star.half::before {
@@ -1343,34 +1604,36 @@
             left: 0;
             width: 50%;
             overflow: hidden;
-            color: var(--warning);
+            color: var(--yellow);
+            text-shadow: 0 0 10px rgba(252, 211, 77, 0.5);
         }
         
         .no-rating {
             color: var(--text-muted);
             font-style: italic;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
         }
 
         .info-tag-container {
             display: flex;
             flex-wrap: wrap;
             gap: 8px; 
-            margin-top: 4px;
+            margin-top: 8px;
         }
         
         .info-tag {
-            background: rgba(157, 78, 221, 0.1);
-            border: 1px solid rgba(157, 78, 221, 0.3);
-            padding: 4px 10px; 
+            background: rgba(123, 44, 191, 0.15);
+            border: 1px solid rgba(123, 44, 191, 0.3);
+            padding: 6px 14px; 
             border-radius: var(--radius-sm);
-            font-size: 0.85rem; 
-            color: var(--text-secondary);
-            font-weight: 500;
+            font-size: 0.9rem; 
+            color: #fff;
+            font-weight: 600;
             line-height: 1.4;
+            box-shadow: 0 2px 10px rgba(123, 44, 191, 0.1);
         }
 
-        /* BACKDROP DO MODAL (SUAVE, COMO NO PRIMEIRO CÓDIGO) */
+        /* BACKDROP DO MODAL - AJUSTADO PARA FICAR BEM VISÍVEL COMO ANTES */
         .modal-backdrop-bg {
             position: absolute;
             top: 0;
@@ -1379,26 +1642,25 @@
             height: 100%;
             background-size: cover;
             background-position: center top;
-            opacity: 0.15;
+            opacity: 0.25; /* Opacidade aumentada para ficar mais visível */
             z-index: -1;
-            filter: blur(2px);
+            filter: blur(3px); /* Blur suave para não atrapalhar o texto, mas sem perder o fundo */
             border-radius: var(--radius-xl);
             pointer-events: none;
         }
 
         /* --- BARRAS DE PROGRESSO (MODAL INTERNO COM BOLINHAS EXATAS) --- */
         .modal-progress-section {
-            margin-top: 24px;
-            margin-bottom: 24px;
-            background: rgba(0, 0, 0, 0.25);
-            padding: 20px;
+            margin-bottom: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 24px;
             border-radius: var(--radius-md);
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.05);
             box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
         }
 
         .progress-item {
-            margin-bottom: 35px; /* Aumentado para dar espaço aos balõezinhos */
+            margin-bottom: 40px; 
         }
         .progress-item:last-child {
             margin-bottom: 0;
@@ -1407,27 +1669,27 @@
         .progress-header {
             display: flex;
             justify-content: space-between;
-            font-size: 0.95rem;
-            margin-bottom: 12px;
-            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 16px;
+            font-weight: 700;
             color: var(--text-primary);
             font-family: 'Space Grotesk', sans-serif;
         }
 
         /* ESTILO DA BARRA (TRACK) */
         .progress-track {
-            height: 10px;
-            background: rgba(255,255,255,0.08);
-            border-radius: 5px;
+            height: 12px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 6px;
             position: relative;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
-            margin-top: 28px; /* Espaço para o tooltip do avulso ficar acima */
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+            margin-top: 32px; 
         }
 
         .progress-fill-container {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            border-radius: 5px;
+            border-radius: 6px;
             overflow: hidden;
             z-index: 1;
         }
@@ -1437,23 +1699,20 @@
             background: linear-gradient(90deg, var(--accent-primary), var(--accent-tertiary));
             transition: width 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
+            box-shadow: 0 0 10px var(--accent-primary);
         }
 
         .progress-fill::after {
             content: '';
             position: absolute;
             top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
             animation: shimmer 2s infinite;
         }
 
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
         .progress-fill.finished {
-            background: linear-gradient(90deg, #4cda64, #00a82d);
+            background: linear-gradient(90deg, #4ade80, #16a34a);
+            box-shadow: 0 0 10px #4ade80;
         }
 
         /* BOLINHAS DOS EPS AVULSOS (POSIÇÃO ABSOLUTA) */
@@ -1461,56 +1720,56 @@
             position: absolute;
             top: 50%;
             transform: translate(-50%, -50%);
-            width: 14px;
-            height: 14px;
+            width: 18px;
+            height: 18px;
             background-color: var(--bg-tertiary);
-            border: 2px solid var(--accent-primary);
+            border: 3px solid var(--accent-primary);
             border-radius: 50%;
             z-index: 5;
-            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+            box-shadow: 0 0 10px rgba(0,0,0,0.8);
             transition: all 0.3s ease;
         }
 
         .avulso-dot.finished {
-            border-color: #4cda64;
-            background-color: #4cda64;
+            border-color: #4ade80;
+            background-color: #4ade80;
+            box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
         }
 
         .avulso-label {
             position: absolute;
-            bottom: 20px; /* Fica em cima da bolinha */
+            bottom: 24px; 
             left: 50%;
             transform: translateX(-50%);
-            font-size: 0.7rem;
-            font-weight: 700;
+            font-size: 0.75rem;
+            font-weight: 800;
             font-family: 'Space Grotesk', sans-serif;
             color: #fff;
             background: var(--accent-primary);
-            padding: 4px 8px;
+            padding: 4px 10px;
             border-radius: 6px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
             white-space: nowrap;
         }
 
         .avulso-dot.finished .avulso-label {
-            background: #4cda64;
+            background: #4ade80;
             color: #000;
         }
 
-        /* Triangulozinho em baixo do texto (estilo balaozinho) */
         .avulso-label::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: -6px;
             left: 50%;
             transform: translateX(-50%);
-            border-width: 5px 5px 0;
+            border-width: 6px 6px 0;
             border-style: solid;
             border-color: var(--accent-primary) transparent transparent transparent;
         }
 
         .avulso-dot.finished .avulso-label::after {
-            border-color: #4cda64 transparent transparent transparent;
+            border-color: #4ade80 transparent transparent transparent;
         }
 
         /* --- ESTILOS DO CARRINHO --- */
@@ -1520,21 +1779,21 @@
             right: 30px;
             background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
             color: white; 
-            width: 60px; 
-            height: 60px; 
+            width: 65px; 
+            height: 65px; 
             border-radius: 50%;
             display: flex; 
             justify-content: center; 
             align-items: center;
-            font-size: 1.5rem; 
+            font-size: 1.8rem; 
             cursor: pointer; 
-            box-shadow: var(--shadow-medium);
+            box-shadow: 0 10px 25px rgba(157, 78, 221, 0.4);
             z-index: 1500; 
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         .cart-fab:hover { 
             transform: scale(1.1) translateY(-5px); 
-            box-shadow: 0 15px 30px rgba(157, 78, 221, 0.5); 
+            box-shadow: 0 15px 35px rgba(157, 78, 221, 0.6); 
         }
         .cart-count {
             position: absolute; 
@@ -1542,54 +1801,67 @@
             right: -5px;
             background: var(--error); 
             color: white; 
-            font-size: 0.8rem;
-            width: 24px; 
-            height: 24px; 
+            font-size: 0.9rem;
+            width: 26px; 
+            height: 26px; 
             border-radius: 50%;
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            font-weight: bold;
+            font-weight: 800;
             border: 2px solid var(--bg-primary);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
         }
         
         .cart-item {
             display: flex; 
             gap: 16px; 
             padding: 16px; 
-            background: rgba(255,255,255,0.03);
+            background: rgba(0,0,0,0.3);
             border: 1px solid rgba(255,255,255,0.05);
             border-radius: var(--radius-md); 
             margin-bottom: 12px; 
             position: relative;
+            transition: all 0.2s;
+        }
+        .cart-item:hover {
+            background: rgba(157, 78, 221, 0.05);
+            border-color: rgba(157, 78, 221, 0.2);
         }
         .cart-item img { 
             width: 60px; 
             height: 90px; 
             object-fit: cover; 
             border-radius: var(--radius-sm); 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
         .cart-item-details { flex: 1; padding-right: 20px; }
-        .cart-item-title { font-weight: bold; font-size: 1.1rem; margin-bottom: 4px; color: var(--text-primary); }
+        .cart-item-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 4px; color: var(--text-primary); }
         .cart-item-info { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 8px; }
-        .cart-item-price { font-weight: bold; color: var(--accent-tertiary); font-size: 1.1rem; }
+        .cart-item-price { font-weight: 800; color: var(--accent-primary); font-size: 1.1rem; }
         .remove-cart-item {
             position: absolute; 
             top: 16px; 
             right: 16px; 
-            background: none; 
-            border: none;
+            background: rgba(248, 113, 113, 0.1); 
+            border: 1px solid rgba(248, 113, 113, 0.3);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: var(--error); 
             cursor: pointer; 
-            font-size: 1.2rem; 
+            font-size: 1rem; 
             transition: all 0.2s;
         }
-        .remove-cart-item:hover { transform: scale(1.2); }
+        .remove-cart-item:hover { transform: scale(1.1); background: var(--error); color: #fff; }
 
         /* --- RESPONSIVIDADE (MELHORADA E PERFEITA) --- */
         @media (max-width: 1200px) {
             .main-container { grid-template-columns: 1fr; gap: 30px; }
-            .media-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; }
+            .media-grid { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 20px; }
         }
 
         @media (max-width: 768px) {
@@ -1601,58 +1873,61 @@
             .nav-link { padding: 0 15px; font-size: 0.9rem; flex-shrink: 0; }
             
             .tab-content { padding: 1.5rem 1rem; }
-            .patrocinar-header h1 { font-size: 2.2rem; }
+            .patrocinar-header h1 { font-size: 2.5rem; }
             
-            .modal-content { padding: 25px; max-height: 90vh; width: 95%; margin: 10px; }
-            .modal-body { flex-direction: column; align-items: center; text-align: center; gap: 20px; overflow-y: auto; }
-            .modal-poster img { width: 180px; max-width: 100%; box-shadow: 0 10px 20px rgba(0,0,0,0.3); margin-bottom: 10px; }
-            .modal-meta, .modal-genres, .info-tag-container { justify-content: center; }
+            .modal-content { padding: 24px; max-height: 90vh; width: 95%; margin: 10px; }
+            .modal-body { flex-direction: column; align-items: center; gap: 24px; overflow-y: auto; }
+            .modal-poster img { width: 200px; max-width: 100%; margin-bottom: 10px; }
             .modal-header { padding-right: 0; text-align: center; margin-bottom: 15px; }
             .modal-title { font-size: 1.6rem; }
-            .modal-close { top: 15px; right: 15px; font-size: 2rem; background: rgba(0,0,0,0.5); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+            .modal-close { top: 15px; right: 15px; font-size: 1.5rem; width: 40px; height: 40px; }
             
             .preview-content { flex-direction: column; align-items: center; text-align: center; }
-            .preview-content .poster { width: 150px; height: auto; aspect-ratio: 2/3; }
-            
-            .sponsored-search-controls, .assistidos-search-controls { flex-direction: column; }
-            .tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 5px; justify-content: flex-start; }
-            .tab-button { flex: 0 0 auto; white-space: nowrap; }
+            .preview-content .poster { width: 160px; height: auto; aspect-ratio: 2/3; }
+
+            .filter-options-row { flex-direction: column; align-items: stretch; }
+            .filter-dropdowns { flex-direction: column; width: 100%; }
+            .filter-select { width: 100%; }
+            .sort-toggle-btn { width: 100%; border-radius: var(--radius-pill); }
+            .clear-filters-btn { align-self: center; margin-top: 10px; }
         }
 
         @media (max-width: 480px) {
             .tab-content { padding: 1rem 0.5rem; }
             .card { padding: 20px; }
             h2 { font-size: 1.5rem; margin-bottom: 16px; }
-            .patrocinar-header h1 { font-size: 1.6rem; line-height: 1.2; }
+            .patrocinar-header h1 { font-size: 2rem; line-height: 1.2; }
             .patrocinar-header p { font-size: 1rem; }
             
-            .media-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 15px; }
+            .media-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
             
-            .episode-item { flex-direction: column; align-items: flex-start; gap: 8px; position: relative; padding: 12px 12px 12px 45px; }
-            .episode-checkbox { position: absolute; top: 12px; left: 12px; }
+            .episode-item { flex-direction: column; align-items: flex-start; gap: 12px; position: relative; padding: 16px 16px 16px 45px; }
+            .episode-checkbox { position: absolute; top: 16px; left: 16px; }
             .episode-info { padding-right: 0; }
             
-            .modal-content { padding: 15px; }
-            .modal-poster img { width: 140px; }
-            .modal-title { font-size: 1.3rem; }
+            .modal-content { padding: 20px; }
+            .modal-poster img { width: 160px; }
+            .modal-title { font-size: 1.4rem; }
             
             .total { flex-direction: column; align-items: center; gap: 10px; text-align: center; }
-            .total .price { font-size: 1.8rem; }
+            .total .price { font-size: 2.2rem; }
             
-            /* Ajuste do resumo no mobile */
             #summary-content > div:first-child { flex-direction: column; align-items: center; text-align: center; }
-            #summary-content .poster { width: 120px; height: auto; aspect-ratio: 2/3; margin-bottom: 10px; }
+            #summary-content .poster { width: 130px; height: auto; aspect-ratio: 2/3; margin-bottom: 15px; }
             
             .cart-item { flex-direction: column; align-items: center; text-align: center; }
             .cart-item img { width: 80px; height: 120px; }
             .cart-item-details { padding-right: 0; margin-top: 10px; }
+
+            .stats-container { flex-direction: column; gap: 12px; }
+            .stat-card { min-width: 100%; }
         }
 
         @media (max-width: 360px) {
-            .media-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; }
-            .card { padding: 15px; }
-            .preview-content .poster { width: 120px; }
-            .modal-poster img { width: 120px; }
+            .media-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; }
+            .card { padding: 16px; }
+            .preview-content .poster { width: 130px; }
+            .modal-poster img { width: 140px; }
         }
     </style>
 </head>
@@ -1712,7 +1987,7 @@
                             <div style="display: flex; gap: 16px;">
                                 <img class="poster" id="summary-poster" src="" alt="Poster">
                                 <div> 
-                                    <h3 id="summary-title" style="font-size: 1.1rem; margin-bottom: 4px;"></h3> 
+                                    <h3 id="summary-title" style="font-size: 1.2rem; margin-bottom: 6px;"></h3> 
                                     <p id="summary-info" class="media-info"></p> 
                                 </div>
                             </div>
@@ -1726,12 +2001,12 @@
                             </div>
                             
                             <div style="display: flex; flex-direction: column; gap: 12px;">
-                                <button id="add-to-cart-button" class="pay-button" style="background: var(--bg-tertiary); border: 1px solid var(--accent-primary); color: var(--text-primary);">
+                                <button id="add-to-cart-button" class="pay-button" style="background: rgba(0,0,0,0.5); border: 1px solid var(--accent-primary); color: #fff; box-shadow: none;">
                                     <i class="fas fa-cart-plus"></i> Adicionar ao Carrinho
                                 </button>
                                 
                                 <a id="pay-button" href="https://livepix.gg/loryez" target="_blank" class="pay-button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
                                         <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
                                     </svg>
@@ -1739,14 +2014,14 @@
                                 </a>
                             </div>
 
-                            <div id="restriction-warning" class="error-notice hidden" style="margin-top: 16px;"></div>
+                            <div id="restriction-warning" class="error-notice hidden" style="margin-top: 20px;"></div>
                         </div>
                     </div>
    
                     <div class="info-box">
-                        <h3>Informações importantes:</h3>
+                        <h3 style="color: var(--text-primary); font-family: 'Space Grotesk', sans-serif; margin-bottom: 12px;">Informações importantes:</h3>
                         <ul>
-                            <li>Para séries e animes, é necessário patrocinar pelo menos 3 episódios</li>
+                            <li>Para séries e animes, é necessário patrocinar pelo menos 3 episódios.</li>
                             <li>Materiais que precisarem de censura (nudez), não será possível transmiti-lo imediatamente. Data do filme a combinar com o patrocinador!</li>
                         </ul>
                     </div>
@@ -1761,19 +2036,46 @@
             </div>
             
             <div class="sponsored-section">
-                <div class="sponsored-search-controls">
-                    <div class="search-wrapper">
-                        <input type="text" id="sponsored-search-input" placeholder="Pesquisar em patrocinados...">
+
+                <!-- ESTATÍSTICAS EM CARDS ESTILO A FOTO -->
+                <div class="stats-container" id="sponsored-stats">
+                    <!-- Será preenchido pelo JS com os cards bonitos -->
+                </div>
+
+                <!-- NOVA BARRA DE FILTROS ELEGANTE (GLASSMORPHISM) -->
+                <div class="filter-container">
+                    <div class="filter-search-row">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="sponsored-search-input" placeholder="Buscar título ou patrocinador...">
                     </div>
-                    <div class="tabs" id="sponsored-tabs" style="display: flex; gap: 8px;">
-                        <button class="tab-button active" data-filter="filmes">Filmes</button>
-                        <button class="tab-button" data-filter="series">Séries</button>
-                        <button class="tab-button" data-filter="animes">Animes</button>
-                        <button class="tab-button" data-filter="pausados">Pausados</button>
+                    <div class="filter-options-row">
+                        <div class="filter-dropdowns">
+                            <select id="sponsored-filter-status" class="filter-select">
+                                <option value="todos">Todos</option>
+                                <option value="na-fila">Na fila</option>
+                                <option value="pausados">Pausados</option>
+                            </select>
+                            <select id="sponsored-filter-type" class="filter-select">
+                                <option value="todos">Todos</option>
+                                <option value="filmes">Filmes</option>
+                                <option value="series">Séries</option>
+                                <option value="animes">Animes</option>
+                            </select>
+                            <select id="sponsored-sort-by" class="filter-select">
+                                <option value="data">Data</option>
+                                <option value="alfabetica">Alfabética</option>
+                            </select>
+                            <button id="sponsored-sort-order" class="sort-toggle-btn" title="Inverter ordem">
+                                <i class="fa-solid fa-arrow-down-wide-short"></i>
+                            </button>
+                        </div>
+                        <button id="sponsored-clear-filters" class="clear-filters-btn">Limpar filtros</button>
                     </div>
                 </div>
 
-                <div id="loading-message" style="text-align: center; color: var(--text-muted); padding: 40px;">Carregando conteúdos patrocinados...</div>
+                <div id="loading-message" style="text-align: center; color: var(--text-muted); padding: 40px; font-size: 1.2rem;">
+                    <i class="fas fa-spinner fa-spin" style="color: var(--accent-primary); margin-right: 10px;"></i> Carregando conteúdos patrocinados...
+                </div>
                 
                 <div id="sponsored-empty-msg" class="empty-search-state hidden">
                     <i class="fa-regular fa-folder-open"></i>
@@ -1781,25 +2083,8 @@
                     <p>Tente mudar o termo da busca ou o filtro selecionado.</p>
                 </div>
 
-                <div id="pausados-section" class="hidden">
-                    <h2>Pausados</h2>
-                    <div id="pausados-grid" class="media-grid"></div>
-                </div>
-
-                <div id="filmes-section" class="hidden">
-                    <h2>Filmes Patrocinados</h2>
-                    <div id="filmes-grid" class="media-grid"></div>
-                </div>
- 
-                <div id="series-section" class="hidden">
-                    <h2>Séries Patrocinadas</h2>
-                    <div id="series-grid" class="media-grid"></div>
-                </div>
-
-                <div id="animes-section" class="hidden">
-                    <h2>Animes Patrocinados</h2>
-                    <div id="animes-grid" class="media-grid"></div>
-                </div>
+                <!-- GRADE UNIFICADA DE PATROCINADOS -->
+                <div id="patrocinados-grid" class="media-grid"></div>
                 
                 <div id="sponsored-pagination" class="pagination-container"></div>
             </div>
@@ -1812,18 +2097,46 @@
             </div>
             
             <div class="sponsored-section">
-                <div class="assistidos-search-controls">
-                    <div class="search-wrapper">
-                        <input type="text" id="assistidos-search-input" placeholder="Pesquisar em assistidos...">
+
+                <!-- ESTATÍSTICAS EM CARDS ESTILO A FOTO -->
+                <div class="stats-container" id="assistidos-stats">
+                    <!-- Será preenchido pelo JS -->
+                </div>
+
+                <!-- NOVA BARRA DE FILTROS ELEGANTE (GLASSMORPHISM) -->
+                <div class="filter-container">
+                    <div class="filter-search-row">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="assistidos-search-input" placeholder="Buscar título assistido...">
                     </div>
-                    <div class="tabs" id="assistidos-tabs" style="display: flex; gap: 8px;">
-                        <button class="tab-button active" data-filter="filmes">Filmes</button>
-                        <button class="tab-button" data-filter="series">Séries</button>
-                        <button class="tab-button" data-filter="animes">Animes</button>
+                    <div class="filter-options-row">
+                        <div class="filter-dropdowns">
+                            <select id="assistidos-filter-status" class="filter-select">
+                                <option value="todos">Todos</option>
+                                <option value="assistidos">Assistidos</option>
+                            </select>
+                            <select id="assistidos-filter-type" class="filter-select">
+                                <option value="todos">Todos</option>
+                                <option value="filmes">Filmes</option>
+                                <option value="series">Séries</option>
+                                <option value="animes">Animes</option>
+                            </select>
+                            <select id="assistidos-sort-by" class="filter-select">
+                                <option value="data">Data</option>
+                                <option value="avaliacao">Avaliação</option>
+                                <option value="alfabetica">Alfabética</option>
+                            </select>
+                            <button id="assistidos-sort-order" class="sort-toggle-btn" title="Inverter ordem">
+                                <i class="fa-solid fa-arrow-down-wide-short"></i>
+                            </button>
+                        </div>
+                        <button id="assistidos-clear-filters" class="clear-filters-btn">Limpar filtros</button>
                     </div>
                 </div>
 
-                <div id="assistidos-loading-message" style="text-align: center; color: var(--text-muted); padding: 40px;">Carregando conteúdos assistidos...</div>
+                <div id="assistidos-loading-message" style="text-align: center; color: var(--text-muted); padding: 40px; font-size: 1.2rem;">
+                    <i class="fas fa-spinner fa-spin" style="color: var(--accent-primary); margin-right: 10px;"></i> Carregando conteúdos assistidos...
+                </div>
                 
                 <div id="assistidos-empty-msg" class="empty-search-state hidden">
                     <i class="fa-regular fa-eye-slash"></i>
@@ -1831,30 +2144,19 @@
                     <p>Tente mudar o termo da busca ou o filtro selecionado.</p>
                 </div>
 
-                <div id="assistidos-filmes-section" class="hidden">
-                    <h2>Filmes Assistidos</h2>
-                    <div id="assistidos-filmes-grid" class="media-grid"></div>
-                </div>
- 
-                <div id="assistidos-series-section" class="hidden">
-                    <h2>Séries Assistidas</h2>
-                    <div id="assistidos-series-grid" class="media-grid"></div>
-                </div>
-
-                <div id="assistidos-animes-section" class="hidden">
-                    <h2>Animes Assistidos</h2>
-                    <div id="assistidos-animes-grid" class="media-grid"></div>
-                </div>
+                <!-- GRADE UNIFICADA DE ASSISTIDOS -->
+                <div id="assistidos-grid" class="media-grid"></div>
 
                 <div id="assistidos-pagination" class="pagination-container"></div>
             </div>
         </div>
     </main>
 
+    <!-- CARTS E MODAIS -->
     <div id="cart-modal" class="modal-overlay">
-        <div class="modal-content" style="max-width: 600px;">
+        <div class="modal-content" style="max-width: 650px;">
             <div class="modal-backdrop-bg"></div>
-            <button class="modal-close" onclick="toggleCartModal()">&times;</button>
+            <button class="modal-close" onclick="toggleCartModal()"><i class="fas fa-times"></i></button>
             <div class="modal-header">
                 <h2 class="modal-title">Seu Carrinho</h2>
                 <div class="modal-subtitle">Revise seus itens antes de pagar</div>
@@ -1866,8 +2168,8 @@
                 <p class="total-text">Total do Carrinho:</p>
                 <p class="price" id="cart-total-price">R$ 0,00</p>
             </div>
-            <a id="cart-checkout-button" href="#" target="_blank" class="pay-button" style="margin-top: 16px;">
-                <i class="fas fa-check-circle"></i> Pagar Carrinho no LivePix
+            <a id="cart-checkout-button" href="#" target="_blank" class="pay-button" style="margin-top: 16px; font-size: 1.2rem; padding: 20px;">
+                <i class="fas fa-check-circle"></i> Finalizar Compra no LivePix
             </a>
         </div>
     </div>
@@ -1875,7 +2177,7 @@
     <div id="details-modal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-backdrop-bg"></div>
-            <button class="modal-close">&times;</button>
+            <button class="modal-close"><i class="fas fa-times"></i></button>
             <div class="modal-header">
                 <h2 id="modal-title" class="modal-title"></h2>
                 <div id="modal-subtitle" class="modal-subtitle"></div>
@@ -1888,7 +2190,6 @@
                 <div class="modal-details">
                     <div id="modal-meta" class="modal-meta"></div>
                     
-                    <!-- NOVO CONTAINER DE PROGRESSO (SÉRIES/ANIMES) -->
                     <div id="modal-progress-container" class="modal-progress-section hidden"></div>
 
                     <div class="modal-info-group" id="modal-sponsor-container-body">
@@ -1913,7 +2214,7 @@
     <div id="assistidos-details-modal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-backdrop-bg"></div>
-            <button class="modal-close">&times;</button>
+            <button class="modal-close"><i class="fas fa-times"></i></button>
             <div class="modal-header">
                 <h2 id="assistidos-modal-title" class="modal-title"></h2>
                 <div id="assistidos-modal-subtitle" class="modal-subtitle"></div>
@@ -1926,7 +2227,6 @@
                 <div class="modal-details">
                     <div id="assistidos-modal-meta" class="modal-meta"></div>
                     
-                    <!-- NOVO CONTAINER DE PROGRESSO (SÉRIES/ANIMES) -->
                     <div id="assistidos-modal-progress-container" class="modal-progress-section hidden"></div>
 
                     <div class="modal-info-group" id="assistidos-modal-sponsor-container-body">
@@ -1934,8 +2234,8 @@
                         <div id="assistidos-modal-sponsor" class="info-tag-container"></div>
                     </div>
 
-                    <div class="modal-info-group">
-                        <strong>Nota da Lorena:</strong>
+                    <div class="modal-info-group" style="background: rgba(252, 211, 77, 0.1); border-color: rgba(252, 211, 77, 0.3);">
+                        <strong style="color: var(--yellow);">Nota da Lorena:</strong>
                         <div id="assistidos-modal-rating" class="stars-rating"></div>
                     </div>
 
@@ -2663,17 +2963,17 @@
             let optionsHTML = `
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <h2>Item Selecionado</h2>
-                <button class="change-button" id="change-item">Alterar</button>
+                <button class="change-button" id="change-item"><i class="fas fa-undo-alt" style="margin-right: 6px;"></i> Alterar</button>
             </div>
             <div style="display: flex; gap: 16px; margin-bottom: 24px;">
                 <img src="${state.selectedItem.poster_path ? IMG_URL + state.selectedItem.poster_path : 'https://via.placeholder.com/80x120/333333/ffffff?text=No+Image'}" class="poster" style="width: 80px; height: 120px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
                 <div>
-                    <h3>${state.selectedItem.title || state.selectedItem.name}</h3>
-                    <p class="media-info">${state.mediaType === 'movie' ? movieInfo : tvInfo}</p>
+                    <h3 style="font-size: 1.4rem;">${state.selectedItem.title || state.selectedItem.name}</h3>
+                    <p class="media-info" style="color: var(--accent-primary) !important; font-weight: 600;">${state.mediaType === 'movie' ? movieInfo : tvInfo}</p>
                 </div>
             </div>`;
             if (state.derived.listInfo.loading) {
-                optionsHTML += `<div class="list-info-notice"><span class="loading"></span> Verificando informações de patrocínio...</div>`;
+                optionsHTML += `<div class="list-info-notice"><i class="fas fa-spinner fa-spin"></i> Verificando informações de patrocínio...</div>`;
             }
 
             if (state.mediaType === 'tv' && state.derived.listInfo.isCurrentSeasonFullySponsored) {
@@ -2700,10 +3000,10 @@
             }
 
             if (state.derived.temNudezEspecial) {
-                ratingHtml += `<span class="nudez-warning">⚠ Este filme contém nudez</span>`;
+                ratingHtml += `<span class="nudez-warning"><i class="fas fa-exclamation-triangle"></i> Este filme contém nudez</span>`;
             } else if (!state.derived.isGrito && ((state.mediaType === 'movie' && parseInt(state.derived.ageRating) >= 14) || 
                 (state.mediaType === 'tv' && state.derived.tvType === 'series' && parseInt(state.derived.ageRating) >= 16))) {
-                ratingHtml += `<span class="nudez-warning">⚠ Pode conter nudez. Considere aplicar a taxa de nudez abaixo.</span>`;
+                ratingHtml += `<span class="nudez-warning"><i class="fas fa-exclamation-triangle"></i> Pode conter nudez. Considere aplicar a taxa de nudez abaixo.</span>`;
             }
             ratingHtml += `</div></div>`;
             optionsHTML += ratingHtml;
@@ -2744,8 +3044,8 @@
                         <h3 style="margin-top: 16px;">Conteúdo de Risco</h3>`;
                 if (state.derived.temNudezEspecial) {
                     state.options.nudez = true;
-                    optionsHTML += `<label><input type="checkbox" data-option="nudez" checked disabled class="nudez-checkbox"> Contém Nudez (automático)</label>`;
-                    optionsHTML += `<div style="font-size: 0.85rem; color: var(--warning);">Taxa aplicada automaticamente.</div>`;
+                    optionsHTML += `<label style="border-color: var(--accent-primary); background: rgba(157, 78, 221, 0.1);"><input type="checkbox" data-option="nudez" checked disabled class="nudez-checkbox"> Contém Nudez (automático)</label>`;
+                    optionsHTML += `<div style="font-size: 0.85rem; color: var(--warning); margin-top: 4px;">Taxa aplicada automaticamente.</div>`;
                 } else {
                     if (state.mediaType === 'movie') {
                         optionsHTML += `<label><input type="checkbox" data-option="nudez" ${state.options.nudez ? 'checked' : ''} class="nudez-checkbox"> Contém Nudez (+R$ 15)</label>`;
@@ -2758,7 +3058,7 @@
                 if (state.mediaType === 'tv' && state.options.nudez) {
                     optionsHTML += `
                         <div class="nudez-episodes-config">
-                            <h3>Quantos episódios contêm nudez?</h3>
+                            <h3 style="font-size: 1.1rem;">Quantos episódios contêm nudez?</h3>
                             <div class="number-input-wrapper">
                                 <button class="num-btn" data-action="dec-nudez">-</button>
                                 <input type="number" id="nudez-episodes-count" value="${state.options.nudezEpisodes}" min="0" max="${state.options.selectedEpisodes.filter(ep => !ep.alreadySponsored).length}">
@@ -2806,9 +3106,13 @@
 
                 const episodeItem = document.createElement('div');
                 episodeItem.className = 'episode-item';
+                if(isSelected) {
+                    episodeItem.style.background = 'rgba(157, 78, 221, 0.1)';
+                    episodeItem.style.borderColor = 'rgba(157, 78, 221, 0.3)';
+                }
               
-                const freeLabel = isFree ? ` <span style="color: var(--success); font-weight: 500;">(Grátis)</span>` : '';
-                const sponsoredLabel = alreadySponsored ? ` <span class="already-sponsored" style="color: var(--success); font-size: 0.85rem; margin-left: 8px;">(Já patrocinado)</span>` : '';
+                const freeLabel = isFree ? ` <span style="color: var(--success); font-weight: 700; text-transform: uppercase; font-size: 0.8rem;">(Grátis)</span>` : '';
+                const sponsoredLabel = alreadySponsored ? ` <span class="already-sponsored" style="color: var(--success); font-size: 0.8rem; margin-left: 8px;"><i class="fas fa-check-circle"></i> Já patrocinado</span>` : '';
                 const disabledAttr = isFree || alreadySponsored ? 'disabled' : '';
 
                 episodeItem.innerHTML = `
@@ -2992,7 +3296,7 @@
             const discountNoticeElement = document.querySelector('.discount-notice');
             if (discountNoticeElement) {
                 if (state.derived.discountNotice) {
-                    discountNoticeElement.textContent = state.derived.discountNotice;
+                    discountNoticeElement.innerHTML = `<i class="fas fa-gift"></i> ` + state.derived.discountNotice;
                     discountNoticeElement.classList.remove('hidden');
                 } else {
                     discountNoticeElement.classList.add('hidden');
@@ -3021,7 +3325,7 @@
             if (state.mediaType === 'tv' && state.options.nudez) {
                 const nudezConfigHTML = `
                     <div class="nudez-episodes-config">
-                        <h3>Quantos episódios contêm nudez?</h3>
+                        <h3 style="font-size: 1.1rem;">Quantos episódios contêm nudez?</h3>
                         <div class="number-input-wrapper">
                             <button class="num-btn" data-action="dec-nudez">-</button>
                             <input type="number" id="nudez-episodes-count" value="${state.options.nudezEpisodes}" min="0" max="${state.options.selectedEpisodes.filter(ep => !ep.alreadySponsored).length}">
@@ -3077,14 +3381,14 @@
                 breakdownHTML += `<p><span>Preço fixo: Franquia O Grito</span><span>${format(total)}</span></p>`;
             } else if (state.mediaType === 'movie') {
                 total += movieBasePrice;
-                breakdownHTML += `<p><span>Filme (até 2h)</span><span>${format(movieBasePrice)}</span></p>`;
+                breakdownHTML += `<p><span>Filme (até 2h)</span><span style="color: var(--text-primary); font-weight: 600;">${format(movieBasePrice)}</span></p>`;
                 
                 const runtime = state.selectedItem.runtime || 0;
                 if (runtime > 120) {
                     const extraMinutes = runtime - 120;
                     const extraCost = extraMinutes * extraMinuteTax;
                     total += extraCost;
-                    breakdownHTML += `<p><span>${extraMinutes} minutos extras (1min = R$1,00)</span><span>+${format(extraCost)}</span></p>`;
+                    breakdownHTML += `<p><span>${extraMinutes} minutos extras (1min = R$1,00)</span><span style="color: var(--text-primary); font-weight: 600;">+${format(extraCost)}</span></p>`;
                 }
             } else { 
                 let baseCost = 0;
@@ -3092,7 +3396,7 @@
                     
                 sortedEpisodes.forEach(episode => {
                     if (episode.isFree && state.derived.tvType === 'anime') {
-                        breakdownHTML += `<p><span>Ep ${episode.number} (${formatDuration(episode.duration)})</span><span style="color: var(--success); font-weight: bold;">Grátis</span></p>`;
+                        breakdownHTML += `<p><span>Ep ${episode.number} (${formatDuration(episode.duration)})</span><span style="color: var(--success); font-weight: 800; text-transform: uppercase;">Grátis</span></p>`;
                         return;
                     }
 
@@ -3114,7 +3418,7 @@
                     const episodeCost = pricePerEp + extraCost;
                     baseCost += episodeCost;
                     
-                    breakdownHTML += `<p><span>Ep ${episode.number} (${formatDuration(epDuration)})</span><span>${format(episodeCost)}</span></p>`;
+                    breakdownHTML += `<p><span>Ep ${episode.number} (${formatDuration(epDuration)})</span><span style="color: var(--text-primary); font-weight: 600;">${format(episodeCost)}</span></p>`;
                 });
 
                 total += baseCost;
@@ -3127,18 +3431,18 @@
                     nonSponsoredSelectedCount === totalInSeason) {
                     const discount = total * 0.15;
                     total -= discount;
-                    breakdownHTML += `<p style="color: var(--success);"><span>Desconto Temporada Completa</span><span>-${format(discount)}</span></p>`;
+                    breakdownHTML += `<p style="color: var(--success);"><span>Desconto Temporada Completa</span><span style="font-weight: 700;">-${format(discount)}</span></p>`;
                 }
             }
             
             if (!state.derived.isGrito && (state.derived.temNudezEspecial || state.options.nudez)) {
                 if (state.mediaType === 'movie') {
                     total += nudezMovieTax;
-                    breakdownHTML += `<p style="color: var(--warning);"><span>Taxa Nudez</span><span>+${format(nudezMovieTax)}</span></p>`;
+                    breakdownHTML += `<p style="color: var(--warning);"><span>Taxa Nudez</span><span style="font-weight: 700;">+${format(nudezMovieTax)}</span></p>`;
                 } else {
                     const nudezCost = state.options.nudezEpisodes * nudezEpisodeTax;
                     total += nudezCost;
-                    breakdownHTML += `<p style="color: var(--warning);"><span>Taxa Nudez (${state.options.nudezEpisodes} ep(s))</span><span>+${format(nudezCost)}</span></p>`;
+                    breakdownHTML += `<p style="color: var(--warning);"><span>Taxa Nudez (${state.options.nudezEpisodes} ep(s))</span><span style="font-weight: 700;">+${format(nudezCost)}</span></p>`;
                 }
             }
             
@@ -3312,188 +3616,6 @@
             };
         }
 
-        // --- SCRIPT DAS ABAS E FILTROS DE PATROCINADOS/ASSISTIDOS ---
-        let sponsoredPage = 1;
-        let assistidosPage = 1;
-        let currentFilter = 'filmes';
-        let currentAssistidosFilter = 'filmes';
-        
-        (function() {
-            const assistidosSearchInput = document.getElementById('assistidos-search-input');
-            const assistidosTabs = document.querySelectorAll('#assistidos-tabs .tab-button');
-            
-            function applyAssistidosFilter() {
-                const query = assistidosSearchInput.value.toLowerCase().trim();
-                const allCards = Array.from(document.querySelectorAll('#assistidos-tab .media-card'));
-                 
-                let filteredCards = [];
-                allCards.forEach(card => {
-                    const title = card.querySelector('.media-card-title').textContent.toLowerCase();
-                    const type = card.dataset.type;
-                    const matchesQuery = title.includes(query);
-                    const matchesFilter = (currentAssistidosFilter === type);
-                    
-                    if (matchesQuery && matchesFilter) {
-                        filteredCards.push(card);
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-                
-                const sections = {
-                    filmes: document.getElementById('assistidos-filmes-section'),
-                    series: document.getElementById('assistidos-series-section'),
-                    animes: document.getElementById('assistidos-animes-section')
-                };
-                
-                Object.keys(sections).forEach(key => {
-                    if (sections[key]) {
-                        if (currentAssistidosFilter === key && filteredCards.length > 0) {
-                            sections[key].classList.remove('hidden');
-                        } else {
-                            sections[key].classList.add('hidden');
-                        }
-                    }
-                });
-                
-                const totalPages = Math.ceil(filteredCards.length / 60) || 1;
-                if (assistidosPage > totalPages) assistidosPage = 1;
-                
-                const start = (assistidosPage - 1) * 60;
-                const end = start + 60;
-                
-                filteredCards.forEach((card, index) => {
-                    if (index >= start && index < end) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-                
-                renderPagination('assistidos-pagination', totalPages, assistidosPage, (newPage) => {
-                    assistidosPage = newPage;
-                    applyAssistidosFilter();
-                    document.getElementById('assistidos-search-input').scrollIntoView({behavior: 'smooth'});
-                });
-                
-                const emptyMsg = document.getElementById('assistidos-empty-msg');
-                if (filteredCards.length === 0) {
-                    emptyMsg.classList.remove('hidden');
-                } else {
-                    emptyMsg.classList.add('hidden');
-                }
-            }
-
-            assistidosSearchInput.addEventListener('input', () => { assistidosPage = 1; applyAssistidosFilter(); });
-            
-            assistidosTabs.forEach(tab => {
-                tab.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    assistidosTabs.forEach(t => t.classList.remove('active'));
-                    e.currentTarget.classList.add('active');
-                    currentAssistidosFilter = e.currentTarget.dataset.filter;
-                    assistidosPage = 1;
-                    applyAssistidosFilter();
-                });
-            });
-            
-            const sponsoredSearchInput = document.getElementById('sponsored-search-input');
-            const sponsoredTabs = document.querySelectorAll('#sponsored-tabs .tab-button');
-            
-            function applySponsoredFilter() {
-                const query = sponsoredSearchInput.value.toLowerCase().trim();
-                const allCards = Array.from(document.querySelectorAll('#patrocinados-tab .media-card'));
-
-                let filteredCards = [];
-                allCards.forEach(card => {
-                    const title = card.querySelector('.media-card-title').textContent.toLowerCase();
-                    const type = card.dataset.type;
-                    const matchesQuery = title.includes(query);
-                    const matchesFilter = (currentFilter === type);
-                    
-                    if (matchesQuery && matchesFilter) {
-                        filteredCards.push(card);
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-                
-                const sections = {
-                    filmes: document.getElementById('filmes-section'),
-                    series: document.getElementById('series-section'),
-                    animes: document.getElementById('animes-section'),
-                    pausados: document.getElementById('pausados-section')
-                };
-                
-                Object.keys(sections).forEach(key => {
-                    if (sections[key]) {
-                        if (currentFilter === key && filteredCards.length > 0) {
-                            sections[key].classList.remove('hidden');
-                        } else {
-                            sections[key].classList.add('hidden');
-                        }
-                    }
-                });
-
-                const totalPages = Math.ceil(filteredCards.length / 60) || 1;
-                if (sponsoredPage > totalPages) sponsoredPage = 1;
-                
-                const start = (sponsoredPage - 1) * 60;
-                const end = start + 60;
-                
-                filteredCards.forEach((card, index) => {
-                    if (index >= start && index < end) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-                
-                renderPagination('sponsored-pagination', totalPages, sponsoredPage, (newPage) => {
-                    sponsoredPage = newPage;
-                    applySponsoredFilter();
-                    document.getElementById('sponsored-search-input').scrollIntoView({behavior: 'smooth'});
-                });
-                
-                const emptyMsg = document.getElementById('sponsored-empty-msg');
-                if (filteredCards.length === 0) {
-                    emptyMsg.classList.remove('hidden');
-                } else {
-                    emptyMsg.classList.add('hidden');
-                }
-            }
-
-            sponsoredSearchInput.addEventListener('input', () => { sponsoredPage = 1; applySponsoredFilter(); });
-            
-            sponsoredTabs.forEach(tab => {
-                tab.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    sponsoredTabs.forEach(t => t.classList.remove('active'));
-                    e.currentTarget.classList.add('active');
-                    currentFilter = e.currentTarget.dataset.filter;
-                    sponsoredPage = 1;
-                    applySponsoredFilter();
-                });
-            });
-            
-            window.applySponsoredFilter = applySponsoredFilter;
-            window.applyAssistidosFilter = applyAssistidosFilter;
-        })();
-
-        function renderPagination(containerId, totalPages, currentPage, onPageChange) {
-            const container = document.getElementById(containerId);
-            container.innerHTML = '';
-            if (totalPages <= 1) return;
-
-            for (let i = 1; i <= totalPages; i++) {
-                const btn = document.createElement('button');
-                btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
-                btn.textContent = i;
-                btn.addEventListener('click', () => onPageChange(i));
-                container.appendChild(btn);
-            }
-        }
-
         // --- SISTEMA DE PROGRESSO DE SÉRIES/ANIMES (COM CÁLCULO DE POSIÇÃO BASEADO NO TMDB) ---
         function analyzeTVProgress(eps_p, eps_a, totalTmdbEps, tmdbSeasons) {
             const pData = parseSponsoredString(eps_p || '');
@@ -3593,11 +3715,11 @@
                     if (specificP.length > 0 && p === 0) patrocinadosText = 'Avulso(s)';
                     else if (specificP.length > 0) patrocinadosText += ' + Avulso(s)';
 
-                    textRight = `<span style="color: var(--accent-tertiary); font-weight: 600;">Pago: ${patrocinadosText}</span> &nbsp;|&nbsp; Visto: ${assistidosText} / ${totalEpsInSeason}`;
+                    textRight = `<span style="color: var(--accent-tertiary); font-weight: 700;">Pago: ${patrocinadosText}</span> &nbsp;|&nbsp; Visto: ${assistidosText} / ${totalEpsInSeason}`;
 
                     if (isFinished && !hasAvulso) {
-                        textLeft = `<i class="fas fa-check-circle" style="color: var(--success); margin-right: 6px; font-size: 0.9em;"></i>${s}ª Temporada (Finalizada)`;
-                        textRight = `<span style="color: var(--success); font-weight: 600;">Completa</span>`;
+                        textLeft = `<i class="fas fa-check-circle" style="color: var(--success); margin-right: 6px; font-size: 1.1em;"></i>${s}ª Temporada (Finalizada)`;
+                        textRight = `<span style="color: var(--success); font-weight: 700;">Completa</span>`;
                     }
 
                     if (!isCard) {
@@ -3633,7 +3755,7 @@
                             <div class="progress-item">
                                 <div class="progress-header">
                                     <span>${textLeft}</span>
-                                    <span style="color: var(--text-secondary); font-size: 0.85rem;">${textRight}</span>
+                                    <span style="color: var(--text-secondary); font-size: 0.9rem;">${textRight}</span>
                                 </div>
                                 <div class="progress-track" style="overflow: visible;">
                                     ${htmlTrack}
@@ -3662,7 +3784,7 @@
                         <div class="progress-item">
                             <div class="progress-header">
                                 <span>Progresso Geral</span>
-                                <span style="color: var(--text-secondary); font-size: 0.85rem;"><span style="color: var(--accent-tertiary); font-weight: 600;">Pago: ${p}</span> &nbsp;|&nbsp; Visto: ${a} / ${total}</span>
+                                <span style="color: var(--text-secondary); font-size: 0.9rem;"><span style="color: var(--accent-tertiary); font-weight: 700;">Pago: ${p}</span> &nbsp;|&nbsp; Visto: ${a} / ${total}</span>
                             </div>
                             <div class="progress-track">
                                 <div class="progress-fill-container">
@@ -3750,15 +3872,15 @@
         function renderErrorButton(containerId, retryFunction) {
             const container = document.getElementById(containerId);
             container.innerHTML = `
-                <div class="error-container">
-                    <p>Erro ao carregar as informações. Verifique sua conexão.</p>
+                <div class="error-container" style="text-align: center; padding: 40px;">
+                    <p style="color: var(--error); font-size: 1.2rem; margin-bottom: 20px;"><i class="fas fa-exclamation-circle"></i> Erro ao carregar as informações. Verifique sua conexão.</p>
                     <button class="retry-btn">Tentar Novamente</button>
                 </div>
             `;
             container.classList.remove('hidden');
             const btn = container.querySelector('.retry-btn');
             btn.onclick = function() {
-                container.innerHTML = 'Carregando...';
+                container.innerHTML = '<div style="text-align: center; color: var(--text-muted); padding: 40px; font-size: 1.2rem;"><i class="fas fa-spinner fa-spin" style="color: var(--accent-primary); margin-right: 10px;"></i> Carregando...</div>';
                 retryFunction();
             };
         }
@@ -3787,80 +3909,113 @@
             return data;
         }
 
-        async function loadSponsoredContent() {
-            try {
-                const allData = await fetchAllSupabaseData();
-                const sponsoredItems = allData.filter(item => {
-                    if (item.tipo === 'patrocinado') return true;
-                    if (!item.tipo) {
-                        if (item.eps_p) return true;
-                        if (!item.eps_p && !item.eps_a && !item.nota) return true; 
-                    }
-                    return false;
-                });
-
-                const detailedItems = await Promise.all(
-                    sponsoredItems.map(async (item) => {
-                        const tmdbId = item.tmdb_id;
-                        if (!tmdbId) return null;
-
-                        const isTV = (item.eps_p !== null && item.eps_p !== "") || (item.eps_a !== null && item.eps_a !== "");
-                        const mediaType = isTV ? 'tv' : 'movie';
-                        
-                        const tmdbUrl = `${BASE_URL}/${mediaType}/${tmdbId}?api_key=${API_KEY}&language=pt-BR`;
-                        try {
-                            const tmdbResponse = await fetch(tmdbUrl);
-                            if (!tmdbResponse.ok) return null;
-                            
-                            const tmdbData = await tmdbResponse.json();
-                            return { 
-                                ...item, id: item.tmdb_id, title: tmdbData.title || tmdbData.name, name: tmdbData.name || tmdbData.title,
-                                overview: tmdbData.overview, poster_path: tmdbData.poster_path, backdrop_path: tmdbData.backdrop_path,
-                                release_date: tmdbData.release_date, first_air_date: tmdbData.first_air_date, genres: tmdbData.genres,
-                                runtime: tmdbData.runtime, Patrocinador: item.patrocinador, 'Episódios Patrocinados': item.eps_p,
-                                'Episódios Assistidos': item.eps_a, 'Episódios Totais': tmdbData.number_of_episodes, seasons: tmdbData.seasons, media_type_custom: mediaType
-                            };
-                        } catch (e) {
-                            return null;
-                        }
-                    })
-                );
-                document.getElementById('loading-message').classList.add('hidden');
-                renderSponsoredContent(detailedItems.filter(item => item !== null));
-
-            } catch (error) {
-                console.error('Erro ao carregar conteúdo patrocinado:', error);
-                renderErrorButton('loading-message', loadSponsoredContent);
-            }
-        }
+        // --- SCRIPT DOS NOVOS FILTROS, BUSCA E ORDENAÇÃO ---
+        let sponsoredPage = 1;
+        let assistidosPage = 1;
         
-        function renderSponsoredContent(items) {
-            const containers = {
-                filmes: document.getElementById('filmes-grid'),
-                series: document.getElementById('series-grid'),
-                animes: document.getElementById('animes-grid'),
-                pausados: document.getElementById('pausados-grid')
-            };
+        const spState = {
+            search: '',
+            status: 'todos',
+            type: 'todos',
+            sortBy: 'data',
+            sortAsc: true // true = Crescente (Antigos primeiro), false = Decrescente (Novos primeiro)
+        };
+
+        const asState = {
+            search: '',
+            status: 'todos',
+            type: 'todos',
+            sortBy: 'data',
+            sortAsc: true 
+        };
+
+        // Função que cria as caixinhas bonitas de Stats
+        function updateStats(data, containerId) {
+            let total = data.length;
+            let filmes = 0;
+            let series = 0;
+            let animes = 0;
             
-            Object.values(containers).forEach(c => c.innerHTML = '');
+            data.forEach(item => {
+                let itemType = 'series';
+                if (item.media_type_custom === 'movie') itemType = 'filmes';
+                else if (item.genres && item.genres.some(g => g.id === 16)) itemType = 'animes';
+                
+                if (itemType === 'filmes') filmes++;
+                else if (itemType === 'series') series++;
+                else if (itemType === 'animes') animes++;
+            });
+            
+            document.getElementById(containerId).innerHTML = `
+                <div class="stat-card">
+                    <i class="fas fa-layer-group"></i>
+                    <div class="stat-card-info">
+                        <strong>${total}</strong>
+                        <span>Títulos</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-film"></i>
+                    <div class="stat-card-info">
+                        <strong>${filmes}</strong>
+                        <span>Filmes</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-tv"></i>
+                    <div class="stat-card-info">
+                        <strong>${series}</strong>
+                        <span>Séries</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-star"></i>
+                    <div class="stat-card-info">
+                        <strong>${animes}</strong>
+                        <span>Animes</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        function sortDataList(dataList, sortBy, isAsc) {
+            return dataList.sort((a, b) => {
+                let valA, valB;
+                if (sortBy === 'alfabetica') {
+                    valA = (a.title || a.name || '').toLowerCase();
+                    valB = (b.title || b.name || '').toLowerCase();
+                } else if (sortBy === 'avaliacao') {
+                    valA = parseFloat(a['Nota da Lorena']) || 0;
+                    valB = parseFloat(b['Nota da Lorena']) || 0;
+                } else {
+                    // Ordenação por DATA (Usa a ordem do banco / inserção)
+                    valA = a.originalIndex;
+                    valB = b.originalIndex;
+                }
+                
+                if (valA < valB) return isAsc ? -1 : 1;
+                if (valA > valB) return isAsc ? 1 : -1;
+                return 0;
+            });
+        }
+
+        function renderMediaCards(items, containerId, isAssistido) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
 
             items.forEach(item => {
-                sponsoredDataCache.push(item);
-                
                 const card = document.createElement('div');
                 card.className = 'media-card';
                 card.dataset.id = item.id;
                 
                 const posterPath = item.poster_path ? `${IMG_URL}${item.poster_path}` : 'https://via.placeholder.com/200x300?text=Sem+Imagem';
                 
-                // Progress Bar para Séries/Animes
                 let progressHtml = '';
                 if (item.media_type_custom === 'tv') {
                      const progressData = analyzeTVProgress(item['Episódios Patrocinados'], item['Episódios Assistidos'], item['Episódios Totais'], item.seasons);
                      progressHtml = buildProgressUI(progressData, true);
                 }
                 
-                // Nota da Lorena se houver
                 let ratingHtml = '';
                 if (item['Nota da Lorena']) {
                      ratingHtml = renderStarsCard(item['Nota da Lorena']);
@@ -3875,31 +4030,305 @@
                     </div>
                 `;
 
-                const isPausado = item.pausado === true || String(item.pausado).toUpperCase() === 'SIM' || item.Pausado === true;
-
-                if (isPausado) {
-                    card.dataset.type = 'pausados';
-                    containers.pausados.appendChild(card);
+                if (isAssistido) {
+                    card.addEventListener('click', () => showAssistidosDetailsModal(item.id));
                 } else {
-                    let typeKey;
-                    if (item.media_type_custom === 'movie') {
-                        typeKey = 'filmes';
-                        containers.filmes.appendChild(card);
-                    } else { 
-                        const isAnime = item.genres && item.genres.some(genre => genre.id === 16);
-                        if (isAnime) {
-                            typeKey = 'animes';
-                            containers.animes.appendChild(card);
-                        } else {
-                            typeKey = 'series';
-                            containers.series.appendChild(card);
-                        }
-                    }
-                    card.dataset.type = typeKey;
+                    card.addEventListener('click', () => showSponsoredDetailsModal(item.id));
                 }
-                card.addEventListener('click', () => showSponsoredDetailsModal(item.id));
+                
+                container.appendChild(card);
             });
-            if (window.applySponsoredFilter) window.applySponsoredFilter();
+        }
+
+        function applySponsoredFilter() {
+            let filtered = sponsoredDataCache.filter(item => {
+                // Filtro: Busca
+                const title = (item.title || item.name || '').toLowerCase();
+                const sponsor = (cleanSponsorName(item.Patrocinador)).toLowerCase();
+                const searchTerm = spState.search.toLowerCase();
+                
+                if (spState.search && !title.includes(searchTerm) && !sponsor.includes(searchTerm)) return false;
+                
+                // Filtro: Status
+                const isPausado = item.pausado === true || String(item.pausado).toUpperCase() === 'SIM' || item.Pausado === true;
+                if (spState.status === 'na-fila' && isPausado) return false;
+                if (spState.status === 'pausados' && !isPausado) return false;
+                
+                // Filtro: Tipo
+                let itemType = 'series';
+                if (item.media_type_custom === 'movie') itemType = 'filmes';
+                else if (item.genres && item.genres.some(g => g.id === 16)) itemType = 'animes';
+                
+                if (spState.type !== 'todos' && itemType !== spState.type) return false;
+                
+                return true;
+            });
+
+            // Atualiza estatísticas antes de paginar
+            updateStats(filtered, 'sponsored-stats');
+
+            // Ordenar
+            filtered = sortDataList(filtered, spState.sortBy, spState.sortAsc);
+
+            // Paginar
+            const totalPages = Math.ceil(filtered.length / 60) || 1;
+            if (sponsoredPage > totalPages) sponsoredPage = 1;
+            
+            const start = (sponsoredPage - 1) * 60;
+            const end = start + 60;
+            const paginatedItems = filtered.slice(start, end);
+
+            // Renderizar Grade e Paginação
+            renderMediaCards(paginatedItems, 'patrocinados-grid', false);
+            
+            renderPagination('sponsored-pagination', totalPages, sponsoredPage, (newPage) => {
+                sponsoredPage = newPage;
+                applySponsoredFilter();
+                document.getElementById('sponsored-search-input').scrollIntoView({behavior: 'smooth'});
+            });
+
+            const emptyMsg = document.getElementById('sponsored-empty-msg');
+            if (filtered.length === 0) emptyMsg.classList.remove('hidden');
+            else emptyMsg.classList.add('hidden');
+        }
+
+        function applyAssistidosFilter() {
+            let filtered = assistidosDataCache.filter(item => {
+                // Filtro: Busca
+                const title = (item.title || item.name || '').toLowerCase();
+                if (asState.search && !title.includes(asState.search.toLowerCase())) return false;
+                
+                // Filtro: Tipo
+                let itemType = 'series';
+                if (item.media_type_custom === 'movie') itemType = 'filmes';
+                else if (item.genres && item.genres.some(g => g.id === 16)) itemType = 'animes';
+                
+                if (asState.type !== 'todos' && itemType !== asState.type) return false;
+                
+                // Status aqui é apenas 'assistidos' ou 'todos', na prática estão todos assistidos, mas obedecendo:
+                if (asState.status === 'assistidos' && item.tipo !== 'assistido' && !item.eps_a) return false;
+
+                return true;
+            });
+
+            // Atualiza estatísticas antes de paginar
+            updateStats(filtered, 'assistidos-stats');
+
+            // Ordenar
+            filtered = sortDataList(filtered, asState.sortBy, asState.sortAsc);
+
+            // Paginar
+            const totalPages = Math.ceil(filtered.length / 60) || 1;
+            if (assistidosPage > totalPages) assistidosPage = 1;
+            
+            const start = (assistidosPage - 1) * 60;
+            const end = start + 60;
+            const paginatedItems = filtered.slice(start, end);
+
+            // Renderizar Grade e Paginação
+            renderMediaCards(paginatedItems, 'assistidos-grid', true);
+            
+            renderPagination('assistidos-pagination', totalPages, assistidosPage, (newPage) => {
+                assistidosPage = newPage;
+                applyAssistidosFilter();
+                document.getElementById('assistidos-search-input').scrollIntoView({behavior: 'smooth'});
+            });
+
+            const emptyMsg = document.getElementById('assistidos-empty-msg');
+            if (filtered.length === 0) emptyMsg.classList.remove('hidden');
+            else emptyMsg.classList.add('hidden');
+        }
+
+        // EVENT LISTENERS DE PATROCINADOS
+        document.getElementById('sponsored-search-input').addEventListener('input', (e) => {
+            spState.search = e.target.value; sponsoredPage = 1; applySponsoredFilter();
+        });
+        document.getElementById('sponsored-filter-status').addEventListener('change', (e) => {
+            spState.status = e.target.value; sponsoredPage = 1; applySponsoredFilter();
+        });
+        document.getElementById('sponsored-filter-type').addEventListener('change', (e) => {
+            spState.type = e.target.value; sponsoredPage = 1; applySponsoredFilter();
+        });
+        document.getElementById('sponsored-sort-by').addEventListener('change', (e) => {
+            spState.sortBy = e.target.value; sponsoredPage = 1; applySponsoredFilter();
+        });
+        document.getElementById('sponsored-sort-order').addEventListener('click', (e) => {
+            spState.sortAsc = !spState.sortAsc; 
+            const icon = e.currentTarget.querySelector('i');
+            icon.className = spState.sortAsc ? 'fa-solid fa-arrow-down-wide-short' : 'fa-solid fa-arrow-up-short-wide';
+            sponsoredPage = 1; 
+            applySponsoredFilter();
+        });
+        document.getElementById('sponsored-clear-filters').addEventListener('click', () => {
+            spState.search = '';
+            spState.status = 'todos';
+            spState.type = 'todos';
+            spState.sortBy = 'data';
+            spState.sortAsc = true;
+            
+            document.getElementById('sponsored-search-input').value = '';
+            document.getElementById('sponsored-filter-status').value = 'todos';
+            document.getElementById('sponsored-filter-type').value = 'todos';
+            document.getElementById('sponsored-sort-by').value = 'data';
+            document.getElementById('sponsored-sort-order').querySelector('i').className = 'fa-solid fa-arrow-down-wide-short';
+            
+            sponsoredPage = 1;
+            applySponsoredFilter();
+        });
+
+        // EVENT LISTENERS DE ASSISTIDOS
+        document.getElementById('assistidos-search-input').addEventListener('input', (e) => {
+            asState.search = e.target.value; assistidosPage = 1; applyAssistidosFilter();
+        });
+        document.getElementById('assistidos-filter-status').addEventListener('change', (e) => {
+            asState.status = e.target.value; assistidosPage = 1; applyAssistidosFilter();
+        });
+        document.getElementById('assistidos-filter-type').addEventListener('change', (e) => {
+            asState.type = e.target.value; assistidosPage = 1; applyAssistidosFilter();
+        });
+        document.getElementById('assistidos-sort-by').addEventListener('change', (e) => {
+            asState.sortBy = e.target.value; assistidosPage = 1; applyAssistidosFilter();
+        });
+        document.getElementById('assistidos-sort-order').addEventListener('click', (e) => {
+            asState.sortAsc = !asState.sortAsc; 
+            const icon = e.currentTarget.querySelector('i');
+            icon.className = asState.sortAsc ? 'fa-solid fa-arrow-down-wide-short' : 'fa-solid fa-arrow-up-short-wide';
+            assistidosPage = 1; 
+            applyAssistidosFilter();
+        });
+        document.getElementById('assistidos-clear-filters').addEventListener('click', () => {
+            asState.search = '';
+            asState.status = 'todos';
+            asState.type = 'todos';
+            asState.sortBy = 'data';
+            asState.sortAsc = true;
+            
+            document.getElementById('assistidos-search-input').value = '';
+            document.getElementById('assistidos-filter-status').value = 'todos';
+            document.getElementById('assistidos-filter-type').value = 'todos';
+            document.getElementById('assistidos-sort-by').value = 'data';
+            document.getElementById('assistidos-sort-order').querySelector('i').className = 'fa-solid fa-arrow-down-wide-short';
+            
+            assistidosPage = 1;
+            applyAssistidosFilter();
+        });
+
+
+        // FUNÇÕES DE CARREGAMENTO ORIGINAIS MODIFICADAS PARA O NOVO SISTEMA
+        async function loadSponsoredContent() {
+            try {
+                const allData = await fetchAllSupabaseData();
+                const sponsoredItems = allData.filter(item => {
+                    if (item.tipo === 'patrocinado') return true;
+                    if (!item.tipo) {
+                        if (item.eps_p) return true;
+                        if (!item.eps_p && !item.eps_a && !item.nota) return true; 
+                    }
+                    return false;
+                });
+
+                const detailedItems = await Promise.all(
+                    sponsoredItems.map(async (item, index) => {
+                        const tmdbId = item.tmdb_id;
+                        if (!tmdbId) return null;
+
+                        const isTV = (item.eps_p !== null && item.eps_p !== "") || (item.eps_a !== null && item.eps_a !== "");
+                        const mediaType = isTV ? 'tv' : 'movie';
+                        
+                        const tmdbUrl = `${BASE_URL}/${mediaType}/${tmdbId}?api_key=${API_KEY}&language=pt-BR`;
+                        try {
+                            const tmdbResponse = await fetch(tmdbUrl);
+                            if (!tmdbResponse.ok) return null;
+                            
+                            const tmdbData = await tmdbResponse.json();
+                            return { 
+                                ...item, 
+                                originalIndex: index, // Usado para ordenação cronológica (Data)
+                                id: item.tmdb_id, title: tmdbData.title || tmdbData.name, name: tmdbData.name || tmdbData.title,
+                                overview: tmdbData.overview, poster_path: tmdbData.poster_path, backdrop_path: tmdbData.backdrop_path,
+                                release_date: tmdbData.release_date, first_air_date: tmdbData.first_air_date, genres: tmdbData.genres,
+                                runtime: tmdbData.runtime, Patrocinador: item.patrocinador, 'Episódios Patrocinados': item.eps_p,
+                                'Episódios Assistidos': item.eps_a, 'Episódios Totais': tmdbData.number_of_episodes, seasons: tmdbData.seasons, media_type_custom: mediaType
+                            };
+                        } catch (e) {
+                            return null;
+                        }
+                    })
+                );
+                document.getElementById('loading-message').classList.add('hidden');
+                
+                sponsoredDataCache = detailedItems.filter(item => item !== null);
+                applySponsoredFilter();
+
+            } catch (error) {
+                console.error('Erro ao carregar conteúdo patrocinado:', error);
+                renderErrorButton('loading-message', loadSponsoredContent);
+            }
+        }
+
+        async function loadAssistidosContent() {
+            try {
+                const allData = await fetchAllSupabaseData();
+                const assistidosItems = allData.filter(item => {
+                    if (item.tipo === 'assistido') return true;
+                    if (!item.tipo) {
+                        if (item.eps_a || item.nota) return true;
+                    }
+                    return false;
+                });
+                
+                const detailedItems = await Promise.all(
+                    assistidosItems.map(async (item, index) => {
+                        const tmdbId = item.tmdb_id;
+                        if (!tmdbId) return null;
+
+                        const isTV = (item.eps_p !== null && item.eps_p !== "") || (item.eps_a !== null && item.eps_a !== "");
+                        const mediaType = isTV ? 'tv' : 'movie';
+                        
+                        const tmdbUrl = `${BASE_URL}/${mediaType}/${tmdbId}?api_key=${API_KEY}&language=pt-BR`;
+                        try {
+                            const tmdbResponse = await fetch(tmdbUrl);
+                            if (!tmdbResponse.ok) return null;
+                            
+                            const tmdbData = await tmdbResponse.json();
+                            return { 
+                                ...item, 
+                                originalIndex: index, // Usado para ordenação cronológica (Data)
+                                id: item.tmdb_id, title: tmdbData.title || tmdbData.name, name: tmdbData.name || tmdbData.title,
+                                overview: tmdbData.overview, poster_path: tmdbData.poster_path, backdrop_path: tmdbData.backdrop_path,
+                                release_date: tmdbData.release_date, first_air_date: tmdbData.first_air_date, genres: tmdbData.genres,
+                                runtime: tmdbData.runtime, Patrocinador: item.patrocinador, 'Episódios Patrocinados': item.eps_p,
+                                'Episódios Assistidos': item.eps_a, 'Nota da Lorena': item.nota, 'Episódios Totais': tmdbData.number_of_episodes, seasons: tmdbData.seasons, media_type_custom: mediaType
+                            };
+                        } catch (e) {
+                            return null;
+                        }
+                    })
+                );
+                
+                document.getElementById('assistidos-loading-message').classList.add('hidden');
+                
+                assistidosDataCache = detailedItems.filter(item => item !== null);
+                applyAssistidosFilter();
+
+            } catch (error) {
+                console.error('Erro ao carregar conteúdo assistido:', error);
+                renderErrorButton('assistidos-loading-message', loadAssistidosContent);
+            }
+        }
+        
+        function renderPagination(containerId, totalPages, currentPage, onPageChange) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            if (totalPages <= 1) return;
+
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement('button');
+                btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+                btn.textContent = i;
+                btn.addEventListener('click', () => onPageChange(i));
+                container.appendChild(btn);
+            }
         }
 
         function showSponsoredDetailsModal(tmdbId) {
@@ -3958,7 +4387,6 @@
                     <span>${year}</span>
                 `;
                 
-                // RENDERIZAR NOVO SISTEMA DE PROGRESSO
                 const progressData = analyzeTVProgress(item['Episódios Patrocinados'], item['Episódios Assistidos'], item['Episódios Totais'], item.seasons);
                 const progressHtml = buildProgressUI(progressData, false);
                 if (progressHtml) {
@@ -3970,114 +4398,6 @@
             }
 
             document.getElementById('details-modal').classList.add('visible');
-        }
-
-        async function loadAssistidosContent() {
-            try {
-                const allData = await fetchAllSupabaseData();
-                const assistidosItems = allData.filter(item => {
-                    if (item.tipo === 'assistido') return true;
-                    if (!item.tipo) {
-                        if (item.eps_a || item.nota) return true;
-                    }
-                    return false;
-                });
-                
-                const detailedItems = await Promise.all(
-                    assistidosItems.map(async (item) => {
-                        const tmdbId = item.tmdb_id;
-                        if (!tmdbId) return null;
-
-                        const isTV = (item.eps_p !== null && item.eps_p !== "") || (item.eps_a !== null && item.eps_a !== "");
-                        const mediaType = isTV ? 'tv' : 'movie';
-                        
-                        const tmdbUrl = `${BASE_URL}/${mediaType}/${tmdbId}?api_key=${API_KEY}&language=pt-BR`;
-                        try {
-                            const tmdbResponse = await fetch(tmdbUrl);
-                            if (!tmdbResponse.ok) return null;
-                            
-                            const tmdbData = await tmdbResponse.json();
-                            return { 
-                                ...item, id: item.tmdb_id, title: tmdbData.title || tmdbData.name, name: tmdbData.name || tmdbData.title,
-                                overview: tmdbData.overview, poster_path: tmdbData.poster_path, backdrop_path: tmdbData.backdrop_path,
-                                release_date: tmdbData.release_date, first_air_date: tmdbData.first_air_date, genres: tmdbData.genres,
-                                runtime: tmdbData.runtime, Patrocinador: item.patrocinador, 'Episódios Patrocinados': item.eps_p,
-                                'Episódios Assistidos': item.eps_a, 'Nota da Lorena': item.nota, 'Episódios Totais': tmdbData.number_of_episodes, seasons: tmdbData.seasons, media_type_custom: mediaType
-                            };
-                        } catch (e) {
-                            return null;
-                        }
-                    })
-                );
-                
-                document.getElementById('assistidos-loading-message').classList.add('hidden');
-                renderAssistidosContent(detailedItems.filter(item => item !== null));
-
-            } catch (error) {
-                console.error('Erro ao carregar conteúdo assistido:', error);
-                renderErrorButton('assistidos-loading-message', loadAssistidosContent);
-            }
-        }
-        
-        function renderAssistidosContent(items) {
-            const containers = {
-                filmes: document.getElementById('assistidos-filmes-grid'),
-                series: document.getElementById('assistidos-series-grid'),
-                animes: document.getElementById('assistidos-animes-grid')
-            };
-
-            Object.values(containers).forEach(c => c.innerHTML = '');
-            
-            items.forEach(item => {
-                assistidosDataCache.push(item);
-                
-                const card = document.createElement('div');
-                card.className = 'media-card';
-                card.dataset.id = item.id;
-                
-                const posterPath = item.poster_path ? `${IMG_URL}${item.poster_path}` : 'https://via.placeholder.com/200x300?text=Sem+Imagem';
-                
-                // Progress Bar para Séries/Animes
-                let progressHtml = '';
-                if (item.media_type_custom === 'tv') {
-                     const progressData = analyzeTVProgress(item['Episódios Patrocinados'], item['Episódios Assistidos'], item['Episódios Totais'], item.seasons);
-                     progressHtml = buildProgressUI(progressData, true);
-                }
-                
-                // Nota da Lorena
-                let ratingHtml = '';
-                if (item['Nota da Lorena']) {
-                     ratingHtml = renderStarsCard(item['Nota da Lorena']);
-                }
-
-                card.innerHTML = `
-                    <img src="${posterPath}" alt="Pôster de ${item.title || item.name}">
-                    <div class="media-card-content">
-                        <div class="media-card-title">${item.title || item.name}</div>
-                        ${ratingHtml}
-                        ${progressHtml}
-                    </div>
-                `;
-
-                let typeKey;
-                if (item.media_type_custom === 'movie') {
-                    typeKey = 'filmes';
-                    containers.filmes.appendChild(card);
-                } else { 
-                    const isAnime = item.genres && item.genres.some(genre => genre.id === 16);
-                    if (isAnime) {
-                        typeKey = 'animes';
-                        containers.animes.appendChild(card);
-                    } else {
-                        typeKey = 'series';
-                        containers.series.appendChild(card);
-                    }
-                }
-                card.dataset.type = typeKey;
-                
-                card.addEventListener('click', () => showAssistidosDetailsModal(item.id));
-            });
-            if (window.applyAssistidosFilter) window.applyAssistidosFilter();
         }
 
         function showAssistidosDetailsModal(tmdbId) {
@@ -4137,7 +4457,6 @@
                     <span>${year}</span>
                 `;
                 
-                // RENDERIZAR NOVO SISTEMA DE PROGRESSO
                 const progressData = analyzeTVProgress(item['Episódios Patrocinados'], item['Episódios Assistidos'], item['Episódios Totais'], item.seasons);
                 const progressHtml = buildProgressUI(progressData, false);
                 if (progressHtml) {
